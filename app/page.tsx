@@ -131,6 +131,7 @@ export default function Home() {
             ["Philosophy", "#philosophy"],
             ["How It Works", "#pillars"],
             ["Manifesto", "#manifesto"],
+            ["CEO", "/ceo"],
           ].map(([label, href]) => (
             <a
               key={href}
