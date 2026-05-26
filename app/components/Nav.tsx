@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Logo from "./Logo";
 
 const LINKS = [
   ["서비스", "/services"],
@@ -33,11 +34,8 @@ export default function Nav() {
           : "1px solid transparent",
       }}
     >
-      <Link
-        href="/"
-        className="text-xs tracking-[0.35em] uppercase font-medium text-[#F0EDE8] hover:text-[#B8965A] transition-colors duration-300"
-      >
-        simplyciety
+      <Link href="/" className="hover:opacity-80 transition-opacity duration-300">
+        <Logo />
       </Link>
 
       <div className="hidden md:flex items-center gap-8">

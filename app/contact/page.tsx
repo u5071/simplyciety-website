@@ -4,6 +4,7 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Nav from "../components/Nav";
+import Logo from "../components/Logo";
 
 const SERVICE_OPTIONS = [
   { value: "consulting", label: "AX 컨설팅" },
@@ -322,8 +323,8 @@ function ContactForm() {
           {/* FOOTER */}
           <footer className="px-8 md:px-16 py-10" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
             <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-              <Link href="/" className="text-[0.6rem] tracking-[0.3em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors">
-                simplyciety
+              <Link href="/" className="hover:opacity-70 transition-opacity">
+                <Logo markColor="rgba(184,150,90,0.25)" textColor="#2A2A2A" />
               </Link>
               <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">Less noise. More signal.</span>
             </div>

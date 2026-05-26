@@ -10,6 +10,11 @@ const geist = Geist({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://simplyciety.com"),
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+  },
   title: {
     default: "simplyciety — AI로 조직을 단순화합니다",
     template: "%s | simplyciety",

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "../components/Nav";
+import Logo from "../components/Logo";
 
 export const metadata: Metadata = {
   title: "서비스 — simplyciety | AX 컨설팅·데이터 플랫폼·AI 교육",
@@ -341,8 +342,8 @@ export default function ServicesPage() {
       {/* FOOTER */}
       <footer className="px-8 md:px-16 py-10" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <Link href="/" className="text-[0.6rem] tracking-[0.3em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors">
-            simplyciety
+          <Link href="/" className="hover:opacity-70 transition-opacity">
+            <Logo markColor="rgba(184,150,90,0.25)" textColor="#2A2A2A" />
           </Link>
           <div className="flex items-center gap-8">
             {[["서비스", "/services"], ["CEO", "/ceo"], ["문의하기", "/contact"]].map(([l, h]) => (

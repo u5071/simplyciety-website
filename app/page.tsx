@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Logo from "./components/Logo";
 
 const PILLARS = [
   {
@@ -120,11 +121,8 @@ export default function Home() {
             : "1px solid transparent",
         }}
       >
-        <a
-          href="#"
-          className="text-xs tracking-[0.35em] uppercase font-medium text-[#F0EDE8] hover:text-[#B8965A] transition-colors duration-300"
-        >
-          simplyciety
+        <a href="#" className="hover:opacity-80 transition-opacity duration-300">
+          <Logo />
         </a>
         <div className="hidden md:flex items-center gap-8">
           {[
@@ -505,10 +503,8 @@ export default function Home() {
       {/* ─── FOOTER ─── */}
       <footer className="px-8 md:px-16 py-10">
         <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex items-center gap-6">
-            <span className="text-[0.65rem] tracking-[0.35em] uppercase text-[#3A3A3A]">
-              simplyciety
-            </span>
+          <div className="flex items-center gap-5">
+            <Logo markColor="rgba(184,150,90,0.35)" textColor="#3A3A3A" />
             <span className="text-[#2A2A2A]">—</span>
             <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
               © 2026

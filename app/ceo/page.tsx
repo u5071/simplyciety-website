@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Logo from "../components/Logo";
 
 const IMPACT = [
   { num: "15+", label: "년 데이터·AI 현장 경험" },
@@ -135,8 +136,9 @@ export default function CeoPage() {
           borderBottom: scrolled ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
         }}
       >
-        <Link href="/" className="text-xs tracking-[0.35em] uppercase text-[#6A6A6A] hover:text-[#F0EDE8] transition-colors duration-300">
-          ← simplyciety
+        <Link href="/" className="inline-flex items-center gap-2 group hover:opacity-80 transition-opacity duration-300">
+          <span className="text-[#3A3A3A] group-hover:text-[#6A6A6A] transition-colors text-xs">←</span>
+          <Logo markColor="rgba(184,150,90,0.6)" textColor="#6A6A6A" />
         </Link>
         <span className="text-[0.65rem] tracking-[0.3em] uppercase text-[#2A2A2A]">Founder</span>
         <Link
@@ -476,8 +478,9 @@ export default function CeoPage() {
       {/* ─── FOOTER ─── */}
       <footer className="px-8 md:px-16 py-10" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
         <div className="max-w-screen-xl mx-auto flex justify-between items-center">
-          <Link href="/" className="text-[0.6rem] tracking-[0.3em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors">
-            ← simplyciety
+          <Link href="/" className="inline-flex items-center gap-2 hover:opacity-70 transition-opacity">
+            <span className="text-[#2A2A2A] text-xs">←</span>
+            <Logo markColor="rgba(184,150,90,0.25)" textColor="#2A2A2A" />
           </Link>
           <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">
             Mr. Simpler · Founder & CEO

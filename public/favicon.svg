@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#080808"/>
+  <!-- Three input lines (noise) -->
+  <line x1="2" y1="9" x2="17" y2="16" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="2" y1="16" x2="17" y2="16" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+  <line x1="2" y1="23" x2="17" y2="16" stroke="#B8965A" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- Signal node -->
+  <circle cx="17" cy="16" r="2" fill="#B8965A"/>
+  <!-- Output signal -->
+  <line x1="19" y1="16" x2="30" y2="16" stroke="#B8965A" stroke-width="1.8" stroke-linecap="round"/>
+</svg>
