@@ -126,12 +126,12 @@ export default function Home() {
         >
           simplyciety
         </a>
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {[
-            ["Philosophy", "#philosophy"],
+            ["서비스", "/services"],
             ["How It Works", "#pillars"],
-            ["Manifesto", "#manifesto"],
             ["CEO", "/ceo"],
+            ["문의", "/contact"],
           ].map(([label, href]) => (
             <a
               key={href}
