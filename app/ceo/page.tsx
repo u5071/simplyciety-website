@@ -177,11 +177,25 @@ export default function CeoPage() {
                 그것을 걷어내는 데 AI가 답이 될 수 있다는 것.
               </p>
             </div>
-            <div className="md:col-span-5 hero-cta flex flex-col justify-end gap-2">
+            <div className="md:col-span-5 hero-cta flex flex-col justify-end gap-4">
               <p className="text-[#3A3A3A] text-xs leading-loose font-light tracking-wide">
                 AI.Bigdata MBA · AWS SAA Certified<br />
-                교보문고 · 데이터마케팅코리아 · SK계열사(예정)
+                교보문고 · 데이터마케팅코리아 · 대기업계열사(예정)
               </p>
+              <a
+                href="https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 self-start group"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <rect width="24" height="24" rx="4" fill="#B8965A" opacity="0.15" />
+                  <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.7"/>
+                </svg>
+                <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A] group-hover:text-[#B8965A] transition-colors duration-300">
+                  LinkedIn ↗
+                </span>
+              </a>
             </div>
           </div>
         </div>
@@ -437,7 +451,21 @@ export default function CeoPage() {
               <a href="mailto:hello@simplyciety.com" className="btn-gold self-start">
                 hello@simplyciety.com →
               </a>
-              <Link href="/#waitlist" className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors">
+              <a
+                href="https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2.5 group self-start"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                  <rect width="24" height="24" rx="4" fill="#B8965A" opacity="0.12" />
+                  <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.6"/>
+                </svg>
+                <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A] group-hover:text-[#B8965A] transition-colors duration-300">
+                  LinkedIn 프로필 보기 ↗
+                </span>
+              </a>
+              <Link href="/#waitlist" className="text-[0.6rem] tracking-[0.25em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors">
                 또는 6/1 오픈 사전등록 →
               </Link>
             </div>
@@ -454,6 +482,20 @@ export default function CeoPage() {
           <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">
             Mr. Simpler · Founder & CEO
           </span>
+          <a
+            href="https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 group"
+          >
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <rect width="24" height="24" rx="4" fill="#B8965A" opacity="0.1" />
+              <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.5"/>
+            </svg>
+            <span className="text-[0.55rem] tracking-[0.2em] uppercase text-[#2A2A2A] group-hover:text-[#B8965A] transition-colors duration-300">
+              LinkedIn
+            </span>
+          </a>
         </div>
       </footer>
     </div>
