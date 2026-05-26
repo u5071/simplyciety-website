@@ -32,11 +32,10 @@ const CAREER = [
     where: "대기업 계열사",
     role: "AI/Data 플랫폼 구축 전문 지원 · PL",
     badge: "Upcoming",
-    contributions: {
-      tech: "AI·데이터 전문성 기반으로 플랫폼 아키텍처 수립 및 기술 방향성 지원",
-      org: "PL로서 프로젝트 계획·이해관계자 조율·산출물 관리 총괄",
-      culture: null,
-    },
+    highlights: [
+      "AI·데이터 전문성 기반으로 플랫폼 아키텍처 수립 및 기술 방향성 지원",
+      "PL로서 이해관계자 조율·산출물·일정 관리 총괄",
+    ],
     videos: [],
   },
   {
@@ -44,15 +43,15 @@ const CAREER = [
     where: "교보문고",
     role: "데이터인텔리전스팀 차장",
     badge: null,
-    contributions: {
-      tech: "AWS·Snowflake 기반 데이터 파이프라인 구축, AI 수요예측 모델 도입, 카카오뱅크·나이스평가정보 대상 대안신용평가 API 운영, LLM 기반 VoC 분석",
-      org: "2명에서 최대 18명 기술 조직 확장 및 팀 빌딩. 데이터 거버넌스 체계 수립, 내부 예산 확보 및 데이터 비즈니스 수익화 구조 설계",
-      culture: "데이터 민주화 기조 하에 사내 부서·계열사·외부 관계사와 협업 채널 구축. AWS Summit 2023 발표, KMA 인터뷰 등을 통해 교보문고 데이터 역량 외부 공유",
-    },
+    highlights: [
+      "AWS·Snowflake 데이터 파이프라인 구축 · AI 수요예측·LLM VoC 분석 도입",
+      "카카오뱅크·나이스평가정보 대안신용평가 API 운영 — 대외 데이터 비즈니스 구조 설계",
+      "데이터 조직 2 → 18명 확장 · AWS Summit 2023 발표",
+    ],
     videos: [
       {
         label: "AWS Summit Seoul 2023 — 교보문고 사례 발표",
-        desc: "클라우드 기반 데이터 파이프라인 아키텍처 구축 실전 사례를 국내 최대 클라우드 컨퍼런스에서 발표.",
+        desc: "클라우드 기반 데이터 파이프라인 아키텍처 구축 실전 사례",
         year: "2023",
         tag: "Conference Talk",
         videoId: "5eelypNFmN0",
@@ -60,7 +59,7 @@ const CAREER = [
       },
       {
         label: "KMA 인터뷰 — 데이터 조직과 AI 전환",
-        desc: "데이터 조직 빌딩, AI 거버넌스, 기업이 데이터를 실질적으로 활용하려면 무엇이 필요한지에 대해.",
+        desc: "데이터 조직 빌딩·AI 거버넌스·실질적 데이터 활용에 대해",
         year: "2024",
         tag: "Interview",
         videoId: "Vhnr-4xO9Rw",
@@ -73,11 +72,10 @@ const CAREER = [
     where: "데이터마케팅코리아",
     role: "엔지니어링 팀장 (책임)",
     badge: null,
-    contributions: {
-      tech: "오픈소스 기반 AI 빅데이터 분석 솔루션 자사 개발 주도. ElasticSearch·Apache Airflow·AWS로 데이터 수집부터 분석·시각화까지 전 파이프라인 구축",
-      org: "엔지니어링팀 신설·운영, 2년간 개발 인력 350% 성장. AWS $100,000 규모 R&D 예산 집행 및 솔루션 매출 300% 성장",
-      culture: "PoC 프로젝트를 실제 파이프라인 구축 사례로 전환하는 방법론 정착. 상명대 금융데이터 교육과정 설계·강의 등 외부 교육 활동",
-    },
+    highlights: [
+      "AI 빅데이터 분석 솔루션 자사 개발 주도 — ElasticSearch·Airflow·AWS 전 파이프라인 구축",
+      "엔지니어링팀 신설 · 개발 인력 350%↑ · 솔루션 매출 300%↑ · AWS R&D $100K 집행",
+    ],
     videos: [],
   },
   {
@@ -85,20 +83,13 @@ const CAREER = [
     where: "흥국생명",
     role: "마케팅·인사팀 주임",
     badge: null,
-    contributions: {
-      tech: "Oracle SQL 기반 CRM 통계 분석, DW 활용 영업 실적 데이터 산출 및 보고 체계 구축",
-      org: "수시채용 시스템 구축, 계약직 T.O 산정 및 배치 담당. Junior Board를 통해 조직문화 개선안 임원진 직접 제안",
-      culture: "불완전판매 실태 분석 및 대안 도출, 사업비 낭비 요소 제거 등 내부 조직문화 혁신 활동 주도. 지점 데이터 분석 교육 진행",
-    },
+    highlights: [
+      "Oracle SQL 기반 CRM 분석·DW 영업실적 보고 체계 구축",
+      "수시채용 시스템 구축 · Junior Board로 조직문화 개선안 임원진 직접 제안",
+    ],
     videos: [],
   },
 ];
-
-const CONTRIB_LABELS: Record<string, string> = {
-  tech: "기술적 기여",
-  org: "조직적 기여",
-  culture: "문화적 기여",
-};
 
 export default function CeoPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -326,21 +317,15 @@ export default function CeoPage() {
                 </div>
                 <p className="text-[#3A3A3A] text-xs font-light mb-8 md:hidden">{c.role}</p>
 
-                {/* Contributions */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-[rgba(255,255,255,0.03)]">
-                  {(["tech", "org", "culture"] as const).map((key) => {
-                    const val = c.contributions[key];
-                    if (!val) return null;
-                    return (
-                      <div key={key} className="bg-[#080808] p-5 md:p-6">
-                        <p className="text-[0.55rem] tracking-[0.3em] uppercase text-[#B8965A]/50 mb-3">
-                          {CONTRIB_LABELS[key]}
-                        </p>
-                        <p className="text-[#5A5A5A] text-sm leading-[1.85] font-light">{val}</p>
-                      </div>
-                    );
-                  })}
-                </div>
+                {/* Highlights */}
+                <ul className="flex flex-col gap-3">
+                  {c.highlights.map((h, hi) => (
+                    <li key={hi} className="flex items-start gap-3">
+                      <span className="w-1 h-1 rounded-full bg-[#B8965A]/50 flex-shrink-0 mt-[0.45rem]" />
+                      <span className="text-[#5A5A5A] text-sm leading-relaxed font-light">{h}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 {/* Videos (Kyobo only) */}
                 {c.videos.length > 0 && (
