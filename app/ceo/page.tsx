@@ -28,7 +28,7 @@ const EDUCATION = [
 const CAREER = [
   {
     period: "2026.09 —",
-    where: "SK 계열사",
+    where: "대기업 계열사",
     role: "AI/Data 플랫폼 구축 전문 지원 · PL",
     badge: "Upcoming",
     contributions: {
@@ -160,8 +160,8 @@ export default function CeoPage() {
             Founder & CEO, simplyciety
           </p>
           <h1 className="hero-title text-[clamp(4.5rem,11vw,13rem)] font-extralight leading-[0.88] tracking-[-0.03em]">
-            Yang<br />
-            <span className="italic text-[#B8965A]">Sungyeol</span>
+            Mr.<br />
+            <span className="italic text-[#B8965A]">Simpler</span>
           </h1>
         </div>
 
@@ -411,7 +411,7 @@ export default function CeoPage() {
           <div data-reveal data-reveal-delay="1" className="mt-12 flex items-center justify-center gap-5">
             <span className="gold-line block w-12" />
             <span className="text-[0.55rem] tracking-[0.3em] uppercase text-[#3A3A3A]">
-              Yang Sungyeol · Founder & CEO, simplyciety
+              Mr. Simpler · Founder & CEO, simplyciety
             </span>
             <span className="gold-line block w-12" />
           </div>
@@ -452,7 +452,7 @@ export default function CeoPage() {
             ← simplyciety
           </Link>
           <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">
-            Yang Sungyeol · Founder & CEO
+            Mr. Simpler · Founder & CEO
           </span>
         </div>
       </footer>
