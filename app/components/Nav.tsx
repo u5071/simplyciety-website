@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import { useLang } from "../contexts/LanguageContext";
 
-const LINKS = [
-  ["서비스", "/services"],
-  ["CEO", "/ceo"],
-  ["문의하기", "/contact"],
-];
+const LINKS_KO = [["서비스", "/services"], ["CEO", "/ceo"], ["문의하기", "/contact"]];
+const LINKS_EN = [["Services", "/services"], ["CEO", "/ceo"], ["Contact", "/contact"]];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { lang, setLang, t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -39,7 +38,7 @@ export default function Nav() {
       </Link>
 
       <div className="hidden md:flex items-center gap-8">
-        {LINKS.map(([label, href]) => {
+        {(lang === "ko" ? LINKS_KO : LINKS_EN).map(([label, href]) => {
           const active = pathname === href;
           return (
             <Link
@@ -54,12 +53,29 @@ export default function Nav() {
         })}
       </div>
 
-      <Link
-        href={isHome ? "#waitlist" : "/contact"}
-        className="hidden md:inline-flex text-[0.65rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 px-5 py-2.5 text-[#B8965A] hover:bg-[#B8965A] hover:text-[#080808] transition-all duration-300"
-      >
-        {isHome ? "사전등록" : "문의하기"}
-      </Link>
+      <div className="hidden md:flex items-center gap-5">
+        {/* Language toggle */}
+        <div className="flex items-center gap-1">
+          {(["ko", "en"] as const).map((l, i) => (
+            <span key={l} className="flex items-center gap-1">
+              {i > 0 && <span className="text-[#2A2A2A] text-[0.5rem]">/</span>}
+              <button
+                onClick={() => setLang(l)}
+                className="text-[0.5rem] tracking-[0.2em] uppercase transition-colors duration-200"
+                style={{ color: lang === l ? "#B8965A" : "#3A3A3A" }}
+              >
+                {l.toUpperCase()}
+              </button>
+            </span>
+          ))}
+        </div>
+        <Link
+          href="/contact"
+          className="text-[0.65rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 px-5 py-2.5 text-[#B8965A] hover:bg-[#B8965A] hover:text-[#080808] transition-all duration-300"
+        >
+          {t("문의하기", "Contact")}
+        </Link>
+      </div>
     </nav>
   );
 }

@@ -5,38 +5,50 @@ import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Nav from "../components/Nav";
 import Logo from "../components/Logo";
+import { useLang } from "../contexts/LanguageContext";
 
 const SERVICE_OPTIONS = [
-  { value: "consulting", label: "AX 컨설팅" },
-  { value: "platform", label: "AI/Data 플랫폼 구축" },
-  { value: "education", label: "교육·조직문화빌딩" },
-  { value: "lecture", label: "강연 요청" },
-  { value: "other", label: "기타 / 잘 모르겠어요" },
+  { value: "consulting", ko: "AX 컨설팅", en: "AX Consulting" },
+  { value: "platform", ko: "AI/Data 플랫폼 구축", en: "AI/Data Platform" },
+  { value: "education", ko: "교육·조직문화빌딩", en: "Education & Culture" },
+  { value: "lecture", ko: "강연 요청", en: "Speaking Request" },
+  { value: "other", ko: "기타 / 잘 모르겠어요", en: "Other / Not sure yet" },
 ];
 
-const EXAMPLES: Record<string, string> = {
-  consulting:
-    "예) 데이터는 있는데 AI를 어떻게 도입해야 할지 방향이 없습니다. 50명 규모 팀 기준으로 AI 전환 전략을 잡아드릴 수 있을까요?",
-  platform:
-    "예) AWS 기반으로 데이터 파이프라인을 처음 구축하려고 합니다. 현재 운영 중인 RDS에서 분석 환경까지 연결하고 싶어요.",
-  education:
-    "예) 임원진의 AI 이해도가 낮아 데이터 조직이 예산을 확보하지 못하고 있습니다. C레벨 대상 AI 브리핑 과정을 제안해주실 수 있을까요?",
-  lecture:
-    "예) 사내 DX 킥오프 행사에서 1시간 강연을 요청드립니다. 'AI 전환의 현실'을 주제로 실제 사례 중심으로 부탁드립니다.",
-  other:
-    "예) 정확히 어떤 서비스가 필요한지 모르겠지만, 현재 데이터 담당자 없이 영업 데이터를 엑셀로만 관리하고 있어서 변화가 필요합니다.",
+const EXAMPLES: Record<string, { ko: string; en: string }> = {
+  consulting: {
+    ko: "예) 데이터는 있는데 AI를 어떻게 도입해야 할지 방향이 없습니다. 50명 규모 팀 기준으로 AI 전환 전략을 잡아드릴 수 있을까요?",
+    en: "e.g. We have data but no idea where to start with AI. Can you help shape a transformation strategy for a 50-person team?",
+  },
+  platform: {
+    ko: "예) AWS 기반으로 데이터 파이프라인을 처음 구축하려고 합니다. 현재 운영 중인 RDS에서 분석 환경까지 연결하고 싶어요.",
+    en: "e.g. We want to build our first data pipeline on AWS — connecting our existing RDS database to an analytics environment.",
+  },
+  education: {
+    ko: "예) 임원진의 AI 이해도가 낮아 데이터 조직이 예산을 확보하지 못하고 있습니다. C레벨 대상 AI 브리핑 과정을 제안해주실 수 있을까요?",
+    en: "e.g. Our executives have low AI literacy and our data team can't get budget. Can you propose an AI briefing program for C-level?",
+  },
+  lecture: {
+    ko: "예) 사내 DX 킥오프 행사에서 1시간 강연을 요청드립니다. 'AI 전환의 현실'을 주제로 실제 사례 중심으로 부탁드립니다.",
+    en: "e.g. We'd like a 1-hour keynote at our internal DX kickoff event on 'The Reality of AI Transformation' with real case examples.",
+  },
+  other: {
+    ko: "예) 정확히 어떤 서비스가 필요한지 모르겠지만, 현재 데이터 담당자 없이 영업 데이터를 엑셀로만 관리하고 있어서 변화가 필요합니다.",
+    en: "e.g. I'm not sure what service fits, but we're managing all sales data in Excel with no dedicated data person — things need to change.",
+  },
 };
 
 const PROCESS_STEPS = [
-  { num: "01", title: "문의 접수", desc: "폼 작성 또는 이메일로 현재 상황을 간단히 알려주세요." },
-  { num: "02", title: "1:1 상담", desc: "영업일 1–2일 이내 담당자가 연락드려 상황을 더 깊이 파악합니다." },
-  { num: "03", title: "맞춤 제안", desc: "상황에 맞는 서비스 방향과 접근 방식을 구체적으로 제안드립니다." },
+  { num: "01", title: { ko: "문의 접수", en: "Submit" }, desc: { ko: "폼 작성 또는 이메일로 현재 상황을 간단히 알려주세요.", en: "Fill out the form or email us with a brief description of your situation." } },
+  { num: "02", title: { ko: "1:1 상담", en: "Consultation" }, desc: { ko: "영업일 1–2일 이내 담당자가 연락드려 상황을 더 깊이 파악합니다.", en: "We'll reach out within 1–2 business days to understand your situation in depth." } },
+  { num: "03", title: { ko: "맞춤 제안", en: "Proposal" }, desc: { ko: "상황에 맞는 서비스 방향과 접근 방식을 구체적으로 제안드립니다.", en: "We propose a concrete service direction and approach matched to your situation." } },
 ];
 
 type Status = "idle" | "loading" | "success" | "error";
 
 function ContactForm() {
   const searchParams = useSearchParams();
+  const { lang, t } = useLang();
   const [form, setForm] = useState({
     name: "",
     company: "",
@@ -112,17 +124,17 @@ function ContactForm() {
                 <polyline points="20,6 9,17 4,12" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-6">접수 완료</p>
+            <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-6">{t("접수 완료", "Received")}</p>
             <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extralight leading-[0.95] tracking-tight mb-8">
-              문의가<br />
-              <span className="italic text-[#B8965A]">접수되었습니다.</span>
+              {t("문의가", "Your inquiry")}<br />
+              <span className="italic text-[#B8965A]">{t("접수되었습니다.", "has been received.")}</span>
             </h1>
             <p className="text-[#5A5A5A] text-base leading-relaxed mb-10">
-              영업일 기준 1~2일 이내에 회신 드리겠습니다.<br />
-              입력하신 이메일로 접수 확인 메일을 보내드렸습니다.
+              {t("영업일 기준 1~2일 이내에 회신 드리겠습니다.", "We'll reply within 1–2 business days.")}<br />
+              {t("입력하신 이메일로 접수 확인 메일을 보내드렸습니다.", "A confirmation email has been sent to your address.")}
             </p>
             <Link href="/services" className="btn-gold inline-flex">
-              서비스 더 보기 →
+              {t("서비스 더 보기 →", "View our services →")}
             </Link>
           </div>
         </div>
@@ -140,10 +152,10 @@ function ContactForm() {
                 Contact
               </p>
               <h1 className="text-[clamp(3rem,8vw,10rem)] font-extralight leading-[0.9] tracking-[-0.03em] mb-6">
-                문의하기
+                {t("문의하기", "Contact")}
               </h1>
               <p className="text-[#4A4A4A] text-base font-light max-w-lg">
-                어떤 서비스가 맞는지 몰라도 괜찮습니다. 상황을 간단히 적어주시면 맞는 방향을 제안드립니다.
+                {t("어떤 서비스가 맞는지 몰라도 괜찮습니다. 상황을 간단히 적어주시면 맞는 방향을 제안드립니다.", "You don't need to know which service fits. Just describe your situation briefly and we'll point you in the right direction.")}
               </p>
             </div>
           </section>
@@ -161,11 +173,11 @@ function ContactForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        이름 <span className="text-[#B8965A]">*</span>
+                        {t("이름", "Name")} <span className="text-[#B8965A]">*</span>
                       </label>
                       <input
                         type="text"
-                        placeholder="홍길동"
+                        placeholder={t("홍길동", "Jane Smith")}
                         value={form.name}
                         onChange={set("name")}
                         required
@@ -173,10 +185,10 @@ function ContactForm() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">회사명</label>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">{t("회사명", "Company")}</label>
                       <input
                         type="text"
-                        placeholder="(주)회사이름"
+                        placeholder={t("(주)회사이름", "Acme Corp")}
                         value={form.company}
                         onChange={set("company")}
                         className={inputClass}
@@ -188,7 +200,7 @@ function ContactForm() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
                       <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        이메일 <span className="text-[#B8965A]">*</span>
+                        {t("이메일", "Email")} <span className="text-[#B8965A]">*</span>
                       </label>
                       <input
                         type="email"
@@ -200,10 +212,10 @@ function ContactForm() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">연락처</label>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">{t("연락처", "Phone")}</label>
                       <input
                         type="tel"
-                        placeholder="010-0000-0000"
+                        placeholder={t("010-0000-0000", "+1 555-0000")}
                         value={form.phone}
                         onChange={set("phone")}
                         className={inputClass}
@@ -214,7 +226,7 @@ function ContactForm() {
                   {/* Service type */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                      문의 유형 <span className="text-[#B8965A]">*</span>
+                      {t("문의 유형", "Inquiry Type")} <span className="text-[#B8965A]">*</span>
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {SERVICE_OPTIONS.map((opt) => (
@@ -229,7 +241,7 @@ function ContactForm() {
                             background: form.serviceType === opt.value ? "rgba(184,150,90,0.06)" : "transparent",
                           }}
                         >
-                          {opt.label}
+                          {lang === "ko" ? opt.ko : opt.en}
                         </button>
                       ))}
                     </div>
@@ -239,14 +251,14 @@ function ContactForm() {
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center justify-between">
                       <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        문의 내용 <span className="text-[#B8965A]">*</span>
+                        {t("문의 내용", "Message")} <span className="text-[#B8965A]">*</span>
                       </label>
                       <button
                         type="button"
                         onClick={() => setShowExample((v) => !v)}
                         className="text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/60 hover:text-[#B8965A] transition-colors"
                       >
-                        {showExample ? "예시 숨기기" : "예시 보기 ↓"}
+                        {showExample ? t("예시 숨기기", "Hide example") : t("예시 보기 ↓", "Show example ↓")}
                       </button>
                     </div>
                     {showExample && (
@@ -254,21 +266,21 @@ function ContactForm() {
                         className="px-4 py-3 text-[0.7rem] leading-relaxed text-[#4A4A4A] font-light"
                         style={{ border: "1px solid rgba(184,150,90,0.15)", background: "rgba(184,150,90,0.03)" }}
                       >
-                        {EXAMPLES[form.serviceType] ?? EXAMPLES.other}
+                        {(EXAMPLES[form.serviceType] ?? EXAMPLES.other)[lang]}
                         <button
                           type="button"
                           onClick={() => {
-                            setForm((f) => ({ ...f, message: EXAMPLES[f.serviceType] ?? EXAMPLES.other }));
+                            setForm((f) => ({ ...f, message: (EXAMPLES[f.serviceType] ?? EXAMPLES.other)[lang] }));
                             setShowExample(false);
                           }}
                           className="block mt-2 text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/70 hover:text-[#B8965A] transition-colors"
                         >
-                          이 예시로 시작하기 →
+                          {t("이 예시로 시작하기 →", "Use this example →")}
                         </button>
                       </div>
                     )}
                     <textarea
-                      placeholder="현재 상황, 고민하고 계신 문제, 원하는 결과를 자유롭게 적어주세요."
+                      placeholder={t("현재 상황, 고민하고 계신 문제, 원하는 결과를 자유롭게 적어주세요.", "Describe your situation, the challenge you're facing, and the outcome you want.")}
                       value={form.message}
                       onChange={set("message")}
                       required
@@ -290,10 +302,10 @@ function ContactForm() {
                     className="btn-gold self-start mt-2"
                     style={{ opacity: status === "loading" ? 0.6 : 1 }}
                   >
-                    {status === "loading" ? "전송 중..." : "문의 전송 →"}
+                    {status === "loading" ? t("전송 중...", "Sending...") : t("문의 전송 →", "Send inquiry →")}
                   </button>
                   <p className="text-[#2A2A2A] text-[0.55rem] tracking-widest uppercase">
-                    영업일 기준 1~2일 이내 회신 · 스팸 없음
+                    {t("영업일 기준 1~2일 이내 회신 · 스팸 없음", "Reply within 1–2 business days · No spam")}
                   </p>
                 </form>
               </div>
@@ -302,7 +314,7 @@ function ContactForm() {
               <div className="md:col-span-5 flex flex-col gap-12">
                 {/* Direct contact */}
                 <div>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">직접 연락</p>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">{t("직접 연락", "Direct Contact")}</p>
                   <a
                     href="mailto:hello@simplyciety.com"
                     className="text-[#6A6A6A] text-sm hover:text-[#B8965A] transition-colors"
@@ -325,26 +337,26 @@ function ContactForm() {
                       <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.6"/>
                     </svg>
                     <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#3A3A3A] group-hover:text-[#B8965A] transition-colors">
-                      Mr. Simpler 프로필 ↗
+                      {t("Mr. Simpler 프로필 ↗", "Mr. Simpler Profile ↗")}
                     </span>
                   </a>
                 </div>
 
                 {/* Services */}
                 <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "2rem" }}>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">서비스</p>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">{t("서비스", "Services")}</p>
                   <div className="flex flex-col gap-3">
                     {[
-                      ["AX 컨설팅", "/services#consulting"],
-                      ["AI/Data 플랫폼 구축", "/services#platform"],
-                      ["교육·조직문화빌딩", "/services#education"],
-                    ].map(([l, h]) => (
+                      { ko: "AX 컨설팅", en: "AX Consulting", href: "/services#consulting" },
+                      { ko: "AI/Data 플랫폼 구축", en: "AI/Data Platform", href: "/services#platform" },
+                      { ko: "교육·조직문화빌딩", en: "Education & Culture", href: "/services#education" },
+                    ].map((item) => (
                       <Link
-                        key={h}
-                        href={h}
+                        key={item.href}
+                        href={item.href}
                         className="text-[0.6rem] tracking-[0.2em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors"
                       >
-                        {l} →
+                        {lang === "ko" ? item.ko : item.en} →
                       </Link>
                     ))}
                   </div>
@@ -352,7 +364,7 @@ function ContactForm() {
 
                 {/* Process */}
                 <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "2rem" }}>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-6">문의 프로세스</p>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-6">{t("문의 프로세스", "Inquiry Process")}</p>
                   <div className="flex flex-col gap-5">
                     {PROCESS_STEPS.map((s, i) => (
                       <div key={s.num} className="flex items-start gap-4">
@@ -360,8 +372,8 @@ function ContactForm() {
                           {s.num}
                         </span>
                         <div>
-                          <p className="text-[0.6rem] tracking-[0.15em] uppercase text-[#6A6A6A] mb-1">{s.title}</p>
-                          <p className="text-[#3A3A3A] text-xs leading-relaxed font-light">{s.desc}</p>
+                          <p className="text-[0.6rem] tracking-[0.15em] uppercase text-[#6A6A6A] mb-1">{s.title[lang]}</p>
+                          <p className="text-[#3A3A3A] text-xs leading-relaxed font-light">{s.desc[lang]}</p>
                         </div>
                         {i < PROCESS_STEPS.length - 1 && (
                           <span className="text-[#2A2A2A] text-xs self-end ml-auto">↓</span>

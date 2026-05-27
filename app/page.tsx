@@ -2,27 +2,35 @@
 
 import { useEffect, useState } from "react";
 import Logo from "./components/Logo";
+import { useLang } from "./contexts/LanguageContext";
 
 const PILLARS = [
   {
-    num: "01",
-    title: "Clarity",
-    desc: "AI가 조직 내 커뮤니케이션, 의사결정, 업무 흐름을 분석합니다. 복잡성이 숨어 있는 곳을 찾아내고, 명확성이 회복될 수 있는 지점을 정확히 짚어냅니다.",
+    num: "01", title: "Clarity",
+    desc: {
+      ko: "AI가 복잡성이 숨어 있는 지점을 정확히 찾아냅니다. 불분명한 의사결정 구조와 불필요한 보고 단계를 드러냅니다.",
+      en: "AI pinpoints exactly where complexity hides — unclear decision flows, redundant reporting chains, misaligned teams.",
+    },
   },
   {
-    num: "02",
-    title: "Connection",
-    desc: "조직도가 아닌 실제 협업 패턴을 기반으로 — AI가 팀이 어떻게 연결되는지를 파악하고, 진짜 네트워크를 강화합니다. 더 적은 보고, 더 깊은 신뢰.",
+    num: "02", title: "Connection",
+    desc: {
+      ko: "조직도가 아닌 실제 협업 패턴을 봅니다. 진짜 신뢰가 만들어지는 연결만 남기고, 나머지는 걷어냅니다.",
+      en: "We look at how teams actually work, not the org chart. Strengthen real connections. Remove the noise.",
+    },
   },
   {
-    num: "03",
-    title: "Impact",
-    desc: "단순화된 조직은 더 빠르게 움직이고, 더 오래 유지됩니다. ROI는 추상적이지 않습니다. AI가 측정 가능한 결과로 즉시 보여줍니다.",
+    num: "03", title: "Impact",
+    desc: {
+      ko: "단순해진 조직은 더 빠르게 움직이고 오래 유지됩니다. AI가 그 성과를 측정 가능한 숫자로 보여줍니다.",
+      en: "Simpler organizations move faster and last longer. AI delivers measurable results — not abstract promises.",
+    },
   },
 ];
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
+  const { lang, t } = useLang();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -109,7 +117,7 @@ export default function Home() {
           <div className="flex items-center gap-4 mb-10 hero-eyebrow">
             <span className="block w-8 h-px bg-[#B8965A]" />
             <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">
-              AI-Powered Organizational Simplification
+              {t("AI 기반 조직 단순화", "AI-Powered Organizational Simplification")}
             </p>
           </div>
 
@@ -124,12 +132,14 @@ export default function Home() {
 
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
             <p className="hero-body max-w-xl text-[#6A6A6A] text-lg leading-relaxed font-light">
-              AI로 조직의 복잡성을 제거합니다. 불필요한 구조, 프로세스, 소음을 걷어내고 —
-              팀과 조직이 진정으로 연결될 수 있는 본질만 남깁니다.
+              {t(
+                "AI로 조직의 복잡성을 걷어냅니다. 불필요한 구조와 프로세스, 소음을 제거하고 — 팀과 조직이 진정으로 연결될 수 있는 본질만 남깁니다.",
+                "We cut organizational complexity with AI. Remove redundant structures, processes, and noise — leaving only what truly matters for your teams to connect and move."
+              )}
             </p>
             <div className="hero-cta flex items-center gap-6 flex-shrink-0">
               <a href="#philosophy" className="btn-primary">
-                Our Vision
+                {t("우리의 철학", "Our Vision")}
                 <span className="text-[#B8965A]">→</span>
               </a>
             </div>
@@ -164,9 +174,8 @@ export default function Home() {
                 data-reveal-delay="1"
                 className="text-[clamp(2.5rem,5vw,4.5rem)] font-extralight leading-[1.05] tracking-tight"
               >
-                복잡함은
-                <br />
-                정교함이 아니다.
+                {t("복잡함은", "Complexity is not")}<br />
+                {t("정교함이 아니다.", "sophistication.")}
               </h2>
               <div data-reveal data-reveal-delay="2" className="mt-12">
                 <span className="gold-line block w-24" />
@@ -175,22 +184,23 @@ export default function Home() {
 
             <div className="md:col-span-7 flex flex-col justify-center gap-8">
               <p data-reveal className="text-[#6A6A6A] text-lg leading-[1.9] font-light">
-                대부분의 조직은 무너져서가 아니라, 걷어낼 도구가 없었기 때문에
-                복잡성 속에 파묻힙니다. 겹겹이 쌓인 프로세스, 불분명한 책임,
-                끝없는 회의들 — 이제 그 도구가 생겼습니다.
+                {t(
+                  "대부분의 조직은 무너져서가 아니라, 걷어낼 도구가 없었기 때문에 복잡성 속에 파묻힙니다. 겹겹이 쌓인 프로세스, 불분명한 책임, 끝없는 회의들 — 이제 그 도구가 있습니다.",
+                  "Most organizations don't fail for lack of effort — they drown in complexity because they never had the tool to strip it away. Layers of process, blurred ownership, endless meetings. Now there's a tool."
+                )}
               </p>
               <p data-reveal data-reveal-delay="1" className="text-[#6A6A6A] text-lg leading-[1.9] font-light">
-                simplyciety는 AI를 활용해 조직이 실제로 작동하는 방식을 분석하고,
-                구조적 안개를 걷어내어 진짜 중요한 것을 드러냅니다.
-                더 적은 회의. 더 명확한 책임. 더 빠른 결정.
+                {t(
+                  "simplyciety는 AI를 활용해 조직이 실제로 작동하는 방식을 분석하고, 구조적 안개를 걷어내어 진짜 중요한 것이 선명하게 보이게 합니다. 더 적은 회의. 더 명확한 책임. 더 빠른 결정.",
+                  "simplyciety uses AI to analyze how your organization actually works — then clears the structural fog so what truly matters becomes visible. Fewer meetings. Clearer ownership. Faster decisions."
+                )}
               </p>
-              <p
-                data-reveal
-                data-reveal-delay="2"
-                className="text-[#8A8780] text-base leading-[1.9] font-light italic border-l-2 border-[#B8965A] pl-6"
-              >
-                &ldquo;AI는 일을 자동화하는 것이 아니라, 하지 않아도 될 일을
-                없애는 것이다.&rdquo;
+              <p data-reveal data-reveal-delay="2"
+                className="text-[#8A8780] text-base leading-[1.9] font-light italic border-l-2 border-[#B8965A] pl-6">
+                {t(
+                  "\"AI는 일을 자동화하는 것이 아니라, 하지 않아도 될 일을 없애는 것이다.\"",
+                  "\"AI is not about automating work. It's about eliminating work that shouldn't exist.\""
+                )}
               </p>
             </div>
           </div>
@@ -207,21 +217,21 @@ export default function Home() {
             {[
               {
                 step: "Step 1",
-                title: "진단",
+                title: t("진단", "Diagnose"),
                 sub: "AI Diagnosis",
-                desc: "조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 AI가 자동으로 분석합니다.",
+                desc: t("조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 AI가 분석합니다.", "AI analyzes your communication patterns, decision structures, and collaboration flows."),
               },
               {
                 step: "Step 2",
-                title: "단순화",
+                title: t("단순화", "Simplify"),
                 sub: "AI Simplification",
-                desc: "불필요한 프로세스와 보고 구조를 제거하고, 핵심 연결만 남긴 조직 청사진을 제안합니다.",
+                desc: t("불필요한 프로세스와 보고 구조를 제거하고, 핵심만 남긴 조직 청사진을 제안합니다.", "Remove redundant processes and reporting chains. Present a blueprint with only what matters."),
               },
               {
                 step: "Step 3",
-                title: "성장",
+                title: t("성장", "Grow"),
                 sub: "Continuous Optimization",
-                desc: "변화를 실시간으로 추적하며, AI가 지속적으로 조직을 최적화합니다.",
+                desc: t("변화를 실시간으로 추적하며, AI가 지속적으로 조직을 최적화합니다.", "Track change in real time as AI continuously optimizes your organization."),
               },
             ].map((item) => (
               <div
@@ -279,7 +289,7 @@ export default function Home() {
                   {pillar.title}
                 </h3>
                 <p className="text-[#5A5A5A] leading-[1.9] text-sm font-light">
-                  {pillar.desc}
+                  {pillar.desc[lang]}
                 </p>
               </div>
             ))}
@@ -309,11 +319,15 @@ export default function Home() {
             data-reveal-delay="1"
             className="text-[clamp(1.8rem,4vw,3.75rem)] font-extralight leading-[1.25] tracking-tight text-[#D4D0CA]"
           >
-            &ldquo;우리는 쉽게 만들려고 단순화하지 않는다. 중요한 것을{" "}
-            <em className="text-[#B8965A] not-italic">
-              외면할 수 없게
-            </em>{" "}
-            만들기 위해 단순화한다.&rdquo;
+            {lang === "ko" ? (
+              <>&ldquo;우리는 쉽게 만들려고 단순화하지 않는다. 중요한 것을{" "}
+              <em className="text-[#B8965A] not-italic">외면할 수 없게</em>{" "}
+              만들기 위해 단순화한다.&rdquo;</>
+            ) : (
+              <>&ldquo;We don't simplify to make things easy. We simplify to make{" "}
+              <em className="text-[#B8965A] not-italic">what matters</em>{" "}
+              impossible to ignore.&rdquo;</>
+            )}
           </blockquote>
           <div
             data-reveal
@@ -372,25 +386,25 @@ export default function Home() {
         <div className="relative max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
           <div>
             <h2 data-reveal className="text-[clamp(2.8rem,6vw,6.5rem)] font-extralight leading-[0.95] tracking-tight">
-              복잡성을<br />
-              <span className="italic text-[#B8965A]">걷어낼 준비가</span><br />
-              됐다면 —
+              {t("복잡성을", "Ready to")}<br />
+              <span className="italic text-[#B8965A]">{t("걷어낼 준비가", "cut through")}</span><br />
+              {t("됐다면 —", "complexity?")}
             </h2>
           </div>
           <div data-reveal data-reveal-delay="1" className="flex flex-col gap-8">
             <p className="text-[#5A5A5A] text-base leading-[1.9] font-light">
-              어떤 서비스가 맞는지 몰라도 됩니다.<br />
-              현재 상황을 간단히 적어주시면, 맞는 방향을 제안드립니다.
+              {t("어떤 서비스가 맞는지 몰라도 됩니다.", "You don't need to know which service fits.")}<br />
+              {t("현재 상황을 간단히 적어주시면, 맞는 방향을 제안드립니다.", "Just tell us where things break down, and we'll point you in the right direction.")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <a href="/contact" className="btn-gold inline-flex">
-                지금 문의하기 →
+                {t("지금 문의하기 →", "Contact us →")}
               </a>
               <a
                 href="/services"
                 className="inline-flex text-[0.65rem] tracking-[0.25em] uppercase px-6 py-3.5 text-[#4A4A4A] border border-[rgba(255,255,255,0.06)] hover:text-[#F0EDE8] hover:border-[rgba(255,255,255,0.15)] transition-all duration-300"
               >
-                서비스 먼저 보기
+                {t("서비스 먼저 보기", "View services")}
               </a>
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "1.5rem" }}>
@@ -417,9 +431,9 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-8">
             {[
-              ["서비스", "/services"],
+              [t("서비스", "Services"), "/services"],
               ["CEO", "/ceo"],
-              ["문의하기", "/contact"],
+              [t("문의하기", "Contact"), "/contact"],
             ].map(([label, href]) => (
               <a
                 key={href}
