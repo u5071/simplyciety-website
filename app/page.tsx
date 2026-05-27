@@ -21,28 +21,8 @@ const PILLARS = [
   },
 ];
 
-function useCountdown(target: Date) {
-  const calc = () => {
-    const diff = target.getTime() - Date.now();
-    if (diff <= 0) return { days: 0, hours: 0, mins: 0, secs: 0 };
-    return {
-      days: Math.floor(diff / 86400000),
-      hours: Math.floor((diff % 86400000) / 3600000),
-      mins: Math.floor((diff % 3600000) / 60000),
-      secs: Math.floor((diff % 60000) / 1000),
-    };
-  };
-  const [time, setTime] = useState(calc);
-  useEffect(() => {
-    const id = setInterval(() => setTime(calc()), 1000);
-    return () => clearInterval(id);
-  });
-  return time;
-}
-
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
-  const countdown = useCountdown(new Date("2026-06-01T00:00:00+09:00"));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -64,54 +44,12 @@ export default function Home() {
     return () => observer.disconnect();
   }, []);
 
-  const pad = (n: number) => String(n).padStart(2, "0");
-
   return (
     <div className="noise-bg bg-[#080808] text-[#F0EDE8] font-[var(--font-geist-sans)]">
 
-      {/* ─── GRAND OPENING BANNER ─── */}
-      <div className="relative z-[60] bg-[#0D0D0D] border-b border-[rgba(184,150,90,0.2)]">
-        <div className="max-w-screen-xl mx-auto px-8 md:px-16 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#B8965A] animate-pulse" />
-            <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A]">
-              Grand Opening — June 1, 2026
-            </span>
-          </div>
-          <div className="flex items-center gap-5">
-            {[
-              { label: "Days", val: countdown.days },
-              { label: "Hrs", val: countdown.hours },
-              { label: "Min", val: countdown.mins },
-              { label: "Sec", val: countdown.secs },
-            ].map(({ label, val }, i) => (
-              <div key={label} className="flex items-center gap-5">
-                <div className="text-center">
-                  <span className="block text-base font-light tabular-nums text-[#F0EDE8] leading-none">
-                    {pad(val)}
-                  </span>
-                  <span className="text-[0.5rem] tracking-[0.25em] uppercase text-[#4A4A4A] mt-0.5 block">
-                    {label}
-                  </span>
-                </div>
-                {i < 3 && (
-                  <span className="text-[#3A3A3A] text-sm font-light leading-none pb-3">:</span>
-                )}
-              </div>
-            ))}
-          </div>
-          <a
-            href="#waitlist"
-            className="text-[0.6rem] tracking-[0.25em] uppercase text-[#B8965A] hover:text-[#F0EDE8] transition-colors border-b border-[#B8965A]/40 hover:border-[#F0EDE8]/40 pb-px"
-          >
-            사전등록 →
-          </a>
-        </div>
-      </div>
-
       {/* ─── NAVIGATION ─── */}
       <nav
-        className="fixed top-[52px] inset-x-0 z-50 flex items-center justify-between transition-all duration-700"
+        className="fixed top-0 inset-x-0 z-50 flex items-center justify-between transition-all duration-700"
         style={{
           padding: scrolled ? "1.25rem 2.5rem" : "1.75rem 2.5rem",
           background: scrolled ? "rgba(8,8,8,0.93)" : "transparent",
@@ -141,10 +79,10 @@ export default function Home() {
           ))}
         </div>
         <a
-          href="#waitlist"
+          href="/contact"
           className="hidden md:inline-flex text-[0.65rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 px-5 py-2.5 text-[#B8965A] hover:bg-[#B8965A] hover:text-[#080808] transition-all duration-300"
         >
-          사전등록
+          문의하기
         </a>
       </nav>
 
@@ -422,79 +360,46 @@ export default function Home() {
         `}</style>
       </div>
 
-      {/* ─── WAITLIST / PRE-LAUNCH ─── */}
+      {/* ─── CTA ─── */}
       <section
-        id="waitlist"
-        className="py-40 md:py-56 px-8 md:px-16 relative overflow-hidden"
+        className="py-40 md:py-52 px-8 md:px-16 relative overflow-hidden"
         style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}
       >
         <div
           className="absolute bottom-0 left-0 w-[50vw] h-[50vh] pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse at bottom left, rgba(184,150,90,0.04) 0%, transparent 70%)",
-          }}
+          style={{ background: "radial-gradient(ellipse at bottom left, rgba(184,150,90,0.04) 0%, transparent 70%)" }}
         />
-        <div className="relative max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-            <div>
-              <div data-reveal className="inline-flex items-center gap-2 mb-10 border border-[#B8965A]/30 px-4 py-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#B8965A] animate-pulse" />
-                <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A]">
-                  Grand Opening D-{countdown.days}
-                </span>
-              </div>
-              <h2
-                data-reveal
-                data-reveal-delay="1"
-                className="text-[clamp(3rem,7vw,7rem)] font-extralight leading-[0.95] tracking-tight"
+        <div className="relative max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20 items-end">
+          <div>
+            <h2 data-reveal className="text-[clamp(2.8rem,6vw,6.5rem)] font-extralight leading-[0.95] tracking-tight">
+              복잡성을<br />
+              <span className="italic text-[#B8965A]">걷어낼 준비가</span><br />
+              됐다면 —
+            </h2>
+          </div>
+          <div data-reveal data-reveal-delay="1" className="flex flex-col gap-8">
+            <p className="text-[#5A5A5A] text-base leading-[1.9] font-light">
+              어떤 서비스가 맞는지 몰라도 됩니다.<br />
+              현재 상황을 간단히 적어주시면, 맞는 방향을 제안드립니다.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a href="/contact" className="btn-gold inline-flex">
+                지금 문의하기 →
+              </a>
+              <a
+                href="/services"
+                className="inline-flex text-[0.65rem] tracking-[0.25em] uppercase px-6 py-3.5 text-[#4A4A4A] border border-[rgba(255,255,255,0.06)] hover:text-[#F0EDE8] hover:border-[rgba(255,255,255,0.15)] transition-all duration-300"
               >
-                6월 1일,
-                <br />
-                <span className="italic text-[#B8965A]">오픈합니다.</span>
-              </h2>
-              <p data-reveal data-reveal-delay="2" className="mt-8 text-[#4A4A4A] text-sm leading-relaxed">
-                June 1, 2026 — Grand Opening
-              </p>
+                서비스 먼저 보기
+              </a>
             </div>
-
-            <div data-reveal data-reveal-delay="2" className="flex flex-col gap-8 md:pt-24">
-              <p className="text-[#6A6A6A] text-lg leading-[1.9] font-light">
-                오픈 전 사전등록하시면 그랜드오픈 혜택과 첫 번째 소식을
-                가장 먼저 받아보실 수 있습니다.
-              </p>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="flex flex-col gap-4"
+            <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "1.5rem" }}>
+              <a
+                href="mailto:hello@simplyciety.com"
+                className="text-[0.6rem] tracking-[0.25em] uppercase text-[#2A2A2A] hover:text-[#6A6A6A] transition-colors"
               >
-                <div className="flex flex-col sm:flex-row gap-0">
-                  <input
-                    type="email"
-                    placeholder="이메일 주소를 입력해주세요"
-                    className="flex-1 bg-transparent border border-[rgba(255,255,255,0.1)] px-5 py-4 text-sm text-[#F0EDE8] placeholder:text-[#3A3A3A] outline-none focus:border-[#B8965A]/50 transition-colors duration-300 font-light tracking-wide"
-                  />
-                  <button
-                    type="submit"
-                    className="bg-[#B8965A] text-[#080808] px-8 py-4 text-[0.65rem] tracking-[0.25em] uppercase font-medium hover:bg-[#C9A96B] transition-colors duration-300 flex-shrink-0"
-                  >
-                    사전등록
-                  </button>
-                </div>
-                <p className="text-[#2A2A2A] text-[0.6rem] tracking-widest uppercase">
-                  스팸 없음. 언제든 해제 가능.
-                </p>
-              </form>
-              <div
-                className="flex items-center gap-8 pt-4"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
-              >
-                <a
-                  href="mailto:hello@simplyciety.com"
-                  className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A] hover:text-[#6A6A6A] transition-colors"
-                >
-                  hello@simplyciety.com
-                </a>
-              </div>
+                hello@simplyciety.com
+              </a>
             </div>
           </div>
         </div>
@@ -512,9 +417,9 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-8">
             {[
-              ["Philosophy", "#philosophy"],
-              ["How It Works", "#pillars"],
-              ["사전등록", "#waitlist"],
+              ["서비스", "/services"],
+              ["CEO", "/ceo"],
+              ["문의하기", "/contact"],
             ].map(([label, href]) => (
               <a
                 key={href}

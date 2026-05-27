@@ -14,6 +14,25 @@ const SERVICE_OPTIONS = [
   { value: "other", label: "기타 / 잘 모르겠어요" },
 ];
 
+const EXAMPLES: Record<string, string> = {
+  consulting:
+    "예) 데이터는 있는데 AI를 어떻게 도입해야 할지 방향이 없습니다. 50명 규모 팀 기준으로 AI 전환 전략을 잡아드릴 수 있을까요?",
+  platform:
+    "예) AWS 기반으로 데이터 파이프라인을 처음 구축하려고 합니다. 현재 운영 중인 RDS에서 분석 환경까지 연결하고 싶어요.",
+  education:
+    "예) 임원진의 AI 이해도가 낮아 데이터 조직이 예산을 확보하지 못하고 있습니다. C레벨 대상 AI 브리핑 과정을 제안해주실 수 있을까요?",
+  lecture:
+    "예) 사내 DX 킥오프 행사에서 1시간 강연을 요청드립니다. 'AI 전환의 현실'을 주제로 실제 사례 중심으로 부탁드립니다.",
+  other:
+    "예) 정확히 어떤 서비스가 필요한지 모르겠지만, 현재 데이터 담당자 없이 영업 데이터를 엑셀로만 관리하고 있어서 변화가 필요합니다.",
+};
+
+const PROCESS_STEPS = [
+  { num: "01", title: "문의 접수", desc: "폼 작성 또는 이메일로 현재 상황을 간단히 알려주세요." },
+  { num: "02", title: "1:1 상담", desc: "영업일 1–2일 이내 담당자가 연락드려 상황을 더 깊이 파악합니다." },
+  { num: "03", title: "맞춤 제안", desc: "상황에 맞는 서비스 방향과 접근 방식을 구체적으로 제안드립니다." },
+];
+
 type Status = "idle" | "loading" | "success" | "error";
 
 function ContactForm() {
@@ -54,6 +73,8 @@ function ContactForm() {
       setStatus("error");
     }
   };
+
+  const [showExample, setShowExample] = useState(false);
 
   const inputClass =
     "w-full bg-transparent border border-[rgba(255,255,255,0.08)] px-5 py-4 text-sm text-[#F0EDE8] placeholder:text-[#2A2A2A] outline-none focus:border-[#B8965A]/50 transition-colors duration-300 font-light tracking-wide";
@@ -216,9 +237,36 @@ function ContactForm() {
 
                   {/* Message */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                      문의 내용 <span className="text-[#B8965A]">*</span>
-                    </label>
+                    <div className="flex items-center justify-between">
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
+                        문의 내용 <span className="text-[#B8965A]">*</span>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={() => setShowExample((v) => !v)}
+                        className="text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/60 hover:text-[#B8965A] transition-colors"
+                      >
+                        {showExample ? "예시 숨기기" : "예시 보기 ↓"}
+                      </button>
+                    </div>
+                    {showExample && (
+                      <div
+                        className="px-4 py-3 text-[0.7rem] leading-relaxed text-[#4A4A4A] font-light"
+                        style={{ border: "1px solid rgba(184,150,90,0.15)", background: "rgba(184,150,90,0.03)" }}
+                      >
+                        {EXAMPLES[form.serviceType] ?? EXAMPLES.other}
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setForm((f) => ({ ...f, message: EXAMPLES[f.serviceType] ?? EXAMPLES.other }));
+                            setShowExample(false);
+                          }}
+                          className="block mt-2 text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/70 hover:text-[#B8965A] transition-colors"
+                        >
+                          이 예시로 시작하기 →
+                        </button>
+                      </div>
+                    )}
                     <textarea
                       placeholder="현재 상황, 고민하고 계신 문제, 원하는 결과를 자유롭게 적어주세요."
                       value={form.message}
@@ -302,18 +350,24 @@ function ContactForm() {
                   </div>
                 </div>
 
-                {/* Grand opening notice */}
-                <div
-                  className="flex items-start gap-3 p-5"
-                  style={{ border: "1px solid rgba(184,150,90,0.2)", background: "rgba(184,150,90,0.03)" }}
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#B8965A] animate-pulse flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="text-[0.55rem] tracking-[0.25em] uppercase text-[#B8965A] mb-1">Grand Opening</p>
-                    <p className="text-[#4A4A4A] text-xs leading-relaxed">
-                      2026년 6월 1일 공식 오픈 예정입니다.<br />
-                      사전 문의도 동일하게 처리됩니다.
-                    </p>
+                {/* Process */}
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "2rem" }}>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-6">문의 프로세스</p>
+                  <div className="flex flex-col gap-5">
+                    {PROCESS_STEPS.map((s, i) => (
+                      <div key={s.num} className="flex items-start gap-4">
+                        <span className="text-[0.5rem] tracking-[0.2em] text-[#B8965A]/50 font-light pt-0.5 flex-shrink-0 w-5">
+                          {s.num}
+                        </span>
+                        <div>
+                          <p className="text-[0.6rem] tracking-[0.15em] uppercase text-[#6A6A6A] mb-1">{s.title}</p>
+                          <p className="text-[#3A3A3A] text-xs leading-relaxed font-light">{s.desc}</p>
+                        </div>
+                        {i < PROCESS_STEPS.length - 1 && (
+                          <span className="text-[#2A2A2A] text-xs self-end ml-auto">↓</span>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
