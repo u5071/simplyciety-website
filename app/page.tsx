@@ -4,6 +4,43 @@ import { useEffect, useState } from "react";
 import Logo from "./components/Logo";
 import { useLang } from "./contexts/LanguageContext";
 
+const PILLAR_ICONS = [
+  /* Clarity — crosshair over data scatter */
+  <svg key="clarity" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <circle cx="18" cy="18" r="10" stroke="rgba(184,150,90,0.14)" strokeWidth="1" />
+    <circle cx="18" cy="18" r="5" stroke="rgba(184,150,90,0.22)" strokeWidth="1" />
+    <line x1="18" y1="6" x2="18" y2="11" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+    <line x1="18" y1="25" x2="18" y2="30" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+    <line x1="6" y1="18" x2="11" y2="18" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+    <line x1="25" y1="18" x2="30" y2="18" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+    <circle cx="18" cy="18" r="1.8" fill="rgba(184,150,90,0.55)" />
+    <circle cx="10" cy="12" r="1.2" fill="rgba(184,150,90,0.18)" />
+    <circle cx="26" cy="10" r="1.2" fill="rgba(184,150,90,0.18)" />
+    <circle cx="8" cy="26" r="1.2" fill="rgba(184,150,90,0.12)" />
+  </svg>,
+  /* Connection — network nodes */
+  <svg key="connection" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <circle cx="7" cy="18" r="4" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.25)" strokeWidth="0.9" />
+    <circle cx="29" cy="10" r="4" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.25)" strokeWidth="0.9" />
+    <circle cx="29" cy="26" r="4" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.25)" strokeWidth="0.9" />
+    <circle cx="18" cy="18" r="3" fill="rgba(184,150,90,0.12)" stroke="rgba(184,150,90,0.3)" strokeWidth="0.9" />
+    <line x1="11" y1="18" x2="15" y2="18" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+    <line x1="21" y1="16" x2="25" y2="12" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+    <line x1="21" y1="20" x2="25" y2="24" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+    <line x1="7" y1="14" x2="14" y2="10" stroke="rgba(184,150,90,0.08)" strokeWidth="0.6" strokeDasharray="2 2" />
+    <line x1="7" y1="22" x2="14" y2="26" stroke="rgba(184,150,90,0.08)" strokeWidth="0.6" strokeDasharray="2 2" />
+  </svg>,
+  /* Impact — ascending bars */
+  <svg key="impact" width="36" height="36" viewBox="0 0 36 36" fill="none">
+    <rect x="4" y="24" width="6" height="8" fill="rgba(184,150,90,0.1)" rx="0.5" />
+    <rect x="13" y="18" width="6" height="14" fill="rgba(184,150,90,0.14)" rx="0.5" />
+    <rect x="22" y="12" width="6" height="20" fill="rgba(184,150,90,0.18)" rx="0.5" />
+    <polyline points="7,23 16,17 25,11" stroke="rgba(184,150,90,0.45)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    <circle cx="25" cy="11" r="2" fill="rgba(184,150,90,0.5)" />
+    <line x1="4" y1="33" x2="32" y2="33" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+  </svg>,
+];
+
 const PILLARS = [
   {
     num: "01", title: "Clarity",
@@ -233,18 +270,49 @@ export default function Home() {
                 title: t("데이터 진단", "Data Diagnosis"),
                 sub: "Data Analysis",
                 desc: t("조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 데이터로 측정하고 수치화합니다.", "We measure your communication patterns, decision structures, and collaboration flows — and turn them into data."),
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <rect x="6" y="12" width="28" height="20" rx="1.5" stroke="rgba(184,150,90,0.2)" strokeWidth="0.9" />
+                    <rect x="6" y="12" width="28" height="6" rx="1.5" fill="rgba(184,150,90,0.06)" />
+                    <line x1="11" y1="24" x2="22" y2="24" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+                    <line x1="11" y1="28" x2="18" y2="28" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+                    <circle cx="30" cy="27" r="5" stroke="rgba(184,150,90,0.35)" strokeWidth="1" fill="rgba(184,150,90,0.05)" />
+                    <line x1="33.5" y1="30.5" x2="36" y2="33" stroke="rgba(184,150,90,0.35)" strokeWidth="1.2" strokeLinecap="round" />
+                    <circle cx="20" cy="15" r="1.5" fill="rgba(184,150,90,0.4)" />
+                  </svg>
+                ),
               },
               {
                 step: "Step 2",
                 title: t("AI 단순화", "AI Simplification"),
                 sub: "AI-Driven Design",
                 desc: t("데이터로 파악한 병목 지점을 AI로 걷어냅니다. 불필요한 프로세스를 제거하고 핵심만 남긴 조직 청사진을 제안합니다.", "Use data to find the bottlenecks, then AI to clear them. Remove redundant processes — leave a blueprint of only what matters."),
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <circle cx="20" cy="20" r="6" stroke="rgba(184,150,90,0.28)" strokeWidth="1" fill="rgba(184,150,90,0.06)" />
+                    {[[20,8],[30,14],[30,26],[20,32],[10,26],[10,14]].map(([cx,cy],i) => (
+                      <g key={i}>
+                        <circle cx={cx} cy={cy} r="2.5" fill="rgba(184,150,90,0.07)" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+                        <line x1="20" y1="20" x2={cx} y2={cy} stroke="rgba(184,150,90,0.1)" strokeWidth="0.7" />
+                      </g>
+                    ))}
+                    <circle cx="20" cy="20" r="2" fill="rgba(184,150,90,0.5)" />
+                  </svg>
+                ),
               },
               {
                 step: "Step 3",
                 title: t("성장", "Grow"),
                 sub: "Continuous Optimization",
                 desc: t("데이터와 AI로 변화를 지속적으로 추적하고 최적화합니다. 성과는 인상이 아닌 숫자로 검증됩니다.", "Continuously track change and optimize with data and AI. Results are validated in numbers, not impressions."),
+                icon: (
+                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                    <polyline points="6,30 14,22 20,26 28,14 34,10" stroke="rgba(184,150,90,0.4)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                    <polyline points="6,30 14,22 20,26 28,14 34,10 34,30 6,30" fill="rgba(184,150,90,0.04)" stroke="none" />
+                    <circle cx="34" cy="10" r="2.5" fill="rgba(184,150,90,0.5)" />
+                    <line x1="6" y1="30" x2="34" y2="30" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+                  </svg>
+                ),
               },
             ].map((item) => (
               <div
@@ -254,14 +322,15 @@ export default function Home() {
               >
                 <div className="flex items-center justify-between">
                   <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[#3A3A3A]">{item.step}</span>
-                  <span className="text-[0.55rem] tracking-[0.2em] uppercase text-[#B8965A]/60 border border-[#B8965A]/20 px-2 py-1">
-                    {item.sub}
-                  </span>
+                  <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-500">{item.icon}</div>
                 </div>
                 <h3 className="text-3xl md:text-4xl font-extralight tracking-tight group-hover:text-[#B8965A] transition-colors duration-500">
                   {item.title}
                 </h3>
                 <p className="text-[#4A4A4A] text-sm leading-[1.9] font-light">{item.desc}</p>
+                <span className="text-[0.55rem] tracking-[0.2em] uppercase text-[#B8965A]/40 border border-[#B8965A]/15 px-2 py-1 self-start">
+                  {item.sub}
+                </span>
               </div>
             ))}
           </div>
@@ -290,13 +359,13 @@ export default function Home() {
                 key={pillar.num}
                 data-reveal
                 data-reveal-delay={String(i + 1) as "1" | "2" | "3"}
-                className="pillar-card bg-[#080808] p-10 md:p-14 flex flex-col gap-10"
+                className="pillar-card bg-[#080808] p-10 md:p-14 flex flex-col gap-8"
               >
                 <div className="flex items-start justify-between">
                   <span className="text-[0.65rem] tracking-[0.35em] text-[#B8965A] uppercase">
                     {pillar.num}
                   </span>
-                  <span className="w-6 h-px bg-[rgba(255,255,255,0.08)] mt-2 flex-shrink-0" />
+                  {PILLAR_ICONS[i]}
                 </div>
                 <h3 className="pillar-title text-[clamp(2rem,3.5vw,3rem)] font-extralight tracking-tight leading-none transition-colors duration-500">
                   {pillar.title}

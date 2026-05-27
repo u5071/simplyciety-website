@@ -193,6 +193,181 @@ const FAQ = [
     a: s("가능합니다. AWS Summit Seoul 2023 발표, KMA 인터뷰, 대학 교육과정 강의 등의 경험을 바탕으로 기업 행사, 컨퍼런스, 사내 교육 강연을 진행합니다.", "Yes. Based on our AWS Summit Seoul 2023 talk, KMA interview, and university course work, we speak at company events, conferences, and in-house education sessions.") },
 ];
 
+function CaseVisual({ id }: { id: string }) {
+  const g = "#B8965A";
+  const gl = "rgba(255,255,255,0.025)";
+  const bg = "#050505";
+
+  const visuals: Record<string, React.ReactNode> = {
+    retail: (
+      <svg viewBox="0 0 560 150" fill="none" width="100%" height="100%">
+        {[40,80,120].map(y => <line key={y} x1="0" y1={y} x2="560" y2={y} stroke={gl} />)}
+        {[100,200,300,400].map(x => <line key={x} x1={x} y1="0" x2={x} y2="150" stroke={gl} />)}
+        {[[28,115,32],[72,102,48],[116,108,42],[160,88,62],[204,74,76],[248,56,94],[292,36,114],[336,18,132]].map(([x,y,h],i) => (
+          <rect key={i} x={x} y={y} width={36} height={h} fill={`rgba(184,150,90,${0.03+i*0.018})`} rx="1" />
+        ))}
+        <polyline points="46,113 90,100 134,106 178,86 222,72 266,54 310,34 354,16"
+          stroke={g} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" opacity="0.45" />
+        {[[46,113],[90,100],[134,106],[178,86],[222,72],[266,54],[310,34],[354,16]].map(([cx,cy],i) => (
+          <circle key={i} cx={cx} cy={cy} r="2.5" fill={g} opacity={0.2+i*0.07} />
+        ))}
+        <line x1="16" y1="142" x2="544" y2="142" stroke="rgba(255,255,255,0.04)" />
+        <text x="16" y="14" fill="rgba(184,150,90,0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">CONVERSION RATE</text>
+        <rect x="408" y="22" width="136" height="106" fill="rgba(184,150,90,0.025)" rx="1" />
+        <text x="418" y="68" fill="rgba(184,150,90,0.55)" fontSize="36" fontWeight="100" fontFamily="sans-serif">+18%</text>
+        <text x="418" y="84" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="2" fontFamily="monospace">CVR IMPROVEMENT</text>
+        <line x1="418" y1="95" x2="536" y2="95" stroke="rgba(184,150,90,0.07)" />
+        <text x="418" y="108" fill="rgba(184,150,90,0.13)" fontSize="7" letterSpacing="1" fontFamily="monospace">CLV +31% · COST −24%</text>
+      </svg>
+    ),
+    finance: (
+      <svg viewBox="0 0 560 150" fill="none" width="100%" height="100%">
+        {[37,74,111].map(y => <line key={y} x1="0" y1={y} x2="560" y2={y} stroke={gl} />)}
+        <text x="16" y="14" fill="rgba(184,150,90,0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">LOAN PROCESSING QUEUE</text>
+        {[0,1,2,3,4,5].map(i => (
+          <rect key={i} x={16} y={22+i*18} width={170-i*12} height={13} fill={`rgba(184,150,90,${0.05-i*0.005})`} rx="1" />
+        ))}
+        <text x="16" y="134" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">BEFORE · 5 DAYS AVG</text>
+        <line x1="215" y1="75" x2="268" y2="75" stroke="rgba(184,150,90,0.22)" strokeWidth="1" />
+        <polyline points="260,69 268,75 260,81" stroke="rgba(184,150,90,0.22)" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <text x="227" y="68" fill="rgba(184,150,90,0.15)" fontSize="6" letterSpacing="1" fontFamily="monospace">AI</text>
+        <rect x="278" y="66" width="195" height="18" fill="rgba(184,150,90,0.07)" rx="1" />
+        <rect x="278" y="66" width="100" height="18" fill="rgba(184,150,90,0.09)" rx="1" />
+        {[0,1,2].map(i => (
+          <line key={i} x1="283" y1={70+i*5} x2={340-i*18} y2={70+i*5} stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+        ))}
+        <text x="278" y="100" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">AFTER · AUTOMATED</text>
+        <text x="456" y="78" fill="rgba(184,150,90,0.58)" fontSize="34" fontWeight="100" fontFamily="sans-serif">−89%</text>
+        <text x="456" y="94" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">FASTER · APPROVAL +27%</text>
+      </svg>
+    ),
+    manufacturing: (
+      <svg viewBox="0 0 560 150" fill="none" width="100%" height="100%">
+        {[37,75,112].map(y => <line key={y} x1="0" y1={y} x2="560" y2={y} stroke={gl} />)}
+        <text x="16" y="14" fill="rgba(184,150,90,0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">PRODUCTION LINE · QUALITY INSPECTION</text>
+        {Array.from({length:4}).flatMap((_,row) =>
+          Array.from({length:7}).map((_,col) => {
+            const cx = 24+col*38; const cy = 30+row*28;
+            const bad = [[0,2],[1,5],[2,1],[2,4],[3,0],[3,3]].some(([r,c])=>r===row&&c===col);
+            return <circle key={`b${row}-${col}`} cx={cx} cy={cy} r="5.5"
+              fill={bad?"rgba(210,50,50,0.15)":`rgba(184,150,90,${0.05+row*0.015})`}
+              stroke={bad?"rgba(210,50,50,0.25)":`rgba(184,150,90,0.08)`} strokeWidth="0.8" />;
+          })
+        )}
+        <line x1="292" y1="20" x2="292" y2="138" stroke="rgba(184,150,90,0.28)" strokeWidth="0.8" strokeDasharray="4 3" />
+        {Array.from({length:4}).flatMap((_,row) =>
+          Array.from({length:6}).map((_,col) => {
+            const cx = 320+col*36; const cy = 30+row*28;
+            return <circle key={`a${row}-${col}`} cx={cx} cy={cy} r="5.5"
+              fill={`rgba(184,150,90,${0.07+row*0.02})`}
+              stroke="rgba(184,150,90,0.14)" strokeWidth="0.8" />;
+          })
+        )}
+        <text x="318" y="14" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">AFTER SCAN</text>
+        <text x="16" y="14" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace" dy="0" dx="0"></text>
+      </svg>
+    ),
+    hr: (
+      <svg viewBox="0 0 560 150" fill="none" width="100%" height="100%">
+        {[37,75,112].map(y => <line key={y} x1="0" y1={y} x2="560" y2={y} stroke={gl} />)}
+        <text x="16" y="14" fill="rgba(184,150,90,0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">ORGANIZATION STRUCTURE</text>
+        {[[28,44],[62,88],[106,32],[90,110],[148,68],[56,128],[148,128]].map(([cx,cy],i) => (
+          <circle key={i} cx={cx} cy={cy} r="5.5" fill="rgba(184,150,90,0.04)" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+        ))}
+        {[[28,44,62,88],[62,88,106,32],[28,44,90,110],[90,110,148,68]].map(([x1,y1,x2,y2],i) => (
+          <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(184,150,90,0.04)" strokeWidth="0.6" strokeDasharray="3 3" />
+        ))}
+        <line x1="200" y1="75" x2="260" y2="75" stroke="rgba(184,150,90,0.22)" strokeWidth="1" />
+        <polyline points="252,69 260,75 252,81" stroke="rgba(184,150,90,0.22)" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <circle cx="330" cy="75" r="9" fill="rgba(184,150,90,0.1)" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+        {[[285,46],[282,75],[285,104],[375,46],[378,75],[375,104]].map(([cx,cy],i) => (
+          <g key={i}>
+            <line x1="330" y1="75" x2={cx} y2={cy} stroke="rgba(184,150,90,0.14)" strokeWidth="0.8" />
+            <circle cx={cx} cy={cy} r="5" fill="rgba(184,150,90,0.07)" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+          </g>
+        ))}
+        <text x="430" y="66" fill="rgba(184,150,90,0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">+26%</text>
+        <text x="430" y="80" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">PRODUCTIVITY</text>
+        <text x="430" y="102" fill="rgba(184,150,90,0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">−19%</text>
+        <text x="430" y="116" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">TURNOVER RATE</text>
+      </svg>
+    ),
+    logistics: (
+      <svg viewBox="0 0 560 150" fill="none" width="100%" height="100%">
+        {[37,75,112].map(y => <line key={y} x1="0" y1={y} x2="560" y2={y} stroke={gl} />)}
+        <text x="16" y="14" fill="rgba(184,150,90,0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">ROUTE OPTIMIZATION</text>
+        <circle cx="30" cy="75" r="6" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.2)" strokeWidth="1" />
+        <path d="M36,75 Q85,18 148,38 Q180,52 196,75" stroke="rgba(184,150,90,0.1)" strokeWidth="1" fill="none" />
+        <path d="M36,75 Q70,92 104,118 Q148,134 196,96" stroke="rgba(184,150,90,0.1)" strokeWidth="1" fill="none" />
+        <path d="M36,75 Q95,48 148,58 Q172,64 196,80" stroke="rgba(184,150,90,0.08)" strokeWidth="1" fill="none" />
+        <path d="M36,75 Q62,112 100,124 Q152,142 196,108" stroke="rgba(184,150,90,0.07)" strokeWidth="1" fill="none" />
+        <path d="M36,75 Q90,60 196,62" stroke="rgba(184,150,90,0.07)" strokeWidth="1" fill="none" />
+        {[75,96,80,108,62].map((y,i) => (
+          <circle key={i} cx={196} cy={y} r="3.5" fill="rgba(184,150,90,0.05)" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+        ))}
+        <line x1="225" y1="75" x2="272" y2="75" stroke="rgba(184,150,90,0.22)" strokeWidth="1" />
+        <polyline points="264,69 272,75 264,81" stroke="rgba(184,150,90,0.22)" strokeWidth="1" fill="none" strokeLinecap="round" />
+        <circle cx="292" cy="75" r="6" fill="rgba(184,150,90,0.11)" stroke="rgba(184,150,90,0.26)" strokeWidth="1" />
+        {[33,53,75,97,117].map((y,i) => (
+          <g key={i}>
+            <line x1="298" y1="75" x2="394" y2={y} stroke={`rgba(184,150,90,${0.1+i*0.018})`} strokeWidth="0.9" />
+            <circle cx={396} cy={y} r="3.5" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+          </g>
+        ))}
+        <text x="438" y="66" fill="rgba(184,150,90,0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">−29%</text>
+        <text x="438" y="80" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">INVENTORY COST</text>
+        <text x="438" y="102" fill="rgba(184,150,90,0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">−17%</text>
+        <text x="438" y="116" fill="rgba(184,150,90,0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">DELIVERY TIME</text>
+      </svg>
+    ),
+  };
+
+  return (
+    <div className="relative w-full overflow-hidden flex-shrink-0" style={{ height: "180px", background: "#080808" }}>
+      {visuals[id] ?? null}
+      <div className="absolute inset-x-0 bottom-0 h-16 pointer-events-none"
+        style={{ background: `linear-gradient(to bottom, transparent, ${bg})` }} />
+    </div>
+  );
+}
+
+const SERVICE_ICONS: Record<string, React.ReactNode> = {
+  consulting: (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="24" r="14" stroke="rgba(184,150,90,0.12)" strokeWidth="1" />
+      <circle cx="24" cy="24" r="8" stroke="rgba(184,150,90,0.2)" strokeWidth="1" />
+      <circle cx="24" cy="24" r="2.5" fill="rgba(184,150,90,0.5)" />
+      <line x1="24" y1="8" x2="24" y2="14" stroke="rgba(184,150,90,0.25)" strokeWidth="1" />
+      <line x1="24" y1="34" x2="24" y2="40" stroke="rgba(184,150,90,0.25)" strokeWidth="1" />
+      <line x1="8" y1="24" x2="14" y2="24" stroke="rgba(184,150,90,0.25)" strokeWidth="1" />
+      <line x1="34" y1="24" x2="40" y2="24" stroke="rgba(184,150,90,0.25)" strokeWidth="1" />
+      <line x1="24" y1="24" x2="32" y2="14" stroke="rgba(184,150,90,0.4)" strokeWidth="1.2" strokeLinecap="round" />
+    </svg>
+  ),
+  platform: (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <rect x="8" y="10" width="32" height="8" rx="1.5" fill="rgba(184,150,90,0.08)" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+      <rect x="8" y="22" width="32" height="8" rx="1.5" fill="rgba(184,150,90,0.06)" stroke="rgba(184,150,90,0.16)" strokeWidth="0.8" />
+      <rect x="8" y="34" width="32" height="8" rx="1.5" fill="rgba(184,150,90,0.04)" stroke="rgba(184,150,90,0.12)" strokeWidth="0.8" />
+      <line x1="24" y1="18" x2="24" y2="22" stroke="rgba(184,150,90,0.3)" strokeWidth="1" />
+      <line x1="24" y1="30" x2="24" y2="34" stroke="rgba(184,150,90,0.3)" strokeWidth="1" />
+      <circle cx="14" cy="14" r="2" fill="rgba(184,150,90,0.35)" />
+      <circle cx="14" cy="26" r="2" fill="rgba(184,150,90,0.25)" />
+    </svg>
+  ),
+  education: (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <circle cx="24" cy="18" r="6" fill="rgba(184,150,90,0.1)" stroke="rgba(184,150,90,0.28)" strokeWidth="1" />
+      <circle cx="10" cy="34" r="4.5" fill="rgba(184,150,90,0.07)" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+      <circle cx="24" cy="38" r="4.5" fill="rgba(184,150,90,0.07)" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+      <circle cx="38" cy="34" r="4.5" fill="rgba(184,150,90,0.07)" stroke="rgba(184,150,90,0.2)" strokeWidth="0.8" />
+      <line x1="18" y1="22" x2="12" y2="30" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+      <line x1="24" y1="24" x2="24" y2="34" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+      <line x1="30" y1="22" x2="36" y2="30" stroke="rgba(184,150,90,0.18)" strokeWidth="0.8" />
+    </svg>
+  ),
+};
+
 const FILTERS = [
   { id: "all", label: s("전체", "All") },
   { id: "retail", label: s("유통·리테일", "Retail") },
@@ -267,9 +442,14 @@ export default function ServicesContent() {
           <div className="max-w-screen-xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-20 mb-16">
               <div className="md:col-span-4">
-                <p className="text-[0.55rem] tracking-[0.3em] uppercase text-[#B8965A] mb-3">{line.num}</p>
-                <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extralight tracking-tight leading-[1.05]">{line.tag[lang]}</h2>
-                <p className="text-[#B8965A]/60 text-sm font-light mt-2 italic">{line.title[lang]}</p>
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="flex-shrink-0 opacity-70">{SERVICE_ICONS[line.id]}</div>
+                  <div>
+                    <p className="text-[0.55rem] tracking-[0.3em] uppercase text-[#B8965A] mb-2">{line.num}</p>
+                    <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extralight tracking-tight leading-[1.05]">{line.tag[lang]}</h2>
+                    <p className="text-[#B8965A]/60 text-sm font-light mt-2 italic">{line.title[lang]}</p>
+                  </div>
+                </div>
               </div>
               <div className="md:col-span-8 flex items-center">
                 <p className="text-[#6A6A6A] text-lg leading-[1.9] font-light">{line.overview[lang]}</p>
@@ -343,7 +523,9 @@ export default function ServicesContent() {
           {/* Case cards */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-[rgba(255,255,255,0.04)]">
             {filteredCases.map((c) => (
-              <div key={c.id} className="bg-[#050505] p-8 md:p-10 flex flex-col gap-7">
+              <div key={c.id} className="bg-[#050505] flex flex-col">
+                <CaseVisual id={c.id} />
+                <div className="p-8 md:p-10 flex flex-col gap-7">
                 {/* Industry tag */}
                 <div>
                   <span className="inline-block text-[0.5rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 text-[#B8965A] px-3 py-1 mb-4">
@@ -377,6 +559,7 @@ export default function ServicesContent() {
                       <p className="text-[0.5rem] tracking-[0.15em] uppercase text-[#3A3A3A] leading-relaxed">{o.label[lang]}</p>
                     </div>
                   ))}
+                </div>
                 </div>
               </div>
             ))}
