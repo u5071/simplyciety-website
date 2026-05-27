@@ -8,22 +8,22 @@ const PILLARS = [
   {
     num: "01", title: "Clarity",
     desc: {
-      ko: "AI가 복잡성이 숨어 있는 지점을 정확히 찾아냅니다. 불분명한 의사결정 구조와 불필요한 보고 단계를 드러냅니다.",
-      en: "AI pinpoints exactly where complexity hides — unclear decision flows, redundant reporting chains, misaligned teams.",
+      ko: "데이터가 복잡성이 숨어 있는 지점을 드러냅니다. AI가 불분명한 의사결정 구조와 불필요한 보고 단계를 정확히 짚어냅니다.",
+      en: "Data exposes where complexity hides. AI pinpoints unclear decision flows and redundant reporting chains — precisely, not by intuition.",
     },
   },
   {
     num: "02", title: "Connection",
     desc: {
-      ko: "조직도가 아닌 실제 협업 패턴을 봅니다. 진짜 신뢰가 만들어지는 연결만 남기고, 나머지는 걷어냅니다.",
-      en: "We look at how teams actually work, not the org chart. Strengthen real connections. Remove the noise.",
+      ko: "조직도가 아닌 실제 데이터 흐름을 봅니다. 어디서 정보가 막히고 어디서 판단이 지연되는지를 데이터로 추적합니다.",
+      en: "We look at real data flows, not the org chart. Track exactly where information gets blocked and decisions get delayed.",
     },
   },
   {
     num: "03", title: "Impact",
     desc: {
-      ko: "단순해진 조직은 더 빠르게 움직이고 오래 유지됩니다. AI가 그 성과를 측정 가능한 숫자로 보여줍니다.",
-      en: "Simpler organizations move faster and last longer. AI delivers measurable results — not abstract promises.",
+      ko: "단순해진 조직은 더 빠르게 움직이고 오래 유지됩니다. 모든 성과는 데이터로 측정하고 AI로 지속적으로 검증합니다.",
+      en: "Simpler organizations move faster and last longer. Every outcome is measured with data and continuously validated with AI.",
     },
   },
 ];
@@ -117,14 +117,27 @@ export default function Home() {
           <div className="flex items-center gap-4 mb-10 hero-eyebrow">
             <span className="block w-8 h-px bg-[#B8965A]" />
             <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">
-              {t("AI 기반 조직 단순화", "AI-Powered Organizational Simplification")}
+              {t("Data & AI 기반 조직 단순화", "Data & AI-Powered Simplification")}
             </p>
           </div>
 
-          <h1 className="hero-title text-[clamp(4.5rem,13vw,16rem)] font-extralight leading-[0.88] tracking-[-0.035em] mb-14">
+          <h1 className="hero-title text-[clamp(4.5rem,13vw,16rem)] font-extralight leading-[0.88] tracking-[-0.035em] mb-8">
             <span className="block text-[#F0EDE8]">Simple</span>
             <span className="block italic text-[#B8965A]">Society.</span>
           </h1>
+
+          {/* Data → AI flow tag */}
+          <div className="hero-eyebrow flex items-center gap-3 mb-14">
+            {["Data", "→", "AI", "→", t("단순화", "Simplify")].map((w, i) => (
+              <span
+                key={i}
+                className="text-[0.5rem] tracking-[0.25em] uppercase"
+                style={{ color: w === "→" ? "#2A2A2A" : w === "AI" || w === t("단순화", "Simplify") ? "rgba(184,150,90,0.6)" : "#3A3A3A" }}
+              >
+                {w}
+              </span>
+            ))}
+          </div>
 
           <div className="hero-line mb-14">
             <span className="block h-px bg-[rgba(255,255,255,0.08)] w-full" />
@@ -133,8 +146,8 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
             <p className="hero-body max-w-xl text-[#6A6A6A] text-lg leading-relaxed font-light">
               {t(
-                "AI로 조직의 복잡성을 걷어냅니다. 불필요한 구조와 프로세스, 소음을 제거하고 — 팀과 조직이 진정으로 연결될 수 있는 본질만 남깁니다.",
-                "We cut organizational complexity with AI. Remove redundant structures, processes, and noise — leaving only what truly matters for your teams to connect and move."
+                "데이터로 진단하고, AI로 걷어냅니다. 불필요한 구조·프로세스·소음을 제거하고 — 팀이 진짜 일에만 집중할 수 있는 조직을 만듭니다.",
+                "Diagnose with data. Cut with AI. Remove redundant structures, processes, and noise — so your teams can focus on work that actually matters."
               )}
             </p>
             <div className="hero-cta flex items-center gap-6 flex-shrink-0">
@@ -191,8 +204,8 @@ export default function Home() {
               </p>
               <p data-reveal data-reveal-delay="1" className="text-[#6A6A6A] text-lg leading-[1.9] font-light">
                 {t(
-                  "simplyciety는 AI를 활용해 조직이 실제로 작동하는 방식을 분석하고, 구조적 안개를 걷어내어 진짜 중요한 것이 선명하게 보이게 합니다. 더 적은 회의. 더 명확한 책임. 더 빠른 결정.",
-                  "simplyciety uses AI to analyze how your organization actually works — then clears the structural fog so what truly matters becomes visible. Fewer meetings. Clearer ownership. Faster decisions."
+                  "simplyciety는 데이터로 조직이 실제로 작동하는 방식을 분석하고, AI로 구조적 안개를 걷어냅니다. 무엇이 병목인지, 어디서 결정이 막히는지를 숫자로 보여주고 — 판단이 빠른 구조를 설계합니다.",
+                  "simplyciety uses data to analyze how your organization actually works, then uses AI to clear the structural fog. Where are the bottlenecks? Where do decisions stall? We show it in numbers — then redesign for speed."
                 )}
               </p>
               <p data-reveal data-reveal-delay="2"
@@ -217,21 +230,21 @@ export default function Home() {
             {[
               {
                 step: "Step 1",
-                title: t("진단", "Diagnose"),
-                sub: "AI Diagnosis",
-                desc: t("조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 AI가 분석합니다.", "AI analyzes your communication patterns, decision structures, and collaboration flows."),
+                title: t("데이터 진단", "Data Diagnosis"),
+                sub: "Data Analysis",
+                desc: t("조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 데이터로 측정하고 수치화합니다.", "We measure your communication patterns, decision structures, and collaboration flows — and turn them into data."),
               },
               {
                 step: "Step 2",
-                title: t("단순화", "Simplify"),
-                sub: "AI Simplification",
-                desc: t("불필요한 프로세스와 보고 구조를 제거하고, 핵심만 남긴 조직 청사진을 제안합니다.", "Remove redundant processes and reporting chains. Present a blueprint with only what matters."),
+                title: t("AI 단순화", "AI Simplification"),
+                sub: "AI-Driven Design",
+                desc: t("데이터로 파악한 병목 지점을 AI로 걷어냅니다. 불필요한 프로세스를 제거하고 핵심만 남긴 조직 청사진을 제안합니다.", "Use data to find the bottlenecks, then AI to clear them. Remove redundant processes — leave a blueprint of only what matters."),
               },
               {
                 step: "Step 3",
                 title: t("성장", "Grow"),
                 sub: "Continuous Optimization",
-                desc: t("변화를 실시간으로 추적하며, AI가 지속적으로 조직을 최적화합니다.", "Track change in real time as AI continuously optimizes your organization."),
+                desc: t("데이터와 AI로 변화를 지속적으로 추적하고 최적화합니다. 성과는 인상이 아닌 숫자로 검증됩니다.", "Continuously track change and optimize with data and AI. Results are validated in numbers, not impressions."),
               },
             ].map((item) => (
               <div
@@ -357,7 +370,7 @@ export default function Home() {
         >
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="flex items-center gap-16 flex-shrink-0">
-              {["Clarity", "AI", "Connection", "Simplification", "Impact", "Automation"].map((w) => (
+              {["Data", "AI", "Clarity", "Pipeline", "Simplification", "Impact", "Insight", "Automation"].map((w) => (
                 <span key={w} className="flex items-center gap-16">
                   <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#262626]">{w}</span>
                   <span className="text-[#B8965A] text-xs">·</span>

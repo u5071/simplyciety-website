@@ -239,10 +239,16 @@ export default function ServicesContent() {
             <span className="w-6 h-px bg-[#B8965A]" />
             Services
           </p>
-          <h1 className="text-[clamp(3.5rem,9vw,11rem)] font-extralight leading-[0.9] tracking-[-0.03em] mb-10">
+          <h1 className="text-[clamp(3.5rem,9vw,11rem)] font-extralight leading-[0.9] tracking-[-0.03em] mb-8">
             {t("세 가지 방법으로", "Three ways to")}<br />
             <span className="italic text-[#B8965A]">{t("단순화합니다.", "simplify.")}</span>
           </h1>
+          <p className="text-[#4A4A4A] text-sm font-light tracking-wide mb-10 max-w-xl">
+            {t(
+              "데이터로 진단하고, AI로 실행합니다. 조직의 복잡성을 걷어내는 세 가지 접근 방식을 제공합니다.",
+              "Diagnose with data. Execute with AI. Three service lines to cut the complexity out of your organization."
+            )}
+          </p>
           <div className="flex items-center gap-8 mt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: "1.5rem" }}>
             {LINES.map((line) => (
               <a key={line.id} href={`#${line.id}`} className="flex items-center gap-2 group">
