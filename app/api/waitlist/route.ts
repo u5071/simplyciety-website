@@ -1,9 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import { EMAIL_RE, NOTIFY_TO, createTransport, emailFrame, escapeHtml, mailConfigured } from "../../../lib/mail";
 import { LAUNCH_DATE, addToWaitlist, storageConfigured, type WaitlistEntry } from "../../../lib/waitlist";
+import { LAUNCH_LONG } from "../../../lib/launch";
+import { allowed } from "../../../lib/waitlist-options";
 
-const DATA_TYPES = ["spreadsheets", "rdb", "nosql", "graph", "docs"];
 const clip = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : undefined);
+const one = (v: unknown, ok: Set<string>) => (typeof v === "string" && ok.has(v) ? v : undefined);
+const many = (v: unknown, ok: Set<string>) =>
+  Array.isArray(v) ? [...new Set(v.filter((d): d is string => typeof d === "string" && ok.has(d)))] : undefined;
 
 export async function POST(request: NextRequest) {
   let body: Record<string, unknown>;
@@ -27,11 +31,12 @@ export async function POST(request: NextRequest) {
     email,
     name: clip(body.name, 100),
     company: clip(body.company, 150),
-    role: clip(body.role, 60),
-    teamSize: clip(body.teamSize, 30),
-    dataTypes: Array.isArray(body.dataTypes)
-      ? body.dataTypes.filter((d): d is string => typeof d === "string" && DATA_TYPES.includes(d))
-      : undefined,
+    role: one(body.role, allowed("role")),
+    teamSize: one(body.teamSize, allowed("teamSize")),
+    dataTypes: many(body.dataTypes, allowed("dataSources")),
+    aiStage: one(body.aiStage, allowed("aiStage")),
+    useCases: many(body.useCases, allowed("useCases")),
+    timeline: one(body.timeline, allowed("timeline")),
     useCase: clip(body.useCase, 1000),
     lang: body.lang === "en" ? "en" : "ko",
     source: clip(body.source, 200),
@@ -87,10 +92,10 @@ export async function POST(request: NextRequest) {
           en ? "You're on the list" : "대기명단에 등록되었습니다",
           en
             ? `<p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">Hi ${greeting},<br>Thanks for joining the dataSimplr waitlist${position ? ` — you're <strong>#${position}</strong>` : ""}.</p>
-               <p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">dataSimplr launches on <strong>October 18, 2026</strong>. We'll send invites in waitlist order.</p>
+               <p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">dataSimplr launches on <strong>${LAUNCH_LONG.en}</strong>. We'll send invites in waitlist order.</p>
                <p style="color:#999;font-size:13px;line-height:1.6;margin:0;">We only use your email to send launch updates. Reply to this email to be removed.</p>`
             : `<p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">${greeting ? `${greeting}님, ` : ""}dataSimplr 대기명단에 등록해 주셔서 감사합니다${position ? ` — 대기 순번은 <strong>${position}번</strong>입니다` : ""}.</p>
-               <p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">dataSimplr는 <strong>2026년 10월 18일</strong> 출시 예정이며, 등록 순서대로 초대 메일을 보내드립니다.</p>
+               <p style="color:#333;font-size:15px;line-height:1.8;margin:0 0 20px;">dataSimplr는 <strong>${LAUNCH_LONG.ko}</strong> 출시 예정이며, 등록 순서대로 초대 메일을 보내드립니다.</p>
                <p style="color:#999;font-size:13px;line-height:1.6;margin:0;">입력하신 정보는 출시 안내에만 사용합니다. 이 메일에 회신하시면 명단에서 삭제해 드립니다.</p>`
         ),
       });

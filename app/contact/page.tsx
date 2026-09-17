@@ -65,7 +65,7 @@ function ContactForm() {
     email: "",
     phone: "",
     serviceType: searchParams.get("service") ?? "other",
-    message: "",
+    message: (searchParams.get("message") ?? "").slice(0, 2000),
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");

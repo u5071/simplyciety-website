@@ -35,8 +35,8 @@ const LINES = [
     tag: s("AI/Data 플랫폼 구축", "AI/Data Platform"),
     title: s("실행과 구축", "Build & Execute"),
     overview: s(
-      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 교보문고 파이프라인, 카카오뱅크·나이스평가정보 대상 데이터 API 등 실전 레퍼런스 기반. 데이터팀이 없는 조직을 위해서는 자체 제품 dataSimplr(2026.10.18 출시)를 함께 제공합니다.",
-      "The execution partner that actually builds the system for organizations with a clear direction. Built on real references: Kyobo pipeline, KakaoBank & NICE credit API. For teams without a data team, our product dataSimplr launches Oct 18, 2026."
+      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 교보문고 파이프라인, 카카오뱅크·나이스평가정보 대상 데이터 API 등 실전 레퍼런스 기반. 데이터팀이 없는 조직을 위해서는 자체 제품 dataSimplr(2026.11.16 출시)를 함께 제공합니다.",
+      "The execution partner that actually builds the system for organizations with a clear direction. Built on real references: Kyobo pipeline, KakaoBank & NICE credit API. For teams without a data team, our product dataSimplr launches Nov 16, 2026."
     ),
     products: [
       { name: "Simpli-Pipeline", sub: s("데이터 파이프라인 구축", "Data Pipeline Build"),

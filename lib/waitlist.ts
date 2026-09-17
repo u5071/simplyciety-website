@@ -1,7 +1,7 @@
 // dataSimplr waitlist storage — Upstash Redis REST API (Vercel Marketplace integration).
 // Env: KV_REST_API_URL + KV_REST_API_TOKEN (or UPSTASH_REDIS_REST_URL + UPSTASH_REDIS_REST_TOKEN).
 
-export const LAUNCH_DATE = "2026-10-18";
+export { LAUNCH_DATE } from "./launch";
 
 const ZSET = "datasimplr:waitlist";
 const detailKey = (email: string) => `datasimplr:waitlist:${email}`;
@@ -39,6 +39,9 @@ export type WaitlistEntry = {
   role?: string;
   teamSize?: string;
   dataTypes?: string[];
+  aiStage?: string;
+  useCases?: string[];
+  timeline?: string;
   useCase?: string;
   lang?: string;
   source?: string;

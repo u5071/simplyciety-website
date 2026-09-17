@@ -20,7 +20,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 24, letterSpacing: 6, color: "#B8965A" }}>
-          <div style={{ display: "flex", border: "2px solid #B8965A", padding: "8px 18px" }}>LAUNCHING OCT 18, 2026</div>
+          <div style={{ display: "flex", border: "2px solid #B8965A", padding: "8px 18px" }}>PUBLIC BETA · NOV 16, 2026</div>
           <span style={{ color: "#8A8780" }}>BY SIMPLYCIETY</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -29,7 +29,7 @@ export default function Image() {
             <span style={{ color: "#B8965A", fontStyle: "italic" }}>Simplr</span>
           </div>
           <div style={{ display: "flex", fontSize: 44, marginTop: 24, color: "#D4D0CA" }}>
-            The data platform for teams without a data team.
+            AI-ready data. No data team required.
           </div>
         </div>
         <div style={{ display: "flex", gap: 28, fontSize: 26, color: "#8A8780", letterSpacing: 4 }}>

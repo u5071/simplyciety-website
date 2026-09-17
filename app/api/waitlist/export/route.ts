@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { listWaitlist, storageConfigured } from "../../../../lib/waitlist";
 
 // GET /api/waitlist/export  (header: Authorization: Bearer <WAITLIST_ADMIN_TOKEN>)
-const COLUMNS = ["position", "createdAt", "email", "name", "company", "role", "teamSize", "dataTypes", "useCase", "lang", "source"];
+const COLUMNS = ["position", "createdAt", "email", "name", "company", "role", "teamSize", "dataTypes", "aiStage", "useCases", "timeline", "useCase", "lang", "source"];
 
 const csvCell = (v: string | undefined) => {
   const s = (v ?? "").replace(/^[=+\-@]/, "'$&"); // avoid spreadsheet formula injection

@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 380" fill="none" font-family="Helvetica Neue, Helvetica, Arial, sans-serif">
+  <defs>
+    <radialGradient id="core" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#B8965A" stop-opacity=".45"/>
+      <stop offset="1" stop-color="#B8965A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="inL" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#B8965A" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#B8965A" stop-opacity=".75"/>
+    </linearGradient>
+    <linearGradient id="outR" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E0C48E" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#B8965A" stop-opacity=".2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- input curves -->
+  <g stroke="url(#inL)" stroke-width="1.2">
+    <path d="M232 62 C 340 62, 360 190, 440 190"/>
+    <path d="M232 138 C 330 138, 360 190, 440 190"/>
+    <path d="M232 242 C 330 242, 360 190, 440 190"/>
+    <path d="M232 318 C 340 318, 360 190, 440 190"/>
+  </g>
+  <!-- output curves -->
+  <g stroke="url(#outR)" stroke-width="1.2">
+    <path d="M520 190 C 600 190, 620 80, 700 80"/>
+    <path d="M520 190 C 600 190, 640 190, 700 190"/>
+    <path d="M520 190 C 600 190, 620 300, 700 300"/>
+  </g>
+
+  <!-- sources -->
+  <g font-size="13" fill="#D4D0CA">
+    <g transform="translate(40 40)">
+      <rect width="192" height="44" fill="#0C0C0C" stroke="#FFFFFF" stroke-opacity=".1"/>
+      <rect x="12" y="12" width="34" height="20" fill="#B8965A" fill-opacity=".15" stroke="#B8965A" stroke-opacity=".5"/>
+      <text x="29" y="26" font-size="9" fill="#E0C48E" text-anchor="middle" letter-spacing="1">XLSX</text>
+      <text x="58" y="27">orders.xlsx</text>
+    </g>
+    <g transform="translate(40 116)">
+      <rect width="192" height="44" fill="#0C0C0C" stroke="#FFFFFF" stroke-opacity=".1"/>
+      <rect x="12" y="12" width="34" height="20" fill="#B8965A" fill-opacity=".15" stroke="#B8965A" stroke-opacity=".5"/>
+      <text x="29" y="26" font-size="9" fill="#E0C48E" text-anchor="middle" letter-spacing="1">SQL</text>
+      <text x="58" y="27">customers</text>
+    </g>
+    <g transform="translate(40 220)">
+      <rect width="192" height="44" fill="#0C0C0C" stroke="#FFFFFF" stroke-opacity=".1"/>
+      <rect x="12" y="12" width="34" height="20" fill="#B8965A" fill-opacity=".15" stroke="#B8965A" stroke-opacity=".5"/>
+      <text x="29" y="26" font-size="9" fill="#E0C48E" text-anchor="middle" letter-spacing="1">JSON</text>
+      <text x="58" y="27">events.json</text>
+    </g>
+    <g transform="translate(40 296)">
+      <rect width="192" height="44" fill="#0C0C0C" stroke="#FFFFFF" stroke-opacity=".1"/>
+      <rect x="12" y="12" width="34" height="20" fill="#B8965A" fill-opacity=".15" stroke="#B8965A" stroke-opacity=".5"/>
+      <text x="29" y="26" font-size="9" fill="#E0C48E" text-anchor="middle" letter-spacing="1">PDF</text>
+      <text x="58" y="27">contracts.pdf</text>
+    </g>
+  </g>
+
+  <!-- core -->
+  <circle cx="480" cy="190" r="110" fill="url(#core)"/>
+  <circle cx="480" cy="190" r="62" stroke="#B8965A" stroke-opacity=".25"/>
+  <circle cx="480" cy="190" r="42" fill="#0E0C09" stroke="#E0C48E" stroke-opacity=".9"/>
+  <!-- brand mark: three lines converge to a signal dot -->
+  <g stroke="#E0C48E" stroke-width="1.4" stroke-linecap="round">
+    <line x1="460" y1="178" x2="478" y2="190"/>
+    <line x1="458" y1="190" x2="478" y2="190"/>
+    <line x1="460" y1="202" x2="478" y2="190"/>
+    <line x1="484" y1="190" x2="502" y2="190"/>
+  </g>
+  <circle cx="481" cy="190" r="3" fill="#F1DDB0"/>
+  <text x="480" y="284" font-size="13" fill="#F0EDE8" text-anchor="middle" letter-spacing=".5">data<tspan fill="#E0C48E" font-style="italic">Simplr</tspan></text>
+  <text x="480" y="302" font-size="9" fill="#6A6A6A" text-anchor="middle" letter-spacing="2">CONNECT · ALIGN · PROTECT</text>
+
+  <!-- outputs -->
+  <g transform="translate(700 52)">
+    <rect width="220" height="56" fill="#0C0C0C" stroke="#B8965A" stroke-opacity=".4"/>
+    <path d="M16 18 h28 a4 4 0 0 1 4 4 v12 a4 4 0 0 1 -4 4 h-18 l-6 5 v-5 h-4 a4 4 0 0 1 -4 -4 v-12 a4 4 0 0 1 4 -4z" stroke="#E0C48E" fill="#B8965A" fill-opacity=".12"/>
+    <text x="62" y="26" font-size="13" fill="#F0EDE8">Ask in plain language</text>
+    <text x="62" y="42" font-size="10" fill="#6A6A6A">answers with sources</text>
+  </g>
+  <g transform="translate(700 162)">
+    <rect width="220" height="56" fill="#0C0C0C" stroke="#B8965A" stroke-opacity=".4"/>
+    <g fill="#B8965A">
+      <rect x="16" y="32" width="6" height="10" fill-opacity=".4"/>
+      <rect x="25" y="24" width="6" height="18" fill-opacity=".6"/>
+      <rect x="34" y="16" width="6" height="26" fill-opacity=".9"/>
+      <rect x="43" y="27" width="6" height="15" fill-opacity=".5"/>
+    </g>
+    <text x="62" y="26" font-size="13" fill="#F0EDE8">Agents do the work</text>
+    <text x="62" y="42" font-size="10" fill="#6A6A6A">reports · alerts · modeling</text>
+  </g>
+  <g transform="translate(700 272)">
+    <rect width="220" height="56" fill="#0C0C0C" stroke="#B8965A" stroke-opacity=".4"/>
+    <g stroke="#E0C48E" stroke-linecap="round">
+      <rect x="18" y="20" width="18" height="16" rx="2" fill="#B8965A" fill-opacity=".12"/>
+      <line x1="23" y1="14" x2="23" y2="20"/><line x1="31" y1="14" x2="31" y2="20"/>
+      <path d="M27 36 v4 q0 4 6 4 h14"/>
+    </g>
+    <text x="62" y="26" font-size="13" fill="#F0EDE8">MCP for any agent</text>
+    <text x="62" y="42" font-size="10" fill="#6A6A6A">Claude and beyond, scoped</text>
+  </g>
+
+  <!-- flowing dots -->
+  <g fill="#F1DDB0">
+    <circle r="2.2"><animateMotion dur="3.2s" repeatCount="indefinite" path="M232 62 C 340 62, 360 190, 440 190"/></circle>
+    <circle r="2.2"><animateMotion dur="2.6s" begin=".8s" repeatCount="indefinite" path="M232 242 C 330 242, 360 190, 440 190"/></circle>
+    <circle r="2.2"><animateMotion dur="3s" begin="1.4s" repeatCount="indefinite" path="M232 318 C 340 318, 360 190, 440 190"/></circle>
+    <circle r="2.2"><animateMotion dur="2.8s" begin=".4s" repeatCount="indefinite" path="M232 138 C 330 138, 360 190, 440 190"/></circle>
+    <circle r="2.2"><animateMotion dur="2.4s" begin="1s" repeatCount="indefinite" path="M520 190 C 600 190, 620 80, 700 80"/></circle>
+    <circle r="2.2"><animateMotion dur="2.4s" begin="1.6s" repeatCount="indefinite" path="M520 190 C 600 190, 620 300, 700 300"/></circle>
+    <circle r="2.2"><animateMotion dur="2s" begin=".2s" repeatCount="indefinite" path="M520 190 C 600 190, 640 190, 700 190"/></circle>
+  </g>
+</svg>

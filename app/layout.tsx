@@ -99,7 +99,7 @@ const ORG_SCHEMA = {
     itemListElement: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AX 컨설팅", description: "AI 전환 전략 수립 및 조직 AI 준비도 진단" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI/Data 플랫폼 구축", description: "AWS·Snowflake 기반 데이터 파이프라인 및 AI 시스템 구축" } },
-      { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "dataSimplr", description: "데이터팀 없는 팀을 위한 AI 데이터 플랫폼 (2026.10.18 출시)" } },
+      { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "dataSimplr", description: "데이터팀 없는 팀을 위한 AI 데이터 플랫폼 (2026.11.16 출시)" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AX/DX 교육·조직문화빌딩", description: "데이터 리터러시, 경영진 AX 브리핑, DX 조직문화 워크샵" } },
     ],
   },

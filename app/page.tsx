@@ -342,7 +342,7 @@ export default function Home() {
               <span className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">{t("제품", "Product")}</span>
               <span className="inline-flex items-center gap-2 text-[0.55rem] tracking-[0.2em] uppercase border border-[#B8965A]/50 text-[#B8965A] px-2.5 py-1">
                 <span className="w-1 h-1 rounded-full bg-[#B8965A] animate-pulse" />
-                {t("2026.10.18 출시", "Launching Oct 18")}
+                {t("2026.11.16 출시", "Launching Nov 16")}
               </span>
             </div>
             <h2 data-reveal data-reveal-delay="1" className="text-[clamp(3rem,7vw,6.5rem)] font-extralight leading-[0.92] tracking-[-0.03em] mb-8">

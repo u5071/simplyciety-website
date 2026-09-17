@@ -249,3 +249,17 @@ body {
   color: #5A5A5A;
   font-style: italic;
 }
+
+/* ─── dataSimplr / diagnosis motion ─── */
+@keyframes dsFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ds-fade { animation: dsFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes dsDash { to { stroke-dashoffset: -24; } }
+.ds-dash { stroke-dasharray: 4 4; animation: dsDash 1.6s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-fade, .ds-dash, .hero-eyebrow, .hero-title, .hero-body, .hero-cta, .hero-line { animation: none !important; opacity: 1 !important; }
+}

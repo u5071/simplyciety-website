@@ -375,7 +375,7 @@ export default function ForumContent() {
             </div>
           </div>
           <div data-reveal data-reveal-delay="1" className="bg-[#080808] p-8 md:p-12 flex flex-col gap-5">
-            <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A]">dataSimplr · 2026.10.18 출시</p>
+            <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A]">dataSimplr · 2026.11.16 출시</p>
             <h2 className="text-3xl md:text-4xl font-extralight tracking-tight leading-tight">
               데이터팀이 없어도
               <br />
