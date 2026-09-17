@@ -13,14 +13,14 @@ const Ctx = createContext<{
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("ko");
 
+  // The server renders Korean; the saved choice and browser locale are only
+  // readable on the client, so the first client render corrects it once.
   useEffect(() => {
     const saved = localStorage.getItem("sc-lang") as Lang | null;
-    if (saved === "ko" || saved === "en") {
-      setLangState(saved);
-    } else {
-      // Non-Korean browser locales default to English
-      setLangState(navigator.language.startsWith("ko") ? "ko" : "en");
-    }
+    // Non-Korean browser locales default to English.
+    const next: Lang = saved === "ko" || saved === "en" ? saved : navigator.language.startsWith("ko") ? "ko" : "en";
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- see comment above
+    if (next !== "ko") setLangState(next);
   }, []);
 
   const setLang = (l: Lang) => {
