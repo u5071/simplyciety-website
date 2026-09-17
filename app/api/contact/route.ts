@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import { NOTIFY_TO, escapeHtml } from "../../../lib/mail";
+import { NOTIFY_TO, escapeHtml, mailConfigured } from "../../../lib/mail";
 
 export async function POST(request: NextRequest) {
   try {
@@ -22,6 +22,14 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "올바른 이메일 주소를 입력해주세요." },
         { status: 400 }
+      );
+    }
+
+    if (!mailConfigured()) {
+      console.error("Contact form: GMAIL_USER / GMAIL_APP_PASSWORD not configured");
+      return NextResponse.json(
+        { error: "메일 발송이 아직 설정되지 않았습니다. 아래 버튼으로 메일을 보내주세요.", code: "mail_unavailable" },
+        { status: 503 }
       );
     }
 
@@ -105,7 +113,7 @@ export async function POST(request: NextRequest) {
             </p>
             <p style="color: #999; font-size: 13px; line-height: 1.6; margin: 0;">
               빠른 답변이 필요하신 경우<br>
-              <a href="mailto:hello@simplyciety.com" style="color: #B8965A;">hello@simplyciety.com</a>으로 직접 연락 주세요.
+              <a href="mailto:yang5071@gmail.com" style="color: #B8965A;">yang5071@gmail.com</a>으로 직접 연락 주세요.
             </p>
           </div>
           <p style="color: #aaa; font-size: 11px; margin-top: 16px; text-align: center;">
@@ -119,7 +127,7 @@ export async function POST(request: NextRequest) {
   } catch (err) {
     console.error("Contact form error:", err);
     return NextResponse.json(
-      { error: "메일 전송에 실패했습니다. 잠시 후 다시 시도해주세요." },
+      { error: "메일 전송에 실패했습니다. 아래 버튼으로 메일을 보내주세요.", code: "mail_unavailable" },
       { status: 500 }
     );
   }

@@ -52,6 +52,11 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
     useCase: "",
     website: "", // honeypot
   });
+  const mailto = `mailto:yang5071@gmail.com?subject=${encodeURIComponent("[dataSimplr] 대기명단 등록 / Waitlist")}&body=${encodeURIComponent(
+    [`email: ${form.email}`, form.name && `name: ${form.name}`, form.company && `company: ${form.company}`, form.useCase && `use case: ${form.useCase}`]
+      .filter(Boolean)
+      .join("\n")
+  )}`;
 
   const set = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -74,7 +79,7 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
         setError(
           data.error === "invalid_email"
             ? t("이메일 주소를 확인해 주세요.", "Please check your email address.")
-            : t("지금 등록할 수 없습니다. hello@simplyciety.com으로 메일 주세요.", "We couldn't sign you up right now. Please email hello@simplyciety.com.")
+            : t("지금은 온라인 등록이 안 됩니다. 아래 링크로 메일을 보내주시면 명단에 올려드립니다.", "Online signup is unavailable right now. Email us using the link below and we'll add you.")
         );
         setStatus("error");
         return;
@@ -151,7 +156,12 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
             {status === "loading" ? t("등록 중…", "Joining…") : t("대기명단 등록", "Join waitlist")}
           </button>
         </div>
-        {error && <p className="text-xs text-[#D98A6A]" role="alert">{error}</p>}
+        {error && (
+          <p className="text-xs text-[#D98A6A]" role="alert">
+            {error}{" "}
+            <a href={mailto} className="underline text-[#B8965A]">{t("메일로 등록하기 →", "Join by email →")}</a>
+          </p>
+        )}
         <p className="text-[0.65rem] text-[#5A5A5A]">
           {t("출시 안내 외에는 사용하지 않습니다. 언제든 삭제 요청 가능.", "Launch updates only. Unsubscribe anytime.")}
         </p>
@@ -251,7 +261,12 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
           {status === "loading" ? t("등록 중…", "Joining…") : t("대기명단 등록 →", "Join the waitlist →")}
         </button>
       </div>
-      {error && <p className="md:col-span-2 text-xs text-[#D98A6A]" role="alert">{error}</p>}
+      {error && (
+        <p className="md:col-span-2 text-xs text-[#D98A6A]" role="alert">
+          {error}{" "}
+          <a href={mailto} className="underline text-[#B8965A]">{t("메일로 등록하기 →", "Join by email →")}</a>
+        </p>
+      )}
     </form>
   );
 }

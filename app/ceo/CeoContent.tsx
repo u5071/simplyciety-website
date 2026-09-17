@@ -176,8 +176,8 @@ export default function CeoContent() {
                     LinkedIn ↗
                   </span>
                 </a>
-                <a href="mailto:hello@simplyciety.com" className="text-[0.6rem] tracking-[0.25em] uppercase text-[#5A5A5A] hover:text-[#B8965A] transition-colors">
-                  hello@simplyciety.com
+                <a href="mailto:yang5071@gmail.com" className="text-[0.6rem] tracking-[0.25em] uppercase text-[#5A5A5A] hover:text-[#B8965A] transition-colors">
+                  yang5071@gmail.com
                 </a>
               </div>
             </div>

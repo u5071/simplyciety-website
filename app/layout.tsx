@@ -76,7 +76,7 @@ const ORG_SCHEMA = {
   },
   contactPoint: {
     "@type": "ContactPoint",
-    email: "hello@simplyciety.com",
+    email: "yang5071@gmail.com",
     contactType: "customer service",
     areaServed: "KR",
     availableLanguage: "Korean",

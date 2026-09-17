@@ -69,6 +69,22 @@ function ContactForm() {
   });
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [mailFallback, setMailFallback] = useState(false);
+
+  const mailtoHref = () => {
+    const label = SERVICE_OPTIONS.find((o) => o.value === form.serviceType)?.ko ?? "문의";
+    const subject = `[simplyciety] ${label} — ${form.company ? `${form.company} / ` : ""}${form.name}`;
+    const body = [
+      `이름: ${form.name}`,
+      form.company && `회사: ${form.company}`,
+      `이메일: ${form.email}`,
+      form.phone && `연락처: ${form.phone}`,
+      `문의 유형: ${label}`,
+      "",
+      form.message,
+    ].filter((l) => l !== "").join("\n");
+    return `mailto:yang5071@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -77,6 +93,7 @@ function ContactForm() {
     e.preventDefault();
     setStatus("loading");
     setErrorMsg("");
+    setMailFallback(false);
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -86,12 +103,14 @@ function ContactForm() {
       const data = await res.json();
       if (!res.ok) {
         setErrorMsg(data.error ?? "오류가 발생했습니다.");
+        setMailFallback(data.code === "mail_unavailable");
         setStatus("error");
       } else {
         setStatus("success");
       }
     } catch {
-      setErrorMsg("네트워크 오류가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setErrorMsg("네트워크 오류가 발생했습니다. 아래 버튼으로 메일을 보내주세요.");
+      setMailFallback(true);
       setStatus("error");
     }
   };
@@ -118,7 +137,7 @@ function ContactForm() {
             mainEntity: {
               "@type": "Organization",
               name: "simplyciety",
-              email: "hello@simplyciety.com",
+              email: "yang5071@gmail.com",
               url: "https://simplyciety.com",
             },
           }),
@@ -302,7 +321,14 @@ function ContactForm() {
 
                   {/* Error */}
                   {status === "error" && (
-                    <p className="text-red-400/70 text-xs">{errorMsg}</p>
+                    <div className="flex flex-col gap-3">
+                      <p className="text-red-400/80 text-xs">{errorMsg}</p>
+                      {mailFallback && (
+                        <a href={mailtoHref()} className="btn-gold self-start">
+                          {t("메일 앱으로 보내기 →", "Send via email app →")}
+                        </a>
+                      )}
+                    </div>
                   )}
 
                   {/* Submit */}
@@ -326,10 +352,10 @@ function ContactForm() {
                 <div>
                   <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">{t("직접 연락", "Direct Contact")}</p>
                   <a
-                    href="mailto:hello@simplyciety.com"
+                    href="mailto:yang5071@gmail.com"
                     className="text-[#6A6A6A] text-sm hover:text-[#B8965A] transition-colors"
                   >
-                    hello@simplyciety.com
+                    yang5071@gmail.com
                   </a>
                 </div>
 

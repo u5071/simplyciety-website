@@ -24,8 +24,8 @@ export default function SiteFooter() {
           </Link>
           <p className="text-[0.65rem] text-[#3A3A3A] tracking-wide">
             {lang === "ko" ? "대표 양성열" : "Founder & CEO Sungreul Yang"} ·{" "}
-            <a href="mailto:hello@simplyciety.com" className="hover:text-[#8A8780] transition-colors">
-              hello@simplyciety.com
+            <a href="mailto:yang5071@gmail.com" className="hover:text-[#8A8780] transition-colors">
+              yang5071@gmail.com
             </a>{" "}
             · © 2026
           </p>

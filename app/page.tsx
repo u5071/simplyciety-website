@@ -540,10 +540,10 @@ export default function Home() {
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "1.5rem" }}>
               <a
-                href="mailto:hello@simplyciety.com"
+                href="mailto:yang5071@gmail.com"
                 className="text-[0.6rem] tracking-[0.25em] uppercase text-[#2A2A2A] hover:text-[#6A6A6A] transition-colors"
               >
-                hello@simplyciety.com
+                yang5071@gmail.com
               </a>
             </div>
           </div>
