@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Nav from "../components/Nav";
-import Logo from "../components/Logo";
+import SiteFooter from "../components/SiteFooter";
 import { useLang } from "../contexts/LanguageContext";
 
 type S = { ko: string; en: string };
@@ -35,8 +35,8 @@ const LINES = [
     tag: s("AI/Data 플랫폼 구축", "AI/Data Platform"),
     title: s("실행과 구축", "Build & Execute"),
     overview: s(
-      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 교보문고 파이프라인, 카카오뱅크·나이스평가정보 대상 데이터 API 등 실전 레퍼런스 기반.",
-      "The execution partner that actually builds the system for organizations with a clear direction. Built on real references: Kyobo pipeline, KakaoBank & NICE credit API."
+      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 교보문고 파이프라인, 카카오뱅크·나이스평가정보 대상 데이터 API 등 실전 레퍼런스 기반. 데이터팀이 없는 조직을 위해서는 자체 제품 dataSimplr(2026.10.18 출시)를 함께 제공합니다.",
+      "The execution partner that actually builds the system for organizations with a clear direction. Built on real references: Kyobo pipeline, KakaoBank & NICE credit API. For teams without a data team, our product dataSimplr launches Oct 18, 2026."
     ),
     products: [
       { name: "Simpli-Pipeline", sub: s("데이터 파이프라인 구축", "Data Pipeline Build"),
@@ -488,18 +488,18 @@ export default function ServicesContent() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-16">
             <div className="md:col-span-4">
               <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-4">
-                {t("적용 사례", "Case Studies")}
+                {t("적용 시나리오", "Scenarios")}
               </p>
               <h2 className="text-[clamp(2rem,4vw,4rem)] font-extralight tracking-tight leading-[1.05]">
                 {t("분야별", "By")}<br />
-                <span className="italic text-[#B8965A]">{t("실제 성과", "Industry")}</span>
+                <span className="italic text-[#B8965A]">{t("적용 시나리오", "industry")}</span>
               </h2>
             </div>
             <div className="md:col-span-8 flex items-end">
               <p className="text-[#4A4A4A] text-sm leading-relaxed font-light">
                 {t(
-                  "아래는 simplyciety의 접근 방식이 실제 산업 현장에서 어떤 프로세스로 진행되고, 어떤 성과를 만들어냈는지 보여주는 대표 사례입니다.",
-                  "These representative cases show how simplyciety's approach plays out in real industry contexts — the process we follow and the outcomes delivered."
+                  "산업별로 자주 만나는 문제와, simplyciety가 어떤 순서로 풀고 무엇으로 성과를 측정하는지 보여주는 시나리오입니다. 실제 목표치는 진단 단계에서 조직과 함께 정합니다.",
+                  "Common problems by industry, the order in which simplyciety tackles them, and the metrics we track. Actual targets are set with you during diagnosis."
                 )}
               </p>
             </div>
@@ -551,14 +551,18 @@ export default function ServicesContent() {
                   </div>
                 </div>
 
-                {/* Outcomes */}
-                <div className="grid grid-cols-3 gap-px bg-[rgba(255,255,255,0.04)]" style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "0" }}>
-                  {c.outcomes.map((o) => (
-                    <div key={o.value} className="bg-[#050505] pt-5 pr-4">
-                      <p className="text-[clamp(1.4rem,3vw,2rem)] font-extralight text-[#B8965A] leading-none mb-1">{o.value}</p>
-                      <p className="text-[0.5rem] tracking-[0.15em] uppercase text-[#3A3A3A] leading-relaxed">{o.label[lang]}</p>
-                    </div>
-                  ))}
+                {/* Metrics we track */}
+                <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "1.25rem" }}>
+                  <p className="text-[0.5rem] tracking-[0.25em] uppercase text-[#5A5A5A] mb-3">
+                    {t("핵심 측정 지표", "Metrics we track")}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {c.outcomes.map((o) => (
+                      <span key={o.label.en} className="text-xs font-light text-[#B8965A] border border-[#B8965A]/25 px-2.5 py-1">
+                        {o.label[lang]}
+                      </span>
+                    ))}
+                  </div>
                 </div>
                 </div>
               </div>
@@ -566,7 +570,7 @@ export default function ServicesContent() {
           </div>
 
           <p className="mt-8 text-[#2A2A2A] text-[0.55rem] tracking-widest uppercase">
-            {t("* 위 수치는 유사 프로젝트 기반 참고 성과이며, 실제 결과는 조직 상황에 따라 다를 수 있습니다.", "* Figures are reference outcomes based on comparable projects. Actual results may vary by organization.")}
+            {t("* 시나리오는 이해를 돕기 위한 예시이며, 특정 고객사의 결과가 아닙니다.", "* Scenarios are illustrative and do not describe a specific client's results.")}
           </p>
         </div>
       </section>
@@ -635,24 +639,7 @@ export default function ServicesContent() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="px-8 md:px-16 py-10" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <Link href="/" className="hover:opacity-70 transition-opacity">
-            <Logo markColor="rgba(184,150,90,0.25)" textColor="#2A2A2A" />
-          </Link>
-          <div className="flex items-center gap-8">
-            {[
-              [t("서비스", "Services"), "/services"],
-              ["CEO", "/ceo"],
-              [t("문의하기", "Contact"), "/contact"],
-            ].map(([l, h]) => (
-              <Link key={h} href={h} className="text-[0.6rem] tracking-[0.2em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors">{l} →</Link>
-            ))}
-          </div>
-          <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">Less noise. More signal.</span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

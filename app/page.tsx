@@ -1,7 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Logo from "./components/Logo";
+import Link from "next/link";
+import Nav from "./components/Nav";
+import SiteFooter from "./components/SiteFooter";
+import { useReveal } from "./components/useReveal";
 import { useLang } from "./contexts/LanguageContext";
 
 const PILLAR_ICONS = [
@@ -66,73 +68,16 @@ const PILLARS = [
 ];
 
 export default function Home() {
-  const [scrolled, setScrolled] = useState(false);
   const { lang, t } = useLang();
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) entry.target.classList.add("in-view");
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" }
-    );
-    const els = document.querySelectorAll("[data-reveal], .gold-line");
-    els.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+  useReveal();
 
   return (
     <div className="noise-bg bg-[#080808] text-[#F0EDE8] font-[var(--font-geist-sans)]">
 
-      {/* ─── NAVIGATION ─── */}
-      <nav
-        className="fixed top-0 inset-x-0 z-50 flex items-center justify-between transition-all duration-700"
-        style={{
-          padding: scrolled ? "1.25rem 2.5rem" : "1.75rem 2.5rem",
-          background: scrolled ? "rgba(8,8,8,0.93)" : "transparent",
-          backdropFilter: scrolled ? "blur(12px)" : "none",
-          borderBottom: scrolled
-            ? "1px solid rgba(255,255,255,0.05)"
-            : "1px solid transparent",
-        }}
-      >
-        <a href="#" className="hover:opacity-80 transition-opacity duration-300">
-          <Logo />
-        </a>
-        <div className="hidden md:flex items-center gap-8">
-          {[
-            ["서비스", "/services"],
-            ["How It Works", "#pillars"],
-            ["CEO", "/ceo"],
-            ["문의", "/contact"],
-          ].map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              className="text-[0.65rem] tracking-[0.25em] uppercase text-[#6A6A6A] hover:text-[#F0EDE8] transition-colors duration-300"
-            >
-              {label}
-            </a>
-          ))}
-        </div>
-        <a
-          href="/contact"
-          className="hidden md:inline-flex text-[0.65rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 px-5 py-2.5 text-[#B8965A] hover:bg-[#B8965A] hover:text-[#080808] transition-all duration-300"
-        >
-          문의하기
-        </a>
-      </nav>
+      <Nav />
 
       {/* ─── HERO ─── */}
-      <section className="relative min-h-screen flex flex-col justify-end px-8 md:px-16 pb-20 pt-48 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col justify-end px-5 md:px-16 pb-20 pt-36 md:pt-48 overflow-hidden">
         <div
           className="absolute top-0 right-0 w-[70vw] h-[70vh] pointer-events-none"
           style={{
@@ -151,6 +96,17 @@ export default function Home() {
         />
 
         <div className="relative max-w-screen-xl mx-auto w-full">
+          <Link
+            href="/forum"
+            className="hero-eyebrow group inline-flex flex-wrap items-center gap-x-3 gap-y-1 mb-10 px-4 py-2.5 text-xs font-light transition-colors hover:border-[#B8965A]"
+            style={{ border: "1px solid rgba(184,150,90,0.35)", background: "rgba(184,150,90,0.04)" }}
+          >
+            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#B8965A]">{t("발표", "Talk")} · 2026.09.18</span>
+            <span className="text-[#D4D0CA]">
+              {t("2026 출판 데이터 마케팅 포럼 — 서점은 독자를 어떻게 읽는가", "2026 Publishing Data Forum — How Bookstores Read Their Readers")}
+            </span>
+            <span className="text-[#B8965A] group-hover:translate-x-1 transition-transform">{t("자료 보기 →", "Resources →")}</span>
+          </Link>
           <div className="flex items-center gap-4 mb-10 hero-eyebrow">
             <span className="block w-8 h-px bg-[#B8965A]" />
             <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">
@@ -168,8 +124,8 @@ export default function Home() {
             {["Data", "→", "AI", "→", t("단순화", "Simplify")].map((w, i) => (
               <span
                 key={i}
-                className="text-[0.5rem] tracking-[0.25em] uppercase"
-                style={{ color: w === "→" ? "#2A2A2A" : w === "AI" || w === t("단순화", "Simplify") ? "rgba(184,150,90,0.6)" : "#3A3A3A" }}
+                className="text-[0.6rem] tracking-[0.25em] uppercase"
+                style={{ color: w === "→" ? "#4A4A4A" : w === "AI" || w === t("단순화", "Simplify") ? "rgba(184,150,90,0.8)" : "#6A6A6A" }}
               >
                 {w}
               </span>
@@ -181,30 +137,25 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
-            <p className="hero-body max-w-xl text-[#6A6A6A] text-lg leading-relaxed font-light">
+            <p className="hero-body max-w-xl text-[#8A8780] text-lg leading-relaxed font-light">
               {t(
                 "데이터로 진단하고, AI로 걷어냅니다. 불필요한 구조·프로세스·소음을 제거하고 — 팀이 진짜 일에만 집중할 수 있는 조직을 만듭니다.",
                 "Diagnose with data. Cut with AI. Remove redundant structures, processes, and noise — so your teams can focus on work that actually matters."
               )}
             </p>
-            <div className="hero-cta flex items-center gap-6 flex-shrink-0">
-              <a href="#philosophy" className="btn-primary">
-                {t("우리의 철학", "Our Vision")}
+            <div className="hero-cta flex flex-wrap items-center gap-3 flex-shrink-0">
+              <Link href="/services" className="btn-primary">
+                {t("서비스 보기", "Our services")}
                 <span className="text-[#B8965A]">→</span>
-              </a>
+              </Link>
+              <Link href="/datasimplr" className="btn-gold">
+                dataSimplr
+                <span>→</span>
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="absolute bottom-10 right-8 md:right-16 flex flex-col items-center gap-3 hero-cta">
-          <span
-            className="text-[0.55rem] tracking-[0.3em] uppercase text-[#3A3A3A]"
-            style={{ writingMode: "vertical-rl" }}
-          >
-            Scroll
-          </span>
-          <div className="scroll-indicator w-px h-10 bg-gradient-to-b from-[#3A3A3A] to-transparent" />
-        </div>
       </section>
 
       {/* ─── PHILOSOPHY ─── */}
@@ -379,6 +330,104 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── DATASIMPLR ─── */}
+      <section
+        className="py-28 md:py-40 px-5 md:px-16 relative overflow-hidden"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        <div className="absolute top-0 right-0 w-[50vw] h-full pointer-events-none" style={{ background: "radial-gradient(ellipse at right, rgba(184,150,90,0.06) 0%, transparent 65%)" }} />
+        <div className="relative max-w-screen-xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
+          <div className="lg:col-span-6">
+            <div data-reveal className="flex flex-wrap items-center gap-3 mb-8">
+              <span className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">{t("제품", "Product")}</span>
+              <span className="inline-flex items-center gap-2 text-[0.55rem] tracking-[0.2em] uppercase border border-[#B8965A]/50 text-[#B8965A] px-2.5 py-1">
+                <span className="w-1 h-1 rounded-full bg-[#B8965A] animate-pulse" />
+                {t("2026.10.18 출시", "Launching Oct 18")}
+              </span>
+            </div>
+            <h2 data-reveal data-reveal-delay="1" className="text-[clamp(3rem,7vw,6.5rem)] font-extralight leading-[0.92] tracking-[-0.03em] mb-8">
+              data<span className="italic text-[#B8965A]">Simplr</span>
+            </h2>
+            <p data-reveal data-reveal-delay="2" className="text-[#A8A49E] text-lg md:text-xl leading-[1.7] font-extralight mb-10">
+              {t(
+                "데이터팀이 없는 팀을 위한 AI 데이터 플랫폼. 표·JSON·관계 데이터를 올리면 RDB·NoSQL·그래프·온톨로지로 정리하고, 에이전트가 그 위에서 분석합니다.",
+                "The data platform for teams without a data team. Upload tables, JSON or relationship data — it's organized into relational, document, graph and ontology layers, and agents analyze on top."
+              )}
+            </p>
+            <div data-reveal data-reveal-delay="3" className="flex flex-wrap gap-3">
+              <Link href="/datasimplr#waitlist" className="btn-gold">{t("대기명단 등록 →", "Join the waitlist →")}</Link>
+              <Link href="/datasimplr" className="btn-primary">{t("자세히 보기", "Learn more")}</Link>
+            </div>
+          </div>
+          <div data-reveal data-reveal-delay="2" className="lg:col-span-6">
+            <div className="grid grid-cols-2 gap-px bg-[rgba(184,150,90,0.18)]" style={{ border: "1px solid rgba(184,150,90,0.3)" }}>
+              {[
+                ["RDB", t("표", "Tables")],
+                ["NoSQL", t("문서", "Documents")],
+                ["Graph", t("연결", "Relationships")],
+                ["Ontology", t("의미", "Meaning")],
+              ].map(([k, v]) => (
+                <div key={k} className="bg-[#080808] p-6 md:p-8">
+                  <p className="text-[0.55rem] tracking-[0.3em] uppercase text-[#B8965A] mb-3">{k}</p>
+                  <p className="text-2xl md:text-3xl font-extralight tracking-tight">{v}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-px p-5 flex items-center justify-between gap-4" style={{ border: "1px solid rgba(184,150,90,0.3)", background: "rgba(184,150,90,0.06)" }}>
+              <span className="text-sm font-light text-[#D4D0CA]">{t("에이전트 · 자연어 질문 · MCP", "Agents · plain-language questions · MCP")}</span>
+              <span className="text-[#B8965A]">↑</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FOUNDER ─── */}
+      <section
+        className="py-28 md:py-36 px-5 md:px-16 bg-[#060606]"
+        style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+      >
+        <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20 items-end">
+          <div className="md:col-span-5">
+            <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-8">Founder</p>
+            <h2 data-reveal data-reveal-delay="1" className="text-[clamp(2.5rem,5vw,4.5rem)] font-extralight leading-[1] tracking-tight">
+              {t("양성열", "Sungreul Yang")}
+              <span className="block text-[#8A8780] text-[clamp(1.1rem,2vw,1.5rem)] mt-4">
+                {t("simplyciety 대표 · AI와 데이터를 더 쉽게", "Founder & CEO · Making AI & data simpler")}
+              </span>
+            </h2>
+          </div>
+          <div className="md:col-span-7 flex flex-col gap-8">
+            <p data-reveal className="text-[#A8A49E] text-base md:text-lg leading-[1.9] font-light">
+              {t(
+                "금융 → 데이터·AI → 유통을 거쳐 대형서점 데이터 조직에서 기반 → 확산 → AI → 수익화의 네 단계를 모두 이끌었습니다. 그 경험을 이제 다른 조직과 제품에 옮기고 있습니다.",
+                "From finance to data & AI to retail, I led a major bookstore's data organization through all four stages — foundation, adoption, AI, and monetization. Now I bring that to other organizations, and to a product."
+              )}
+            </p>
+            <div data-reveal data-reveal-delay="1" className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[rgba(255,255,255,0.06)]">
+              {[
+                ["Foundation", t("기반", "Foundation")],
+                ["Adoption", t("확산", "Adoption")],
+                ["Intelligence", t("AI 적용", "AI")],
+                ["Monetization", t("수익화", "Monetization")],
+              ].map(([k, v], i) => (
+                <div key={k} className="bg-[#060606] p-5">
+                  <p className="text-[0.55rem] tracking-[0.2em] text-[#B8965A] mb-2">0{i + 1}</p>
+                  <p className="text-base font-light">{v}</p>
+                </div>
+              ))}
+            </div>
+            <div data-reveal data-reveal-delay="2" className="flex flex-wrap gap-x-8 gap-y-3">
+              <Link href="/ceo" className="text-[0.65rem] tracking-[0.25em] uppercase text-[#B8965A] hover:text-[#F0EDE8] transition-colors">
+                {t("대표 소개 →", "About the founder →")}
+              </Link>
+              <Link href="/ceo#speaking" className="text-[0.65rem] tracking-[0.25em] uppercase text-[#8A8780] hover:text-[#B8965A] transition-colors">
+                {t("발표 · 인터뷰 →", "Talks & interviews →")}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── MANIFESTO ─── */}
       <section
         id="manifesto"
@@ -406,7 +455,7 @@ export default function Home() {
               <em className="text-[#B8965A] not-italic">외면할 수 없게</em>{" "}
               만들기 위해 단순화한다.&rdquo;</>
             ) : (
-              <>&ldquo;We don't simplify to make things easy. We simplify to make{" "}
+              <>&ldquo;We don&apos;t simplify to make things easy. We simplify to make{" "}
               <em className="text-[#B8965A] not-italic">what matters</em>{" "}
               impossible to ignore.&rdquo;</>
             )}
@@ -479,15 +528,15 @@ export default function Home() {
               {t("현재 상황을 간단히 적어주시면, 맞는 방향을 제안드립니다.", "Just tell us where things break down, and we'll point you in the right direction.")}
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <a href="/contact" className="btn-gold inline-flex">
+              <Link href="/contact" className="btn-gold inline-flex">
                 {t("지금 문의하기 →", "Contact us →")}
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services"
                 className="inline-flex text-[0.65rem] tracking-[0.25em] uppercase px-6 py-3.5 text-[#4A4A4A] border border-[rgba(255,255,255,0.06)] hover:text-[#F0EDE8] hover:border-[rgba(255,255,255,0.15)] transition-all duration-300"
               >
                 {t("서비스 먼저 보기", "View services")}
-              </a>
+              </Link>
             </div>
             <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "1.5rem" }}>
               <a
@@ -501,36 +550,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── FOOTER ─── */}
-      <footer className="px-8 md:px-16 py-10">
-        <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <div className="flex items-center gap-5">
-            <Logo markColor="rgba(184,150,90,0.35)" textColor="#3A3A3A" />
-            <span className="text-[#2A2A2A]">—</span>
-            <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-              © 2026
-            </span>
-          </div>
-          <div className="flex items-center gap-8">
-            {[
-              [t("서비스", "Services"), "/services"],
-              ["CEO", "/ceo"],
-              [t("문의하기", "Contact"), "/contact"],
-            ].map(([label, href]) => (
-              <a
-                key={href}
-                href={href}
-                className="text-[0.6rem] tracking-[0.25em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-          <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#2A2A2A]">
-            Less noise. More signal.
-          </span>
-        </div>
-      </footer>
+      <SiteFooter />
     </div>
   );
 }

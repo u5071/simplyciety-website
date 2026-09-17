@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { NOTIFY_TO, escapeHtml } from "../../../lib/mail";
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, company, email, phone, serviceType, message } = body;
+    const { serviceType } = body;
+    const [name, company, email, phone, message] = [body.name, body.company, body.email, body.phone, body.message].map(
+      (v: unknown) => (typeof v === "string" ? v.trim() : "")
+    );
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -33,13 +37,15 @@ export async function POST(request: NextRequest) {
       consulting: "AX 컨설팅",
       platform: "AI/Data 플랫폼 구축",
       education: "교육·조직문화빌딩",
+      datasimplr: "dataSimplr 얼리 액세스",
+      forum: "포럼 발표 관련",
       lecture: "강연 요청",
       other: "기타",
     };
 
     await transporter.sendMail({
       from: `"simplyciety 문의" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER,
+      to: NOTIFY_TO,
       replyTo: email,
       subject: `[simplyciety] ${serviceLabel[serviceType] ?? "문의"} — ${company ? `${company} / ` : ""}${name}`,
       html: `
@@ -52,21 +58,21 @@ export async function POST(request: NextRequest) {
             <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
               <tr style="border-bottom: 1px solid #f0f0f0;">
                 <td style="padding: 12px 0; color: #999; width: 100px; font-size: 12px;">문의 유형</td>
-                <td style="padding: 12px 0; color: #1a1a1a; font-weight: 500;">${serviceLabel[serviceType] ?? serviceType}</td>
+                <td style="padding: 12px 0; color: #1a1a1a; font-weight: 500;">${escapeHtml(serviceLabel[serviceType] ?? serviceType)}</td>
               </tr>
               <tr style="border-bottom: 1px solid #f0f0f0;">
                 <td style="padding: 12px 0; color: #999; font-size: 12px;">이름</td>
-                <td style="padding: 12px 0; color: #1a1a1a;">${name}</td>
+                <td style="padding: 12px 0; color: #1a1a1a;">${escapeHtml(name)}</td>
               </tr>
-              ${company ? `<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 12px 0; color: #999; font-size: 12px;">회사</td><td style="padding: 12px 0; color: #1a1a1a;">${company}</td></tr>` : ""}
+              ${company ? `<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 12px 0; color: #999; font-size: 12px;">회사</td><td style="padding: 12px 0; color: #1a1a1a;">${escapeHtml(company)}</td></tr>` : ""}
               <tr style="border-bottom: 1px solid #f0f0f0;">
                 <td style="padding: 12px 0; color: #999; font-size: 12px;">이메일</td>
-                <td style="padding: 12px 0; color: #1a1a1a;"><a href="mailto:${email}" style="color: #B8965A;">${email}</a></td>
+                <td style="padding: 12px 0; color: #1a1a1a;"><a href="mailto:${escapeHtml(email)}" style="color: #B8965A;">${escapeHtml(email)}</a></td>
               </tr>
-              ${phone ? `<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 12px 0; color: #999; font-size: 12px;">연락처</td><td style="padding: 12px 0; color: #1a1a1a;">${phone}</td></tr>` : ""}
+              ${phone ? `<tr style="border-bottom: 1px solid #f0f0f0;"><td style="padding: 12px 0; color: #999; font-size: 12px;">연락처</td><td style="padding: 12px 0; color: #1a1a1a;">${escapeHtml(phone)}</td></tr>` : ""}
               <tr>
                 <td style="padding: 12px 0; color: #999; font-size: 12px; vertical-align: top;">문의 내용</td>
-                <td style="padding: 12px 0; color: #1a1a1a; line-height: 1.8; white-space: pre-wrap;">${message}</td>
+                <td style="padding: 12px 0; color: #1a1a1a; line-height: 1.8; white-space: pre-wrap;">${escapeHtml(message)}</td>
               </tr>
             </table>
           </div>
@@ -90,11 +96,11 @@ export async function POST(request: NextRequest) {
           </div>
           <div style="background: #fff; padding: 32px; border: 1px solid #eee;">
             <p style="color: #333; font-size: 15px; line-height: 1.8; margin: 0 0 20px;">
-              안녕하세요, ${name}님.<br>
+              안녕하세요, ${escapeHtml(name)}님.<br>
               simplyciety에 문의해 주셔서 감사합니다.
             </p>
             <p style="color: #333; font-size: 15px; line-height: 1.8; margin: 0 0 20px;">
-              접수하신 <strong>${serviceLabel[serviceType] ?? "문의"}</strong> 내용을 확인 후,
+              접수하신 <strong>${escapeHtml(serviceLabel[serviceType] ?? "문의")}</strong> 내용을 확인 후,
               영업일 기준 <strong>1~2일 이내</strong>에 연락드리겠습니다.
             </p>
             <p style="color: #999; font-size: 13px; line-height: 1.6; margin: 0;">

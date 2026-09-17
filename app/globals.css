@@ -185,3 +185,67 @@ body {
   background: var(--gold);
   color: var(--bg);
 }
+
+/* ─── Post body prose styles ─── */
+.post-body {
+  color: #6A6A6A;
+  font-size: 1rem;
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.post-body h2 {
+  font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-weight: 200;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: #D4D0CA;
+  margin-top: 3.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.post-body h3 {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #B8A080;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.post-body p {
+  margin-bottom: 1.5rem;
+}
+
+.post-body strong {
+  color: #C8C4BE;
+  font-weight: 400;
+}
+
+.post-body em {
+  color: #B8965A;
+  font-style: italic;
+}
+
+.post-body hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  margin: 3rem 0;
+}
+
+.post-body ul,
+.post-body ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.post-body li {
+  margin-bottom: 0.5rem;
+}
+
+.post-body blockquote {
+  border-left: 2px solid #B8965A;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  color: #5A5A5A;
+  font-style: italic;
+}

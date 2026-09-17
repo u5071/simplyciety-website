@@ -4,14 +4,16 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import Nav from "../components/Nav";
-import Logo from "../components/Logo";
+import SiteFooter from "../components/SiteFooter";
 import { useLang } from "../contexts/LanguageContext";
 
 const SERVICE_OPTIONS = [
   { value: "consulting", ko: "AX 컨설팅", en: "AX Consulting" },
   { value: "platform", ko: "AI/Data 플랫폼 구축", en: "AI/Data Platform" },
   { value: "education", ko: "교육·조직문화빌딩", en: "Education & Culture" },
+  { value: "datasimplr", ko: "dataSimplr 얼리 액세스", en: "dataSimplr Early Access" },
   { value: "lecture", ko: "강연 요청", en: "Speaking Request" },
+  { value: "forum", ko: "포럼 발표 관련 문의", en: "About the forum talk" },
   { value: "other", ko: "기타 / 잘 모르겠어요", en: "Other / Not sure yet" },
 ];
 
@@ -27,6 +29,14 @@ const EXAMPLES: Record<string, { ko: string; en: string }> = {
   education: {
     ko: "예) 임원진의 AI 이해도가 낮아 데이터 조직이 예산을 확보하지 못하고 있습니다. C레벨 대상 AI 브리핑 과정을 제안해주실 수 있을까요?",
     en: "e.g. Our executives have low AI literacy and our data team can't get budget. Can you propose an AI briefing program for C-level?",
+  },
+  datasimplr: {
+    ko: "예) 주문·재고는 엑셀, 회원은 MySQL에 흩어져 있습니다. 데이터 담당자 없이 AI로 분석하고 싶어 dataSimplr를 먼저 써보고 싶습니다.",
+    en: "e.g. Orders and inventory live in spreadsheets, customers in MySQL. We have no data team and want to try dataSimplr early.",
+  },
+  forum: {
+    ko: "예) 포럼 발표를 들은 출판사입니다. 우리 판매·정산 파일을 ISBN 기준으로 정리하는 방법을 상담받고 싶습니다.",
+    en: "e.g. I attended the forum talk. We're a publisher and want advice on organizing our sales and settlement files by ISBN.",
   },
   lecture: {
     ko: "예) 사내 DX 킥오프 행사에서 1시간 강연을 요청드립니다. 'AI 전환의 현실'을 주제로 실제 사례 중심으로 부탁드립니다.",
@@ -387,14 +397,7 @@ function ContactForm() {
           </section>
 
           {/* FOOTER */}
-          <footer className="px-8 md:px-16 py-10" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-            <div className="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-              <Link href="/" className="hover:opacity-70 transition-opacity">
-                <Logo markColor="rgba(184,150,90,0.25)" textColor="#2A2A2A" />
-              </Link>
-              <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#1A1A1A]">Less noise. More signal.</span>
-            </div>
-          </footer>
+          <SiteFooter />
         </>
       )}
     </div>
