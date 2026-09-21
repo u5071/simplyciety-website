@@ -33,7 +33,7 @@ npm run dev                  # http://localhost:3000
 | `/diagnosis` | AI 준비도 진단 (6개 영역·9문항) | `app/diagnosis/` |
 | `/insights`, `/insights/[slug]` | 마크다운 기반 인사이트 글 | `content/posts/`, `lib/posts.ts` |
 | `/ceo` | 대표 소개, 경력, 발표 이력 | `app/ceo/` |
-| `/forum` | 2026 출판 데이터 마케팅 포럼 발표 자료 페이지 | `app/forum/` |
+| `/forum` | 발표 자료 페이지 — **비공개(unlisted)**: 메뉴·사이트맵에서 빠져 있고 검색 색인도 막혀 있다. 링크를 직접 전달해 공유한다 | `app/forum/` |
 | `/contact` | 문의 폼 (`?service=`, `?message=` 지원) | `app/contact/page.tsx` |
 
 API: `POST /api/contact`(문의 메일), `POST /api/waitlist`(대기명단 등록), `GET /api/waitlist/export`(명단 CSV, 관리자 토큰 필요).

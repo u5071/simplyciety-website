@@ -96,17 +96,6 @@ export default function Home() {
         />
 
         <div className="relative max-w-screen-xl mx-auto w-full">
-          <Link
-            href="/forum"
-            className="hero-eyebrow group inline-flex flex-wrap items-center gap-x-3 gap-y-1 mb-10 px-4 py-2.5 text-xs font-light transition-colors hover:border-[#B8965A]"
-            style={{ border: "1px solid rgba(184,150,90,0.35)", background: "rgba(184,150,90,0.04)" }}
-          >
-            <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#B8965A]">{t("발표", "Talk")} · 2026.09.18</span>
-            <span className="text-[#D4D0CA]">
-              {t("2026 출판 데이터 마케팅 포럼 — 서점은 독자를 어떻게 읽는가", "2026 Publishing Data Forum — How Bookstores Read Their Readers")}
-            </span>
-            <span className="text-[#B8965A] group-hover:translate-x-1 transition-transform">{t("자료 보기 →", "Resources →")}</span>
-          </Link>
           <div className="flex items-center gap-4 mb-10 hero-eyebrow">
             <span className="block w-8 h-px bg-[#B8965A]" />
             <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">
@@ -399,8 +388,8 @@ export default function Home() {
           <div className="md:col-span-7 flex flex-col gap-8">
             <p data-reveal className="text-[#A8A49E] text-base md:text-lg leading-[1.9] font-light">
               {t(
-                "금융 → 데이터·AI → 유통을 거쳐 대형서점 데이터 조직에서 기반 → 확산 → AI → 수익화의 네 단계를 모두 이끌었습니다. 그 경험을 이제 다른 조직과 제품에 옮기고 있습니다.",
-                "From finance to data & AI to retail, I led a major bookstore's data organization through all four stages — foundation, adoption, AI, and monetization. Now I bring that to other organizations, and to a product."
+                "금융 → 데이터·AI → 유통·문화를 거치며, 데이터 조직에서 기반 → 확산 → AI → 수익화의 네 단계를 모두 이끌었습니다. 그 경험을 이제 다른 조직과 제품에 옮기고 있습니다.",
+                "From finance to data & AI to retail and culture, I led a data organization through all four stages — foundation, adoption, AI, and monetization. Now I bring that to other organizations, and to a product."
               )}
             </p>
             <div data-reveal data-reveal-delay="1" className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-[rgba(255,255,255,0.06)]">

@@ -4,7 +4,7 @@ import CeoContent from "./CeoContent";
 export const metadata: Metadata = {
   title: "대표 소개 — 양성열",
   description:
-    "simplyciety 대표 양성열. 금융·데이터·AI·유통을 거쳐 대형서점 데이터 조직을 이끌었고, 지금은 AI를 위한 데이터 플랫폼 dataSimplr를 만들고 있습니다.",
+    "simplyciety 대표 양성열. 금융·데이터·AI·유통/문화를 거쳐 데이터 조직을 이끌었고, 지금은 AI를 위한 데이터 플랫폼 dataSimplr를 만들고 있습니다.",
   alternates: { canonical: "https://simplyciety.com/ceo" },
   openGraph: {
     type: "profile",

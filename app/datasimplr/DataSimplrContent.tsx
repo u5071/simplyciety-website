@@ -354,8 +354,8 @@ export default function DataSimplrContent() {
         <div className="max-w-4xl mx-auto text-center">
           <blockquote data-reveal className="text-[clamp(1.35rem,2.8vw,2.25rem)] font-extralight leading-[1.55] tracking-tight text-[#D4D0CA]">
             {t(
-              "“대형서점 데이터 조직에서 기반 → 확산 → AI → 수익화, 네 단계를 모두 지났습니다. 그때 사람 손으로 반복하던 준비 작업을, 데이터팀이 없는 어느 팀이든 쓸 수 있는 제품으로 만들고 있습니다.”",
-              "“At a major bookstore's data team I went through every stage — foundation, adoption, AI, monetization. dataSimplr turns the prep work we repeated by hand into a product any team can use.”"
+              "“유통·문화 분야 데이터 조직에서 기반 → 확산 → AI → 수익화, 네 단계를 모두 지났습니다. 그때 사람 손으로 반복하던 준비 작업을, 데이터팀이 없는 어느 팀이든 쓸 수 있는 제품으로 만들고 있습니다.”",
+              "“In a retail data organization I went through every stage — foundation, adoption, AI, monetization. dataSimplr turns the prep work we repeated by hand into a product any team can use.”"
             )}
           </blockquote>
           <Link data-reveal href="/ceo" className="inline-flex items-center gap-4 mt-10 group">

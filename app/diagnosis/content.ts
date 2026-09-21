@@ -220,7 +220,7 @@ export const STAGES: Record<StageId, { name: B; desc: B; range: string }> = {
   },
 };
 
-export type ServiceId = "Simpli-Scan" | "Simpli-Map" | "Simpli-Pipeline" | "Simpli-Brain" | "Simpli-Literacy" | "Simpli-Leader";
+export type ServiceId = "Simply-Scan" | "Simply-Map" | "Simply-Pipeline" | "Simply-Brain" | "Simply-Literacy" | "Simply-Leader";
 
 export type ServiceDef = {
   name: ServiceId;
@@ -231,8 +231,8 @@ export type ServiceDef = {
 };
 
 export const SERVICES: Record<ServiceId, ServiceDef> = {
-  "Simpli-Scan": {
-    name: "Simpli-Scan",
+  "Simply-Scan": {
+    name: "Simply-Scan",
     sub: L("AI 준비도 정밀 진단", "In-depth AI readiness assessment"),
     desc: L(
       "6개 영역을 인터뷰·데이터 점검으로 정밀 진단하고, 우선순위가 매겨진 90일 실행 로드맵을 드립니다.",
@@ -241,8 +241,8 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("2 — 4주", "2 — 4 weeks"),
     serviceType: "consulting",
   },
-  "Simpli-Map": {
-    name: "Simpli-Map",
+  "Simply-Map": {
+    name: "Simply-Map",
     sub: L("AX 전략 · AI 거버넌스 설계", "AX strategy & AI governance"),
     desc: L(
       "경영진과 함께 AI 우선순위, 데이터·AI 사용 정책, 권한·평가 체계, OKR을 설계합니다.",
@@ -251,8 +251,8 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("1 — 3개월", "1 — 3 months"),
     serviceType: "consulting",
   },
-  "Simpli-Pipeline": {
-    name: "Simpli-Pipeline",
+  "Simply-Pipeline": {
+    name: "Simply-Pipeline",
     sub: L("AI-ready 데이터 기반 구축", "AI-ready data foundation"),
     desc: L(
       "흩어진 데이터를 자동 적재하고 연결 키·카탈로그를 갖춘 데이터 기반을 구축합니다.",
@@ -261,8 +261,8 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("2 — 4개월", "2 — 4 months"),
     serviceType: "platform",
   },
-  "Simpli-Brain": {
-    name: "Simpli-Brain",
+  "Simply-Brain": {
+    name: "Simply-Brain",
     sub: L("RAG · 에이전트 · AI 기능 구현", "RAG, agents & AI features"),
     desc: L(
       "사내 데이터에 연결된 RAG·에이전트·예측 모델을 MVP부터 운영까지 구현하고 평가 체계를 붙입니다.",
@@ -271,8 +271,8 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("3 — 6개월", "3 — 6 months"),
     serviceType: "platform",
   },
-  "Simpli-Literacy": {
-    name: "Simpli-Literacy",
+  "Simply-Literacy": {
+    name: "Simply-Literacy",
     sub: L("데이터 · AI 리터러시 프로그램", "Data & AI literacy program"),
     desc: L(
       "경영진·팀장·실무자 레벨별로 AI를 업무에 쓰는 역량과 챔피언 조직을 만듭니다.",
@@ -281,8 +281,8 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("4 — 8주", "4 — 8 weeks"),
     serviceType: "education",
   },
-  "Simpli-Leader": {
-    name: "Simpli-Leader",
+  "Simply-Leader": {
+    name: "Simply-Leader",
     sub: L("경영진 AX 브리핑", "Executive AX briefing"),
     desc: L(
       "C-level이 AI 투자와 리스크를 판단할 수 있도록 업계 사례 중심으로 브리핑합니다.",
@@ -294,12 +294,12 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
 };
 
 const WEAKEST_TO_SERVICE: Record<DimensionId, ServiceId> = {
-  foundation: "Simpli-Pipeline",
-  semantics: "Simpli-Scan",
-  unstructured: "Simpli-Brain",
-  governance: "Simpli-Map",
-  adoption: "Simpli-Brain",
-  people: "Simpli-Literacy",
+  foundation: "Simply-Pipeline",
+  semantics: "Simply-Scan",
+  unstructured: "Simply-Brain",
+  governance: "Simply-Map",
+  adoption: "Simply-Brain",
+  people: "Simply-Literacy",
 };
 
 export type Answers = Partial<Record<ContextId, string>> & Partial<Record<DimensionId, number>>;
@@ -327,8 +327,8 @@ export function computeResult(a: Answers): Result {
 
   const weakest = [...dims].sort((x, y) => x.score - y.score)[0].id;
   let service: ServiceId = WEAKEST_TO_SERVICE[weakest];
-  if (a.goal === "strategy" && (a.size === "mid" || a.size === "large")) service = "Simpli-Leader";
-  else if (a.goal === "strategy") service = "Simpli-Map";
+  if (a.goal === "strategy" && (a.size === "mid" || a.size === "large")) service = "Simply-Leader";
+  else if (a.goal === "strategy") service = "Simply-Map";
 
   const dataGap = (a.foundation ?? 1) <= 2 || (a.semantics ?? 1) <= 2;
   const dataSimplrFit = dataGap && (a.size === "solo" || a.size === "small");

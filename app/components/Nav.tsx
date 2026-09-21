@@ -122,13 +122,6 @@ export default function Nav() {
               {l[lang]}
             </Link>
           ))}
-          <Link
-            href="/forum"
-            className="py-4 text-sm font-light text-[#8A8780]"
-            style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}
-          >
-            {t("2026 출판 데이터 마케팅 포럼 발표 자료 →", "2026 Publishing Data Forum — talk resources →")}
-          </Link>
           <div className="flex items-center justify-between mt-6">
             {langToggle}
             <Link href="/contact" className="btn-gold">

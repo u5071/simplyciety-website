@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "데이터 플랫폼 구축", "데이터 파이프라인", "AWS 데이터 구축", "Snowflake 구축",
     "데이터 거버넌스", "데이터 엔지니어링", "AI 교육", "데이터 리터러시",
     "조직문화 빌딩", "AX 교육", "DX 교육", "simplyciety", "AI 조직 단순화",
-    "dataSimplr", "양성열", "출판 데이터", "서점 데이터",
+    "dataSimplr", "양성열", "AI 에이전트", "데이터 플랫폼",
   ],
   authors: [{ name: "양성열", url: "https://simplyciety.com/ceo" }],
   creator: "simplyciety",
