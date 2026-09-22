@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
 import { useLang } from "../contexts/LanguageContext";
 
 const LINKS: { href: string; ko: string; en: string }[] = [
@@ -33,11 +34,11 @@ export default function Nav() {
     <div className="flex items-center gap-1">
       {(["ko", "en"] as const).map((l, i) => (
         <span key={l} className="flex items-center gap-1">
-          {i > 0 && <span className="text-[#2A2A2A] text-[0.55rem]">/</span>}
+          {i > 0 && <span className="text-text-muted text-[0.55rem]">/</span>}
           <button
             onClick={() => setLang(l)}
             className="text-[0.6rem] tracking-[0.2em] uppercase transition-colors duration-200 px-1 py-1"
-            style={{ color: lang === l ? "#B8965A" : "#4A4A4A" }}
+            style={{ color: lang === l ? "var(--ds-accent)" : "var(--ds-text-muted)" }}
             aria-pressed={lang === l}
           >
             {l.toUpperCase()}
@@ -51,9 +52,9 @@ export default function Nav() {
     <nav
       className="fixed top-0 inset-x-0 z-50 transition-all duration-700"
       style={{
-        background: solid ? "rgba(8,8,8,0.95)" : "transparent",
+        background: solid ? "color-mix(in srgb, var(--ds-bg) 95%, transparent)" : "transparent",
         backdropFilter: solid ? "blur(12px)" : "none",
-        borderBottom: solid ? "1px solid rgba(255,255,255,0.05)" : "1px solid transparent",
+        borderBottom: solid ? "1px solid rgb(var(--hairline) / 0.05)" : "1px solid transparent",
       }}
     >
       <div
@@ -71,8 +72,8 @@ export default function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className="text-[0.65rem] tracking-[0.25em] uppercase transition-colors duration-300 hover:text-[#F0EDE8]"
-                style={{ color: active ? "#B8965A" : "#6A6A6A" }}
+                className="text-[0.65rem] tracking-[0.25em] uppercase transition-colors duration-300 hover:text-text"
+                style={{ color: active ? "var(--ds-accent)" : "var(--ds-text-muted)" }}
               >
                 {l[lang]}
               </Link>
@@ -80,11 +81,12 @@ export default function Nav() {
           })}
         </div>
 
-        <div className="hidden lg:flex items-center gap-5">
+        <div className="hidden lg:flex items-center gap-4">
+          <ThemeToggle />
           {langToggle}
           <Link
             href="/contact"
-            className="text-[0.65rem] tracking-[0.25em] uppercase border border-[#B8965A]/40 px-5 py-2.5 text-[#B8965A] hover:bg-[#B8965A] hover:text-[#080808] transition-all duration-300"
+            className="text-[0.65rem] tracking-[0.25em] uppercase border border-accent/40 px-5 py-2.5 text-accent hover:bg-accent hover:text-bg transition-all duration-300"
           >
             {t("문의하기", "Contact")}
           </Link>
@@ -97,33 +99,36 @@ export default function Nav() {
           aria-expanded={open}
         >
           <span
-            className="block h-px bg-[#B8965A] transition-all duration-300"
+            className="block h-px bg-accent transition-all duration-300"
             style={{ width: 22, transform: open ? "translateY(3px) rotate(45deg)" : "none" }}
           />
           <span
-            className="block h-px bg-[#B8965A] transition-all duration-300"
+            className="block h-px bg-accent transition-all duration-300"
             style={{ width: open ? 22 : 14, transform: open ? "translateY(-3px) rotate(-45deg)" : "none" }}
           />
         </button>
       </div>
 
       {open && (
-        <div className="lg:hidden px-5 pb-8 pt-2 flex flex-col" onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)} style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="lg:hidden px-5 pb-8 pt-2 flex flex-col" onClick={(e) => (e.target as HTMLElement).closest("a") && setOpen(false)} style={{ borderTop: "1px solid rgb(var(--hairline) / 0.05)" }}>
           {LINKS.map((l) => (
             <Link
               key={l.href}
               href={l.href}
               className="py-4 text-lg font-extralight tracking-tight"
               style={{
-                color: pathname === l.href ? "#B8965A" : "#D4D0CA",
-                borderBottom: "1px solid rgba(255,255,255,0.04)",
+                color: pathname === l.href ? "var(--ds-accent)" : "var(--ds-text)",
+                borderBottom: "1px solid rgb(var(--hairline) / 0.04)",
               }}
             >
               {l[lang]}
             </Link>
           ))}
           <div className="flex items-center justify-between mt-6">
-            {langToggle}
+            <div className="flex items-center gap-3">
+              {langToggle}
+              <ThemeToggle />
+            </div>
             <Link href="/contact" className="btn-gold">
               {t("문의하기 →", "Contact →")}
             </Link>

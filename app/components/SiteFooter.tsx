@@ -16,15 +16,15 @@ export default function SiteFooter() {
   const { lang } = useLang();
 
   return (
-    <footer className="px-5 md:px-16 py-12" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+    <footer className="px-5 md:px-16 py-12" style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)" }}>
       <div className="max-w-screen-xl mx-auto flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8">
         <div className="flex flex-col gap-3">
           <Link href="/" className="hover:opacity-70 transition-opacity self-start">
-            <Logo markColor="rgba(184,150,90,0.35)" textColor="#4A4A4A" />
+            <Logo markColor="rgb(var(--accent-rgb) / 0.35)" textColor="var(--ds-text-muted)" />
           </Link>
-          <p className="text-[0.65rem] text-[#3A3A3A] tracking-wide">
+          <p className="text-[0.65rem] text-text-muted tracking-wide">
             {lang === "ko" ? "대표 양성열" : "Founder & CEO Sungreul Yang"} ·{" "}
-            <a href="mailto:yang5071@gmail.com" className="hover:text-[#8A8780] transition-colors">
+            <a href="mailto:yang5071@gmail.com" className="hover:text-text-muted transition-colors">
               yang5071@gmail.com
             </a>{" "}
             · © 2026
@@ -35,13 +35,13 @@ export default function SiteFooter() {
             <Link
               key={l.href}
               href={l.href}
-              className="text-[0.6rem] tracking-[0.25em] uppercase text-[#4A4A4A] hover:text-[#B8965A] transition-colors"
+              className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-accent transition-colors"
             >
               {l[lang]}
             </Link>
           ))}
         </div>
-        <span className="text-[0.6rem] tracking-[0.35em] uppercase text-[#2A2A2A]">
+        <span className="text-[0.6rem] tracking-[0.35em] uppercase text-text-muted">
           Less noise. More signal.
         </span>
       </div>

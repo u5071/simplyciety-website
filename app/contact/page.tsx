@@ -118,10 +118,10 @@ function ContactForm() {
   const [showExample, setShowExample] = useState(false);
 
   const inputClass =
-    "w-full bg-transparent border border-[rgba(255,255,255,0.08)] px-5 py-4 text-sm text-[#F0EDE8] placeholder:text-[#2A2A2A] outline-none focus:border-[#B8965A]/50 transition-colors duration-300 font-light tracking-wide";
+    "w-full bg-transparent border border-border px-5 py-4 text-sm text-text placeholder:text-text-muted outline-none focus:border-accent/50 transition-colors duration-300 font-light tracking-wide";
 
   return (
-    <div className="bg-[#080808] text-[#F0EDE8] font-[var(--font-geist-sans)] min-h-screen">
+    <div className="bg-bg text-text font-[var(--font-geist-sans)] min-h-screen">
       <Nav />
 
       {/* JSON-LD */}
@@ -148,17 +148,17 @@ function ContactForm() {
         /* SUCCESS STATE */
         <div className="min-h-screen flex items-center justify-center px-8">
           <div className="text-center max-w-lg">
-            <div className="w-16 h-16 rounded-full border border-[#B8965A]/40 flex items-center justify-center mx-auto mb-10">
+            <div className="w-16 h-16 rounded-full border border-accent/40 flex items-center justify-center mx-auto mb-10">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-                <polyline points="20,6 9,17 4,12" stroke="#B8965A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                <polyline points="20,6 9,17 4,12" stroke="var(--ds-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             </div>
-            <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-6">{t("접수 완료", "Received")}</p>
+            <p className="text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-6">{t("접수 완료", "Received")}</p>
             <h1 className="text-[clamp(2.5rem,6vw,5rem)] font-extralight leading-[0.95] tracking-tight mb-8">
               {t("문의가", "Your inquiry")}<br />
-              <span className="italic text-[#B8965A]">{t("접수되었습니다.", "has been received.")}</span>
+              <span className="italic text-accent">{t("접수되었습니다.", "has been received.")}</span>
             </h1>
-            <p className="text-[#5A5A5A] text-base leading-relaxed mb-10">
+            <p className="text-text-muted text-base leading-relaxed mb-10">
               {t("영업일 기준 1~2일 이내에 회신 드리겠습니다.", "We'll reply within 1–2 business days.")}<br />
               {t("입력하신 이메일로 접수 확인 메일을 보내드렸습니다.", "A confirmation email has been sent to your address.")}
             </p>
@@ -173,17 +173,17 @@ function ContactForm() {
           <section className="relative px-8 md:px-16 pt-40 pb-20 overflow-hidden">
             <div
               className="absolute top-0 left-0 w-[45vw] h-[50vh] pointer-events-none"
-              style={{ background: "radial-gradient(ellipse at top left, rgba(184,150,90,0.04) 0%, transparent 65%)" }}
+              style={{ background: "radial-gradient(ellipse at top left, rgb(var(--accent-rgb) / 0.04) 0%, transparent 65%)" }}
             />
             <div className="relative max-w-screen-xl mx-auto">
-              <p className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-8 flex items-center gap-3">
-                <span className="w-6 h-px bg-[#B8965A]" />
+              <p className="text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-8 flex items-center gap-3">
+                <span className="w-6 h-px bg-accent" />
                 Contact
               </p>
               <h1 className="text-[clamp(3rem,8vw,10rem)] font-extralight leading-[0.9] tracking-[-0.03em] mb-6">
                 {t("문의하기", "Contact")}
               </h1>
-              <p className="text-[#4A4A4A] text-base font-light max-w-lg">
+              <p className="text-text-muted text-base font-light max-w-lg">
                 {t("어떤 서비스가 맞는지 몰라도 괜찮습니다. 상황을 간단히 적어주시면 맞는 방향을 제안드립니다.", "You don't need to know which service fits. Just describe your situation briefly and we'll point you in the right direction.")}
               </p>
             </div>
@@ -192,7 +192,7 @@ function ContactForm() {
           {/* FORM */}
           <section
             className="py-16 px-8 md:px-16"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
+            style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)" }}
           >
             <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-24">
               {/* Form */}
@@ -201,8 +201,8 @@ function ContactForm() {
                   {/* Row 1 */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        {t("이름", "Name")} <span className="text-[#B8965A]">*</span>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">
+                        {t("이름", "Name")} <span className="text-accent">*</span>
                       </label>
                       <input
                         type="text"
@@ -214,7 +214,7 @@ function ContactForm() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">{t("회사명", "Company")}</label>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">{t("회사명", "Company")}</label>
                       <input
                         type="text"
                         placeholder={t("(주)회사이름", "Acme Corp")}
@@ -228,8 +228,8 @@ function ContactForm() {
                   {/* Row 2 */}
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        {t("이메일", "Email")} <span className="text-[#B8965A]">*</span>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">
+                        {t("이메일", "Email")} <span className="text-accent">*</span>
                       </label>
                       <input
                         type="email"
@@ -241,7 +241,7 @@ function ContactForm() {
                       />
                     </div>
                     <div className="flex flex-col gap-1.5">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">{t("연락처", "Phone")}</label>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">{t("연락처", "Phone")}</label>
                       <input
                         type="tel"
                         placeholder={t("010-0000-0000", "+1 555-0000")}
@@ -254,8 +254,8 @@ function ContactForm() {
 
                   {/* Service type */}
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                      {t("문의 유형", "Inquiry Type")} <span className="text-[#B8965A]">*</span>
+                    <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">
+                      {t("문의 유형", "Inquiry Type")} <span className="text-accent">*</span>
                     </label>
                     <div className="flex flex-wrap gap-2">
                       {SERVICE_OPTIONS.map((opt) => (
@@ -265,9 +265,9 @@ function ContactForm() {
                           onClick={() => setForm((f) => ({ ...f, serviceType: opt.value }))}
                           className="text-[0.6rem] tracking-[0.2em] uppercase px-4 py-2.5 border transition-all duration-200"
                           style={{
-                            borderColor: form.serviceType === opt.value ? "#B8965A" : "rgba(255,255,255,0.08)",
-                            color: form.serviceType === opt.value ? "#B8965A" : "#3A3A3A",
-                            background: form.serviceType === opt.value ? "rgba(184,150,90,0.06)" : "transparent",
+                            borderColor: form.serviceType === opt.value ? "var(--ds-accent)" : "rgb(var(--hairline) / 0.08)",
+                            color: form.serviceType === opt.value ? "var(--ds-accent)" : "var(--ds-text-muted)",
+                            background: form.serviceType === opt.value ? "rgb(var(--accent-rgb) / 0.06)" : "transparent",
                           }}
                         >
                           {lang === "ko" ? opt.ko : opt.en}
@@ -279,21 +279,21 @@ function ContactForm() {
                   {/* Message */}
                   <div className="flex flex-col gap-1.5">
                     <div className="flex items-center justify-between">
-                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-[#3A3A3A]">
-                        {t("문의 내용", "Message")} <span className="text-[#B8965A]">*</span>
+                      <label className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">
+                        {t("문의 내용", "Message")} <span className="text-accent">*</span>
                       </label>
                       <button
                         type="button"
                         onClick={() => setShowExample((v) => !v)}
-                        className="text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/60 hover:text-[#B8965A] transition-colors"
+                        className="text-[0.5rem] tracking-[0.2em] uppercase text-accent/60 hover:text-accent transition-colors"
                       >
                         {showExample ? t("예시 숨기기", "Hide example") : t("예시 보기 ↓", "Show example ↓")}
                       </button>
                     </div>
                     {showExample && (
                       <div
-                        className="px-4 py-3 text-[0.7rem] leading-relaxed text-[#4A4A4A] font-light"
-                        style={{ border: "1px solid rgba(184,150,90,0.15)", background: "rgba(184,150,90,0.03)" }}
+                        className="px-4 py-3 text-[0.7rem] leading-relaxed text-text-muted font-light"
+                        style={{ border: "1px solid rgb(var(--accent-rgb) / 0.15)", background: "rgb(var(--accent-rgb) / 0.03)" }}
                       >
                         {(EXAMPLES[form.serviceType] ?? EXAMPLES.other)[lang]}
                         <button
@@ -302,7 +302,7 @@ function ContactForm() {
                             setForm((f) => ({ ...f, message: (EXAMPLES[f.serviceType] ?? EXAMPLES.other)[lang] }));
                             setShowExample(false);
                           }}
-                          className="block mt-2 text-[0.5rem] tracking-[0.2em] uppercase text-[#B8965A]/70 hover:text-[#B8965A] transition-colors"
+                          className="block mt-2 text-[0.5rem] tracking-[0.2em] uppercase text-accent/70 hover:text-accent transition-colors"
                         >
                           {t("이 예시로 시작하기 →", "Use this example →")}
                         </button>
@@ -340,7 +340,7 @@ function ContactForm() {
                   >
                     {status === "loading" ? t("전송 중...", "Sending...") : t("문의 전송 →", "Send inquiry →")}
                   </button>
-                  <p className="text-[#2A2A2A] text-[0.55rem] tracking-widest uppercase">
+                  <p className="text-text-muted text-[0.55rem] tracking-widest uppercase">
                     {t("영업일 기준 1~2일 이내 회신 · 스팸 없음", "Reply within 1–2 business days · No spam")}
                   </p>
                 </form>
@@ -350,10 +350,10 @@ function ContactForm() {
               <div className="md:col-span-5 flex flex-col gap-12">
                 {/* Direct contact */}
                 <div>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">{t("직접 연락", "Direct Contact")}</p>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-5">{t("직접 연락", "Direct Contact")}</p>
                   <a
                     href="mailto:yang5071@gmail.com"
-                    className="text-[#6A6A6A] text-sm hover:text-[#B8965A] transition-colors"
+                    className="text-text-muted text-sm hover:text-accent transition-colors"
                   >
                     yang5071@gmail.com
                   </a>
@@ -361,7 +361,7 @@ function ContactForm() {
 
                 {/* LinkedIn */}
                 <div>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">LinkedIn</p>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-5">LinkedIn</p>
                   <a
                     href="https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"
                     target="_blank"
@@ -369,18 +369,18 @@ function ContactForm() {
                     className="inline-flex items-center gap-2 group"
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-                      <rect width="24" height="24" rx="4" fill="#B8965A" opacity="0.12" />
-                      <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.6"/>
+                      <rect width="24" height="24" rx="4" fill="var(--ds-accent)" opacity="0.12" />
+                      <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="var(--ds-accent)" opacity="0.6"/>
                     </svg>
-                    <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#3A3A3A] group-hover:text-[#B8965A] transition-colors">
+                    <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted group-hover:text-accent transition-colors">
                       {t("Mr. Simpler 프로필 ↗", "Mr. Simpler Profile ↗")}
                     </span>
                   </a>
                 </div>
 
                 {/* Services */}
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "2rem" }}>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-5">{t("서비스", "Services")}</p>
+                <div style={{ borderTop: "1px solid rgb(var(--hairline) / 0.04)", paddingTop: "2rem" }}>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-5">{t("서비스", "Services")}</p>
                   <div className="flex flex-col gap-3">
                     {[
                       { ko: "AX 컨설팅", en: "AX Consulting", href: "/services#consulting" },
@@ -390,7 +390,7 @@ function ContactForm() {
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="text-[0.6rem] tracking-[0.2em] uppercase text-[#2A2A2A] hover:text-[#5A5A5A] transition-colors"
+                        className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted hover:text-text-muted transition-colors"
                       >
                         {lang === "ko" ? item.ko : item.en} →
                       </Link>
@@ -399,20 +399,20 @@ function ContactForm() {
                 </div>
 
                 {/* Process */}
-                <div style={{ borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: "2rem" }}>
-                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-6">{t("문의 프로세스", "Inquiry Process")}</p>
+                <div style={{ borderTop: "1px solid rgb(var(--hairline) / 0.04)", paddingTop: "2rem" }}>
+                  <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-6">{t("문의 프로세스", "Inquiry Process")}</p>
                   <div className="flex flex-col gap-5">
                     {PROCESS_STEPS.map((s, i) => (
                       <div key={s.num} className="flex items-start gap-4">
-                        <span className="text-[0.5rem] tracking-[0.2em] text-[#B8965A]/50 font-light pt-0.5 flex-shrink-0 w-5">
+                        <span className="text-[0.5rem] tracking-[0.2em] text-accent/50 font-light pt-0.5 flex-shrink-0 w-5">
                           {s.num}
                         </span>
                         <div>
-                          <p className="text-[0.6rem] tracking-[0.15em] uppercase text-[#6A6A6A] mb-1">{s.title[lang]}</p>
-                          <p className="text-[#3A3A3A] text-xs leading-relaxed font-light">{s.desc[lang]}</p>
+                          <p className="text-[0.6rem] tracking-[0.15em] uppercase text-text-muted mb-1">{s.title[lang]}</p>
+                          <p className="text-text-muted text-xs leading-relaxed font-light">{s.desc[lang]}</p>
                         </div>
                         {i < PROCESS_STEPS.length - 1 && (
-                          <span className="text-[#2A2A2A] text-xs self-end ml-auto">↓</span>
+                          <span className="text-text-muted text-xs self-end ml-auto">↓</span>
                         )}
                       </div>
                     ))}
@@ -432,7 +432,7 @@ function ContactForm() {
 
 export default function ContactPage() {
   return (
-    <Suspense fallback={<div className="bg-[#080808] min-h-screen" />}>
+    <Suspense fallback={<div className="bg-bg min-h-screen" />}>
       <ContactForm />
     </Suspense>
   );

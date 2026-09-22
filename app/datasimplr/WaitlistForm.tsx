@@ -45,12 +45,12 @@ function Chips({
             aria-pressed={on}
             className="px-3.5 py-2 text-xs border transition-all duration-200"
             style={{
-              borderColor: on ? "#B8965A" : "rgba(255,255,255,0.12)",
-              color: on ? "#F0EDE8" : "#8A8780",
-              background: on ? "rgba(184,150,90,0.12)" : "transparent",
+              borderColor: on ? "var(--ds-accent)" : "rgb(var(--hairline) / 0.12)",
+              color: on ? "var(--ds-text)" : "var(--ds-text-muted)",
+              background: on ? "rgb(var(--accent-rgb) / 0.12)" : "transparent",
             }}
           >
-            {on && multi && <span className="text-[#B8965A] mr-1.5">✓</span>}
+            {on && multi && <span className="text-accent mr-1.5">✓</span>}
             {o[lang]}
           </button>
         );
@@ -119,24 +119,24 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
   };
 
   const input =
-    "w-full bg-white/[0.02] border border-[rgba(255,255,255,0.12)] px-4 py-3.5 text-sm text-[#F0EDE8] placeholder:text-[#5A5A5A] outline-none focus:border-[#B8965A]/70 focus:bg-white/[0.04] transition-colors font-light";
-  const label = "block text-[0.6rem] tracking-[0.25em] uppercase text-[#8A8780] mb-2.5";
+    "w-full bg-surface-tint border border-border px-4 py-3.5 text-sm text-text placeholder:text-text-muted outline-none focus:border-accent/70 focus:bg-surface-tint transition-colors font-light";
+  const label = "block text-[0.6rem] tracking-[0.25em] uppercase text-text-muted mb-2.5";
 
   if (status === "success" && result) {
     return (
-      <div id={id} className="ds-fade p-7 md:p-9" style={{ border: "1px solid rgba(184,150,90,0.5)", background: "linear-gradient(135deg, rgba(184,150,90,0.12), rgba(184,150,90,0.02))" }} role="status">
-        <p className="text-[0.6rem] tracking-[0.3em] uppercase text-[#B8965A] mb-3">
+      <div id={id} className="ds-fade p-7 md:p-9" style={{ border: "1px solid rgb(var(--accent-rgb) / 0.5)", background: "linear-gradient(135deg, rgb(var(--accent-rgb) / 0.12), rgb(var(--accent-rgb) / 0.02))" }} role="status">
+        <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-3">
           {result.alreadyJoined ? t("이미 등록됨", "Already on the list") : t("등록 완료", "You're in")}
         </p>
         {result.position ? (
           <p className="text-4xl md:text-5xl font-extralight tracking-tight mb-3">
             {t("대기 순번 ", "You're ")}
-            <span className="text-[#B8965A]">#{result.position}</span>
+            <span className="text-accent">#{result.position}</span>
           </p>
         ) : (
           <p className="text-2xl md:text-3xl font-extralight tracking-tight mb-3">{t("대기명단에 등록되었습니다.", "You're on the waitlist.")}</p>
         )}
-        <p className="text-[#A8A49E] text-sm leading-relaxed font-light">
+        <p className="text-text-secondary text-sm leading-relaxed font-light">
           {t(
             `${LAUNCH_LONG.ko} 출시일에 등록 순서대로 초대 메일을 보내드립니다. 받은편지함에서 확인 메일을 확인해 주세요.`,
             `We'll send invites in order on launch day, ${LAUNCH_LONG.en}. Check your inbox for a confirmation.`
@@ -160,9 +160,9 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
   );
 
   const errorLine = error && (
-    <p className="text-xs text-[#D98A6A]" role="alert">
+    <p className="text-xs text-danger" role="alert">
       {error}{" "}
-      <a href={mailto} className="underline text-[#B8965A]">{t("메일로 등록하기 →", "Join by email →")}</a>
+      <a href={mailto} className="underline text-accent">{t("메일로 등록하기 →", "Join by email →")}</a>
     </p>
   );
 
@@ -170,7 +170,7 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
     return (
       <form id={id} onSubmit={submit} className="relative flex flex-col gap-3 w-full">
         {honeypot}
-        <div className="flex flex-col sm:flex-row sm:p-1 sm:border sm:border-white/[0.12] sm:bg-white/[0.02] focus-within:border-[#B8965A]/60 transition-colors">
+        <div className="flex flex-col sm:flex-row sm:p-1 sm:border sm:border-border sm:bg-surface-tint focus-within:border-accent/60 transition-colors">
           <label className="sr-only" htmlFor={`${id ?? "wl"}-email`}>{t("이메일", "Email")}</label>
           <input
             id={`${id ?? "wl"}-email`}
@@ -179,19 +179,19 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
             value={form.email}
             onChange={set("email")}
             placeholder={t("업무용 이메일", "you@company.com")}
-            className="flex-1 min-w-0 bg-transparent px-4 py-3.5 text-sm text-[#F0EDE8] placeholder:text-[#5A5A5A] outline-none border border-white/[0.12] sm:border-0 mb-2 sm:mb-0"
+            className="flex-1 min-w-0 bg-transparent px-4 py-3.5 text-sm text-text placeholder:text-text-muted outline-none border border-border sm:border-0 mb-2 sm:mb-0"
             autoComplete="email"
           />
           <button
             type="submit"
             disabled={status === "loading"}
-            className="flex-shrink-0 px-6 py-3.5 text-[0.7rem] tracking-[0.2em] uppercase bg-[#B8965A] text-[#080808] hover:bg-[#D2B27A] transition-colors disabled:opacity-60"
+            className="flex-shrink-0 px-6 py-3.5 text-[0.7rem] tracking-[0.2em] uppercase bg-accent text-bg hover:bg-accent-strong transition-colors disabled:opacity-60"
           >
             {status === "loading" ? t("등록 중…", "Joining…") : t("얼리 액세스 신청", "Get early access")}
           </button>
         </div>
         {errorLine}
-        <p className="text-[0.65rem] text-[#6A6A6A]">
+        <p className="text-[0.65rem] text-text-muted">
           {t("베타 무료 · 등록 순서대로 초대 · 출시 안내 외 사용하지 않음", "Free beta · invites in signup order · launch updates only")}
         </p>
       </form>
@@ -262,8 +262,8 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
         />
       </div>
 
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <p className="text-[0.65rem] text-[#6A6A6A] leading-relaxed max-w-md">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-5" style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)" }}>
+        <p className="text-[0.65rem] text-text-muted leading-relaxed max-w-md">
           {t(
             "입력 정보는 dataSimplr 출시 안내·초대와 디자인 파트너 선정에만 사용하며, 출시 후 1년간 보관합니다.",
             "Used only for launch updates, invites and design-partner selection; kept for one year after launch."

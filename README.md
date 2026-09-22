@@ -19,7 +19,8 @@ npm run dev                  # http://localhost:3000
 | `npm run dev` | 개발 서버 |
 | `npm run build` | 프로덕션 빌드 (타입 검사 포함) |
 | `npm start` | 빌드 결과 실행 |
-| `npm run lint` | ESLint |
+| `npm run lint` | ESLint + 색상 토큰 검사 |
+| `npm run lint:tokens` | 색상 토큰 검사만 |
 
 배포 전에는 `npm run build`와 `npm run lint`를 함께 통과시킨다.
 
@@ -48,12 +49,13 @@ API: `POST /api/contact`(문의 메일), `POST /api/waitlist`(대기명단 등�
 | 알림 메일 수신 주소 | 환경변수 `NOTIFY_EMAIL` (미설정 시 `lib/mail.ts`의 기본값) |
 | 인사이트 글 | `content/posts/*.md` |
 
-자세한 내용: [docs/content.md](docs/content.md)(콘텐츠 수정), [docs/operations.md](docs/operations.md)(환경변수·배포·대기명단 운영).
+자세한 내용: [docs/design-system.md](docs/design-system.md)(색·타이포·테마), [docs/content.md](docs/content.md)(콘텐츠 수정), [docs/operations.md](docs/operations.md)(환경변수·배포·대기명단 운영).
 
 ## 코드 규칙
 
 - **이중 언어(KO/EN)**: 모든 사용자 노출 문구는 `{ ko, en }` 객체로 쓰고 `useLang()`의 `t()` 또는 `[lang]`으로 꺼낸다. 하드코딩된 한국어 문구를 만들지 않는다.
-- **디자인 토큰**: 배경 `#080808`/`#060606`, 골드 `#B8965A`, 본문 `#F0EDE8`/`#A8A49E`. `globals.css`의 `.btn-gold`, `.btn-primary`, `[data-reveal]`, `.ds-fade`를 재사용한다.
+- **디자인 토큰**: 색상 값을 직접 쓰지 않는다. `text-text` / `text-text-secondary` / `text-text-muted` / `text-accent` / `bg-bg` / `bg-surface` / `bg-elevated` / `border-border` 같은 토큰 유틸리티만 쓴다 → [docs/design-system.md](docs/design-system.md). `npm run lint`가 새 색상값을 막는다.
+- **테마**: 다크가 기본이고 시스템 설정(`prefers-color-scheme`)을 따른다. 헤더 버튼으로 다크 → 라이트 → 시스템 전환. 화면을 바꾸면 두 테마 모두 확인한다.
 - **공통 컴포넌트**: 상단 메뉴는 `app/components/Nav.tsx`, 하단은 `SiteFooter.tsx`, 스크롤 등장 효과는 `useReveal()`. 페이지마다 새로 만들지 않는다.
 - **메타데이터**: 페이지별 `metadata`와 필요한 곳에 JSON-LD를 둔다. 새 경로는 `app/sitemap.ts`에 추가한다.
 - **성과 수치**: 검증된 실제 수치만 쓴다. 예시라면 예시임을 화면에 밝힌다.

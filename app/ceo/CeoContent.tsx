@@ -108,8 +108,8 @@ const CREDENTIALS = [
 function LinkedInIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
-      <rect width="24" height="24" rx="4" fill="#B8965A" opacity="0.15" />
-      <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="#B8965A" opacity="0.7" />
+      <rect width="24" height="24" rx="4" fill="var(--ds-accent)" opacity="0.15" />
+      <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="var(--ds-accent)" opacity="0.7" />
     </svg>
   );
 }
@@ -119,36 +119,36 @@ export default function CeoContent() {
   useReveal();
 
   return (
-    <div className="bg-[#080808] text-[#F0EDE8] min-h-screen">
+    <div className="bg-bg text-text min-h-screen">
       <Nav />
 
       {/* ─── HERO ─── */}
       <section className="relative min-h-[92vh] flex flex-col justify-between px-5 md:px-16 pt-36 md:pt-44 pb-16 overflow-hidden">
         <div
           className="absolute top-0 right-0 w-[55vw] h-[70vh] pointer-events-none"
-          style={{ background: "radial-gradient(ellipse at top right, rgba(184,150,90,0.06) 0%, transparent 65%)" }}
+          style={{ background: "radial-gradient(ellipse at top right, rgb(var(--accent-rgb) / 0.06) 0%, transparent 65%)" }}
         />
         <div className="relative max-w-screen-xl mx-auto w-full">
-          <p className="hero-eyebrow text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-10 flex items-center gap-3">
-            <span className="block w-6 h-px bg-[#B8965A]" />
+          <p className="hero-eyebrow text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-10 flex items-center gap-3">
+            <span className="block w-6 h-px bg-accent" />
             Founder & CEO, simplyciety
           </p>
           <h1 className="hero-title font-extralight leading-[0.95] tracking-[-0.03em]">
             <span className="block text-[clamp(3.5rem,10vw,10rem)]">{t("양성열", "Sungreul Yang")}</span>
-            <span className="block text-[clamp(1.5rem,3.5vw,3rem)] mt-6 text-[#8A8780]">
+            <span className="block text-[clamp(1.5rem,3.5vw,3rem)] mt-6 text-text-muted">
               {t("AI와 데이터를 ", "Making AI & data ")}
-              <span className="italic text-[#B8965A]">{t("더 쉽게.", "simpler.")}</span>
+              <span className="italic text-accent">{t("더 쉽게.", "simpler.")}</span>
             </span>
           </h1>
         </div>
 
         <div className="relative max-w-screen-xl mx-auto w-full mt-16">
           <div className="hero-line mb-12">
-            <span className="block h-px bg-[rgba(255,255,255,0.07)] w-full" />
+            <span className="block h-px bg-border w-full" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             <div className="md:col-span-7 hero-body">
-              <p className="text-[#8A8780] text-lg md:text-2xl leading-[1.7] font-extralight tracking-tight">
+              <p className="text-text-muted text-lg md:text-2xl leading-[1.7] font-extralight tracking-tight">
                 {t(
                   "AI와 데이터를 기반으로 더 나은 조직과 삶을 만들도록 도움을 드리고 있습니다. 금융에서 시작해 데이터·AI 플랫폼을 만들고 유통·문화 분야 데이터 조직을 이끈 뒤, 지금은 simplyciety 대표로 AX 컨설팅과 AI 에이전트 구축, 그리고 AI를 위한 데이터 플랫폼 dataSimplr를 만들고 있습니다.",
                   "I help organizations and people work better with AI and data. Starting in finance, I built data and AI platforms, then led a data organization in retail and culture. Today, as founder of simplyciety, I do AX consulting and AI agent builds — and I'm building dataSimplr, the data platform for AI."
@@ -156,7 +156,7 @@ export default function CeoContent() {
               </p>
             </div>
             <div className="md:col-span-5 hero-cta flex flex-col justify-end gap-5">
-              <p className="text-[#5A5A5A] text-xs leading-loose font-light tracking-wide">
+              <p className="text-text-muted text-xs leading-loose font-light tracking-wide">
                 AI·BigData MBA · AWS Solutions Architect
                 <br />
                 {t("금융 · 데이터/AI · 유통·문화 · 창업", "Finance · Data & AI · Retail & culture · Founder")}
@@ -164,11 +164,11 @@ export default function CeoContent() {
               <div className="flex flex-wrap items-center gap-6">
                 <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group">
                   <LinkedInIcon />
-                  <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#5A5A5A] group-hover:text-[#B8965A] transition-colors duration-300">
+                  <span className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted group-hover:text-accent transition-colors duration-300">
                     LinkedIn ↗
                   </span>
                 </a>
-                <a href="mailto:yang5071@gmail.com" className="text-[0.6rem] tracking-[0.25em] uppercase text-[#5A5A5A] hover:text-[#B8965A] transition-colors">
+                <a href="mailto:yang5071@gmail.com" className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-accent transition-colors">
                   yang5071@gmail.com
                 </a>
               </div>
@@ -178,41 +178,41 @@ export default function CeoContent() {
       </section>
 
       {/* ─── IMPACT NUMBERS ─── */}
-      <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <div style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)", borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
         <div className="max-w-screen-xl mx-auto px-5 md:px-16 grid grid-cols-2 md:grid-cols-4">
           {IMPACT.map((item, i) => (
             <div key={i} className="py-10 pr-4 md:px-6 md:first:pl-0">
-              <p className="text-[clamp(2rem,4vw,3.5rem)] font-extralight text-[#B8965A] leading-none mb-3">{item.num}</p>
-              <p className="text-[#5A5A5A] text-xs leading-relaxed">{item.label[lang]}</p>
+              <p className="text-[clamp(2rem,4vw,3.5rem)] font-extralight text-accent leading-none mb-3">{item.num}</p>
+              <p className="text-text-muted text-xs leading-relaxed">{item.label[lang]}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* ─── NOW ─── */}
-      <section className="py-24 md:py-36 px-5 md:px-16" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section className="py-24 md:py-36 px-5 md:px-16" style={{ borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-20">
           <div className="md:col-span-4">
-            <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-8">Now</p>
+            <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-8">Now</p>
             <h2 data-reveal data-reveal-delay="1" className="text-[clamp(2rem,4vw,3.25rem)] font-extralight leading-[1.1] tracking-tight">
               {lang === "ko" ? (
-                <>지금<br /><span className="italic text-[#B8965A]">하고 있는 일</span></>
+                <>지금<br /><span className="italic text-accent">하고 있는 일</span></>
               ) : (
-                <>What I&apos;m<br /><span className="italic text-[#B8965A]">working on</span></>
+                <>What I&apos;m<br /><span className="italic text-accent">working on</span></>
               )}
             </h2>
           </div>
-          <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-px bg-[rgba(255,255,255,0.05)]">
+          <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
             {[
               { k: "01", title: "dataSimplr", desc: s("AI를 위한 데이터 플랫폼을 개발하고 있습니다. 흩어진 데이터를 잇고, 뜻을 맞추고, 안전하게 AI에 건넵니다.", "Building a data platform for AI — connecting scattered data, aligning definitions, and handing it to AI safely."), href: "/datasimplr", cta: s("제품 보기 →", "See the product →") },
               { k: "02", title: t("AX 컨설팅 · 구축", "AX consulting · builds"), desc: s("제조 분야 AI·데이터 플랫폼 구축을 PL로 이끌고, 기업의 AI 전환 방향을 함께 잡습니다.", "Leading an AI & data platform build in manufacturing and helping companies set their AI direction."), href: "/services", cta: s("서비스 보기 →", "See services →") },
               { k: "03", title: t("강연 · 멘토링", "Talks · mentoring"), desc: s("데이터 조직을 만들고 운영하며 겪은 일을 기업 현장과 나눕니다. 데이터·AX 멘토링과 강의를 합니다.", "Sharing what I learned building and running data teams with corporate audiences."), href: "/contact?service=lecture", cta: s("강연 요청 →", "Request a talk →") },
             ].map((n) => (
-              <Link key={n.k} href={n.href} data-reveal className="group bg-[#080808] p-8 flex flex-col gap-4 hover:bg-[#0C0C0C] transition-colors">
-                <span className="text-[0.6rem] tracking-[0.3em] text-[#B8965A]">{n.k}</span>
-                <h3 className="text-xl font-extralight tracking-tight group-hover:text-[#B8965A] transition-colors">{n.title}</h3>
-                <p className="text-[#6A6A6A] text-sm leading-[1.85] font-light flex-1">{n.desc[lang]}</p>
-                <span className="text-[0.6rem] tracking-[0.2em] uppercase text-[#B8965A]/60 group-hover:text-[#B8965A] transition-colors">{n.cta[lang]}</span>
+              <Link key={n.k} href={n.href} data-reveal className="group bg-bg p-8 flex flex-col gap-4 hover:bg-elevated transition-colors">
+                <span className="text-[0.6rem] tracking-[0.3em] text-accent">{n.k}</span>
+                <h3 className="text-xl font-extralight tracking-tight group-hover:text-accent transition-colors">{n.title}</h3>
+                <p className="text-text-muted text-sm leading-[1.85] font-light flex-1">{n.desc[lang]}</p>
+                <span className="text-[0.6rem] tracking-[0.2em] uppercase text-accent/60 group-hover:text-accent transition-colors">{n.cta[lang]}</span>
               </Link>
             ))}
           </div>
@@ -220,21 +220,21 @@ export default function CeoContent() {
       </section>
 
       {/* ─── FOUR STAGES ─── */}
-      <section className="py-24 md:py-36 px-5 md:px-16 bg-[#060606]" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section className="py-24 md:py-36 px-5 md:px-16 bg-surface" style={{ borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
         <div className="max-w-screen-xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-14">
             <div className="md:col-span-5">
-              <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-8">Four Stages</p>
+              <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-8">Four Stages</p>
               <h2 data-reveal data-reveal-delay="1" className="text-[clamp(2rem,4vw,3.25rem)] font-extralight leading-[1.1] tracking-tight">
                 {lang === "ko" ? (
-                  <>데이터 조직은<br /><span className="italic text-[#B8965A]">네 단계를 지난다</span></>
+                  <>데이터 조직은<br /><span className="italic text-accent">네 단계를 지난다</span></>
                 ) : (
-                  <>Every data team<br /><span className="italic text-[#B8965A]">goes through four stages</span></>
+                  <>Every data team<br /><span className="italic text-accent">goes through four stages</span></>
                 )}
               </h2>
             </div>
             <div className="md:col-span-7 flex items-end">
-              <p data-reveal className="text-[#6A6A6A] text-base md:text-lg leading-[1.9] font-light">
+              <p data-reveal className="text-text-muted text-base md:text-lg leading-[1.9] font-light">
                 {t(
                   "데이터 엔지니어로 입사해 네 단계를 모두 지났습니다. 조직 규모와 상관없이 순서는 같았습니다. simplyciety는 지금 이 순서 중 어디에 있는지부터 함께 봅니다.",
                   "I joined as a data engineer and went through all four. The order was the same regardless of company size. At simplyciety, we start by finding where you are in this sequence."
@@ -242,25 +242,25 @@ export default function CeoContent() {
               </p>
             </div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-[rgba(255,255,255,0.05)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
             {STAGES.map((st, i) => (
-              <div key={st.num} data-reveal data-reveal-delay={String(i + 1) as "1"} className="bg-[#060606] p-8 flex flex-col gap-5">
+              <div key={st.num} data-reveal data-reveal-delay={String(i + 1) as "1"} className="bg-surface p-8 flex flex-col gap-5">
                 <div className="flex items-baseline justify-between">
-                  <span className="text-[0.6rem] tracking-[0.3em] text-[#B8965A]">{st.num}</span>
-                  <span className="text-[0.55rem] tracking-[0.25em] uppercase text-[#4A4A4A]">{st.name}</span>
+                  <span className="text-[0.6rem] tracking-[0.3em] text-accent">{st.num}</span>
+                  <span className="text-[0.55rem] tracking-[0.25em] uppercase text-text-muted">{st.name}</span>
                 </div>
                 {/* rising bar */}
                 <div className="h-16 flex items-end">
-                  <div className="w-full bg-[#B8965A]" style={{ height: `${25 + i * 25}%`, opacity: 0.12 + i * 0.12 }} />
+                  <div className="w-full bg-accent" style={{ height: `${25 + i * 25}%`, opacity: 0.12 + i * 0.12 }} />
                 </div>
                 <div>
                   <h3 className="text-2xl font-extralight tracking-tight">{st.title[lang]}</h3>
-                  <p className="text-[#8A8780] text-sm font-light mt-1">{st.desc[lang]}</p>
+                  <p className="text-text-muted text-sm font-light mt-1">{st.desc[lang]}</p>
                 </div>
-                <ul className="flex flex-col gap-2 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}>
+                <ul className="flex flex-col gap-2 pt-4" style={{ borderTop: "1px solid rgb(var(--hairline) / 0.05)" }}>
                   {st.items.map((it, ii) => (
-                    <li key={ii} className="text-[#6A6A6A] text-xs font-light flex gap-2">
-                      <span className="text-[#B8965A]/50">·</span>
+                    <li key={ii} className="text-text-muted text-xs font-light flex gap-2">
+                      <span className="text-accent/50">·</span>
                       {it[lang]}
                     </li>
                   ))}
@@ -272,20 +272,20 @@ export default function CeoContent() {
       </section>
 
       {/* ─── CAREER ─── */}
-      <section className="py-24 md:py-36 px-5 md:px-16" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section className="py-24 md:py-36 px-5 md:px-16" style={{ borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
         <div className="max-w-screen-xl mx-auto">
-          <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A] mb-14">Career</p>
-          <div className="flex flex-col gap-px bg-[rgba(255,255,255,0.04)]">
+          <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-accent mb-14">Career</p>
+          <div className="flex flex-col gap-px bg-border">
             {CAREER.map((c, i) => (
-              <div key={i} data-reveal className="bg-[#080808] p-6 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10">
+              <div key={i} data-reveal className="bg-bg p-6 md:p-10 grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-10">
                 <div className="md:col-span-3 flex md:flex-col gap-3 md:gap-2 items-center md:items-start">
-                  <span className="text-[0.65rem] tracking-[0.15em] text-[#6A6A6A]">{c.period}</span>
+                  <span className="text-[0.65rem] tracking-[0.15em] text-text-muted">{c.period}</span>
                   <span
                     className="inline-flex items-center justify-center w-7 h-7 rounded-full text-[0.7rem]"
                     style={{
-                      border: `1px solid ${c.current ? "rgba(184,150,90,0.6)" : "rgba(255,255,255,0.12)"}`,
-                      background: c.current ? "#B8965A" : "transparent",
-                      color: c.current ? "#080808" : "#6A6A6A",
+                      border: `1px solid ${c.current ? "rgb(var(--accent-rgb) / 0.6)" : "rgb(var(--hairline) / 0.12)"}`,
+                      background: c.current ? "var(--ds-accent)" : "transparent",
+                      color: c.current ? "var(--ds-bg)" : "var(--ds-text-muted)",
                     }}
                   >
                     {c.step}
@@ -294,13 +294,13 @@ export default function CeoContent() {
                 <div className="md:col-span-9">
                   <h3 className="text-xl md:text-2xl font-extralight tracking-tight">
                     {c.where[lang]}
-                    <span className="block md:inline text-[#6A6A6A] text-sm font-light md:ml-4 mt-1 md:mt-0">{c.role[lang]}</span>
+                    <span className="block md:inline text-text-muted text-sm font-light md:ml-4 mt-1 md:mt-0">{c.role[lang]}</span>
                   </h3>
                   <ul className="flex flex-col gap-2.5 mt-5">
                     {c.highlights.map((h, hi) => (
                       <li key={hi} className="flex items-start gap-3">
-                        <span className="w-1 h-1 rounded-full bg-[#B8965A]/60 flex-shrink-0 mt-[0.55rem]" />
-                        <span className="text-[#7A7A7A] text-sm leading-relaxed font-light">{h[lang]}</span>
+                        <span className="w-1 h-1 rounded-full bg-accent/60 flex-shrink-0 mt-[0.55rem]" />
+                        <span className="text-[var(--ds-text-secondary)] text-sm leading-relaxed font-light">{h[lang]}</span>
                       </li>
                     ))}
                   </ul>
@@ -312,11 +312,11 @@ export default function CeoContent() {
       </section>
 
       {/* ─── SPEAKING ─── */}
-      <section id="speaking" className="py-24 md:py-36 px-5 md:px-16 bg-[#060606]" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
+      <section id="speaking" className="py-24 md:py-36 px-5 md:px-16 bg-surface" style={{ borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
         <div className="max-w-screen-xl mx-auto">
           <div className="flex items-end justify-between mb-14 gap-6">
-            <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-[#B8965A]">Speaking</p>
-            <Link href="/contact?service=lecture" className="text-[0.6rem] tracking-[0.2em] uppercase text-[#6A6A6A] hover:text-[#B8965A] transition-colors">
+            <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-accent">Speaking</p>
+            <Link href="/contact?service=lecture" className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted hover:text-accent transition-colors">
               {t("강연 요청 →", "Request a talk →")}
             </Link>
           </div>
@@ -324,20 +324,20 @@ export default function CeoContent() {
             {TALKS.map((talk, i) => {
               const body = (
                 <>
-                  <span className="md:col-span-2 text-[0.65rem] tracking-[0.15em] text-[#6A6A6A]">{talk.date}</span>
+                  <span className="md:col-span-2 text-[0.65rem] tracking-[0.15em] text-text-muted">{talk.date}</span>
                   <div className="md:col-span-8">
-                    <p className="text-lg md:text-xl font-extralight tracking-tight leading-snug group-hover:text-[#B8965A] transition-colors">
+                    <p className="text-lg md:text-xl font-extralight tracking-tight leading-snug group-hover:text-accent transition-colors">
                       {talk.title[lang]}
                     </p>
-                    <p className="text-[#5A5A5A] text-xs mt-2">{talk.venue[lang]}</p>
+                    <p className="text-text-muted text-xs mt-2">{talk.venue[lang]}</p>
                   </div>
-                  <span className="md:col-span-2 md:text-right text-[0.6rem] tracking-[0.2em] uppercase text-[#B8965A]/60 group-hover:text-[#B8965A] transition-colors">
+                  <span className="md:col-span-2 md:text-right text-[0.6rem] tracking-[0.2em] uppercase text-accent/60 group-hover:text-accent transition-colors">
                     {talk.label[lang] && `${talk.label[lang]} ${talk.external ? "↗" : "→"}`}
                   </span>
                 </>
               );
               const cls = "group grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline py-8";
-              const style = { borderTop: i === 0 ? "1px solid rgba(255,255,255,0.06)" : "none", borderBottom: "1px solid rgba(255,255,255,0.06)" };
+              const style = { borderTop: i === 0 ? "1px solid rgb(var(--hairline) / 0.06)" : "none", borderBottom: "1px solid rgb(var(--hairline) / 0.06)" };
               if (!talk.href) return <div key={i} className={cls} style={style} data-reveal>{body}</div>;
               return talk.external ? (
                 <a key={i} href={talk.href} target="_blank" rel="noopener noreferrer" className={cls} style={style} data-reveal>{body}</a>
@@ -351,10 +351,10 @@ export default function CeoContent() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mt-20">
             {CREDENTIALS.map((cr) => (
               <div key={cr.label.en} data-reveal>
-                <p className="text-[0.55rem] tracking-[0.3em] uppercase text-[#5A5A5A] mb-4">{cr.label[lang]}</p>
+                <p className="text-[0.55rem] tracking-[0.3em] uppercase text-text-muted mb-4">{cr.label[lang]}</p>
                 <ul className="flex flex-col gap-2">
                   {cr.items.map((it, ii) => (
-                    <li key={ii} className="text-[#A8A49E] text-sm font-light">{it[lang]}</li>
+                    <li key={ii} className="text-text-secondary text-sm font-light">{it[lang]}</li>
                   ))}
                 </ul>
               </div>
@@ -364,19 +364,19 @@ export default function CeoContent() {
       </section>
 
       {/* ─── CLOSING QUOTE ─── */}
-      <section className="py-28 md:py-44 px-5 md:px-16 bg-[#050505] relative overflow-hidden" style={{ borderBottom: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgba(184,150,90,0.04) 0%, transparent 65%)" }} />
+      <section className="py-28 md:py-44 px-5 md:px-16 bg-surface relative overflow-hidden" style={{ borderBottom: "1px solid rgb(var(--hairline) / 0.06)" }}>
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at center, rgb(var(--accent-rgb) / 0.04) 0%, transparent 65%)" }} />
         <div className="relative max-w-3xl mx-auto text-center">
-          <blockquote data-reveal className="text-[clamp(1.6rem,3.5vw,3rem)] font-extralight leading-[1.35] tracking-tight text-[#D4D0CA]">
+          <blockquote data-reveal className="text-[clamp(1.6rem,3.5vw,3rem)] font-extralight leading-[1.35] tracking-tight text-text">
             {lang === "ko" ? (
-              <>&ldquo;도구는 6개월마다 바뀌지만,<br /><em className="text-[#B8965A] not-italic">오늘부터 쌓은 데이터는 10년 간다.</em>&rdquo;</>
+              <>&ldquo;도구는 6개월마다 바뀌지만,<br /><em className="text-accent not-italic">오늘부터 쌓은 데이터는 10년 간다.</em>&rdquo;</>
             ) : (
-              <>&ldquo;Tools change every six months.<br /><em className="text-[#B8965A] not-italic">The data you start collecting today lasts ten years.</em>&rdquo;</>
+              <>&ldquo;Tools change every six months.<br /><em className="text-accent not-italic">The data you start collecting today lasts ten years.</em>&rdquo;</>
             )}
           </blockquote>
           <div data-reveal data-reveal-delay="1" className="mt-12 flex items-center justify-center gap-5">
             <span className="gold-line block w-12" />
-            <span className="text-[0.6rem] tracking-[0.3em] uppercase text-[#5A5A5A]">
+            <span className="text-[0.6rem] tracking-[0.3em] uppercase text-text-muted">
               {t("양성열 · simplyciety 대표", "Sungreul Yang · Founder & CEO, simplyciety")}
             </span>
             <span className="gold-line block w-12" />
@@ -389,13 +389,13 @@ export default function CeoContent() {
         <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
           <h2 data-reveal className="text-[clamp(2.5rem,6vw,5.5rem)] font-extralight leading-[0.98] tracking-tight">
             {lang === "ko" ? (
-              <>데이터와 AI,<br /><span className="italic text-[#B8965A]">같이 봅시다.</span></>
+              <>데이터와 AI,<br /><span className="italic text-accent">같이 봅시다.</span></>
             ) : (
-              <>Data and AI —<br /><span className="italic text-[#B8965A]">let&apos;s look together.</span></>
+              <>Data and AI —<br /><span className="italic text-accent">let&apos;s look together.</span></>
             )}
           </h2>
           <div data-reveal data-reveal-delay="1" className="flex flex-col gap-6">
-            <p className="text-[#7A7A7A] text-base md:text-lg leading-[1.9] font-light">
+            <p className="text-[var(--ds-text-secondary)] text-base md:text-lg leading-[1.9] font-light">
               {t(
                 "컨설팅, dataSimplr 얼리 액세스, 강연 요청 모두 편하게 연락 주세요. 어떤 규모든, 어떤 단계든 함께 생각해볼 수 있습니다.",
                 "Consulting, dataSimplr early access, or a speaking request — reach out anytime. Whatever your size or stage, we can think it through together."
@@ -405,7 +405,7 @@ export default function CeoContent() {
               <Link href="/contact" className="btn-gold self-start">{t("문의하기 →", "Get in touch →")}</Link>
               <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group self-start">
                 <LinkedInIcon />
-                <span className="text-[0.6rem] tracking-[0.25em] uppercase text-[#5A5A5A] group-hover:text-[#B8965A] transition-colors duration-300">
+                <span className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted group-hover:text-accent transition-colors duration-300">
                   {t("LinkedIn 프로필 ↗", "LinkedIn profile ↗")}
                 </span>
               </a>

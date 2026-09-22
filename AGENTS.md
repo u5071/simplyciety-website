@@ -21,18 +21,20 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## 디자인 시스템
 
-- 색: 배경 `#080808`(섹션 교차 `#060606`/`#050505`), 골드 `#B8965A`(밝은 강조 `#E0C48E`), 본문 `#F0EDE8` → `#A8A49E` → `#6A6A6A`. 더 어두운 회색은 대비가 부족해 본문에 쓰지 않는다.
-- 타이포: Geist, `font-extralight`~`font-light` 위주, 큰 제목은 `text-[clamp(...)]`.
-- 유틸리티: `globals.css`의 `.btn-gold`, `.btn-primary`, `[data-reveal]`(+`data-reveal-delay`), `.ds-fade`, `.gold-line`, `.noise-bg`.
-- 반응형: 모바일 여백은 `px-5`, 데스크톱 `md:px-16`. 데스크톱 메뉴는 `lg:` 이상, 그 아래는 햄버거 메뉴.
-- 애니메이션은 `prefers-reduced-motion`을 존중한다(globals.css에 규칙 있음).
+전체 규칙은 [docs/design-system.md](docs/design-system.md). 반드시 지킬 것만 옮기면:
+
+- **색상 값을 직접 쓰지 않는다.** `#B8965A`, `rgba(255,255,255,.06)` 같은 값 대신 토큰 유틸리티(`text-accent`, `border-border`, `bg-surface` …)를 쓴다. 투명도가 필요하면 `rgb(var(--accent-rgb) / 0.2)`, `rgb(var(--hairline) / 0.1)`.
+- **텍스트 색은 네 가지뿐**: `text-text`, `text-text-secondary`, `text-text-muted`, `text-accent`. 더 옅은 회색은 명암비 미달이다.
+- **테마는 둘**이다. 다크가 기본이며 시스템 설정을 따르고, 사용자가 고정할 수 있다. 화면을 바꾸면 **다크·라이트 모두** 확인한다.
+- 항상 어두워야 하는 영역(제품 화면 예시, 일러스트)은 `.surface-dark`로 감싼다.
+- 모션을 추가하면 `globals.css`의 `prefers-reduced-motion` 목록에도 넣는다.
 
 ## 검증
 
 코드를 바꾼 뒤에는 최소한 다음을 통과시킨다.
 
 ```bash
-npm run lint && npm run build
+npm run lint && npm run build   # lint에 색상 토큰 검사가 포함된다
 ```
 
 린트는 경고·에러 없이 통과해야 한다. 규칙을 끄는 대신 원인을 고치고, 불가피하면 `app/contexts/LanguageContext.tsx`처럼 이유를 주석으로 남긴 뒤 해당 줄만 예외 처리한다.

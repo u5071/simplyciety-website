@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { THEME_INIT_SCRIPT, ThemeProvider } from "./contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next";
 
 const geist = Geist({
@@ -111,13 +112,16 @@ export default function RootLayout({
   return (
     <html lang="ko" className={`${geist.variable} h-full`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(ORG_SCHEMA) }}
         />
       </head>
       <body className="min-h-full">
-        <LanguageProvider>{children}</LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>{children}</LanguageProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

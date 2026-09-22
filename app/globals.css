@@ -1,16 +1,114 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS
+
+   1차 원시값 → 2차 시맨틱 토큰 → 3차 컴포넌트. 컴포넌트 코드는 2차 토큰만 쓴다.
+   텍스트에 쓸 수 있는 색은 text / text-secondary / text-muted / accent 네 가지.
+   그보다 어두운(밝은) 회색을 직접 쓰면 명암비가 무너진다.
+   테마는 기본적으로 시스템 설정을 따르고, html[data-theme]으로 고정할 수 있다.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
 :root {
-  --bg: #080808;
-  --fg: #F0EDE8;
-  --gold: #B8965A;
-  --muted: #6A6A6A;
-  --border: rgba(255, 255, 255, 0.06);
+  /* ── Dark (기본) ── */
+  --ds-bg: #080808;           /* 페이지 배경 */
+  --ds-surface: #060606;      /* 교차 섹션 */
+  --ds-elevated: #0A0A0A;     /* 카드·패널 */
+  --ds-text: #F0EDE8;         /* 제목·본문 (17.2:1) */
+  --ds-text-secondary: #A8A49E; /* 설명 문단 (8.1:1) */
+  --ds-text-muted: #8A8780;   /* 캡션·라벨 최저 등급 (5.6:1) */
+  --ds-accent: #B8965A;       /* 골드 (7.2:1) */
+  --ds-accent-strong: #E0C48E;
+  --ds-danger: #D98A6A;
+  --accent-rgb: 184 150 90;      /* 투명도 있는 골드용 */
+  --hairline: 255 255 255;       /* 구분선·테두리 기본색 */
+  --border-subtle: rgb(var(--hairline) / 0.05);
+  --border: rgb(var(--hairline) / 0.09);
+  --border-strong: rgb(var(--hairline) / 0.18);
+  --surface-tint: rgb(var(--hairline) / 0.03);
+  --noise-opacity: 0.4;
+  --glow: 1; /* 라이트 테마에서 골드 글로우 세기를 줄이는 배수 */
+}
+
+/* 시스템이 밝은 테마이고, 사용자가 다크로 고정하지 않았을 때 */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --ds-bg: #FBFAF8;
+    --ds-surface: #F3F0EB;
+    --ds-elevated: #FFFFFF;
+    --ds-text: #14120F;         /* 17.9:1 */
+    --ds-text-secondary: #4A453D; /* 9.6:1 */
+    --ds-text-muted: #6B655B;   /* 5.7:1 */
+    --ds-accent: #7A5C22;       /* 6.2:1 — 밝은 배경에서 골드는 어둡게 */
+    --ds-accent-strong: #5C4418;
+    --ds-danger: #A6391B;
+    --accent-rgb: 122 92 34;
+    --hairline: 20 18 15;
+    --border-subtle: rgb(var(--hairline) / 0.08);
+    --border: rgb(var(--hairline) / 0.14);
+    --border-strong: rgb(var(--hairline) / 0.28);
+    --surface-tint: rgb(var(--hairline) / 0.04);
+    --noise-opacity: 0.18;
+    --glow: 0.45;
+  }
+}
+
+/* 사용자가 라이트로 고정했을 때 */
+:root[data-theme="light"] {
+  --ds-bg: #FBFAF8;
+  --ds-surface: #F3F0EB;
+  --ds-elevated: #FFFFFF;
+  --ds-text: #14120F;
+  --ds-text-secondary: #4A453D;
+  --ds-text-muted: #6B655B;
+  --ds-accent: #7A5C22;
+  --ds-accent-strong: #5C4418;
+  --ds-danger: #A6391B;
+  --accent-rgb: 122 92 34;
+  --hairline: 20 18 15;
+  --border-subtle: rgb(var(--hairline) / 0.08);
+  --border: rgb(var(--hairline) / 0.14);
+  --border-strong: rgb(var(--hairline) / 0.28);
+  --surface-tint: rgb(var(--hairline) / 0.04);
+  --noise-opacity: 0.18;
+  --glow: 0.45;
+}
+
+/* 테마와 무관하게 항상 어두운 쇼케이스 영역 (제품 화면 예시, 일러스트) */
+.surface-dark {
+  --ds-bg: #080808;
+  --ds-surface: #060606;
+  --ds-elevated: #0A0A0A;
+  --ds-text: #F0EDE8;
+  --ds-text-secondary: #A8A49E;
+  --ds-text-muted: #8A8780;
+  --ds-accent: #B8965A;
+  --ds-accent-strong: #E0C48E;
+  --accent-rgb: 184 150 90;
+  --hairline: 255 255 255;
+  --border-subtle: rgb(var(--hairline) / 0.05);
+  --border: rgb(var(--hairline) / 0.09);
+  --border-strong: rgb(var(--hairline) / 0.18);
+  --surface-tint: rgb(var(--hairline) / 0.03);
+  --glow: 1;
+  background: var(--ds-bg);
+  color: var(--ds-text);
 }
 
 @theme inline {
-  --color-background: var(--bg);
-  --color-foreground: var(--fg);
+  --color-bg: var(--ds-bg);
+  --color-surface: var(--ds-surface);
+  --color-elevated: var(--ds-elevated);
+  --color-text: var(--ds-text);
+  --color-text-secondary: var(--ds-text-secondary);
+  --color-text-muted: var(--ds-text-muted);
+  --color-accent: var(--ds-accent);
+  --color-accent-strong: var(--ds-accent-strong);
+  --color-danger: var(--ds-danger);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-border-strong: var(--border-strong);
+  --color-surface-tint: var(--surface-tint);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -24,11 +122,14 @@ html {
 }
 
 body {
-  background: var(--bg);
-  color: var(--fg);
+  background: var(--ds-bg);
+  color: var(--ds-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background 0.4s ease, color 0.4s ease;
 }
+
+/* ─── Motion ─── */
 
 @keyframes fadeUp {
   from {
@@ -102,10 +203,31 @@ body {
 [data-reveal-delay="3"] { transition-delay: 0.3s; }
 [data-reveal-delay="4"] { transition-delay: 0.5s; }
 
+@keyframes dsFade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ds-fade { animation: dsFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes dsDash { to { stroke-dashoffset: -24; } }
+.ds-dash { stroke-dasharray: 4 4; animation: dsDash 1.6s linear infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-fade, .ds-dash, .hero-eyebrow, .hero-title, .hero-body, .hero-cta, .hero-line,
+  .scroll-indicator, [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* ─── Components ─── */
+
 .gold-line {
   display: block;
   height: 1px;
-  background: var(--gold);
+  background: var(--ds-accent);
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
@@ -121,12 +243,12 @@ body {
 }
 
 .pillar-card:hover {
-  border-color: rgba(184, 150, 90, 0.3);
-  background: rgba(255, 255, 255, 0.015);
+  border-color: rgb(var(--accent-rgb) / 0.35);
+  background: var(--surface-tint);
 }
 
 .pillar-card:hover .pillar-title {
-  color: var(--gold);
+  color: var(--ds-accent);
   transition: color 0.5s ease;
 }
 
@@ -137,16 +259,16 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--border-strong);
   padding: 1rem 2rem;
-  color: var(--fg);
+  color: var(--ds-text);
   transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .btn-primary:hover {
-  background: var(--fg);
-  color: var(--bg);
-  border-color: var(--fg);
+  background: var(--ds-text);
+  color: var(--ds-bg);
+  border-color: var(--ds-text);
 }
 
 .btn-gold {
@@ -156,15 +278,15 @@ body {
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  border: 1px solid var(--gold);
+  border: 1px solid var(--ds-accent);
   padding: 1.25rem 2.5rem;
-  color: var(--gold);
+  color: var(--ds-accent);
   transition: background 0.3s ease, color 0.3s ease;
 }
 
 .btn-gold:hover {
-  background: var(--gold);
-  color: var(--bg);
+  background: var(--ds-accent);
+  color: var(--ds-bg);
 }
 
 .noise-bg {
@@ -178,17 +300,17 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 0;
-  opacity: 0.4;
+  opacity: var(--noise-opacity);
 }
 
 ::selection {
-  background: var(--gold);
-  color: var(--bg);
+  background: var(--ds-accent);
+  color: var(--ds-bg);
 }
 
 /* ─── Post body prose styles ─── */
 .post-body {
-  color: #6A6A6A;
+  color: var(--ds-text-secondary);
   font-size: 1rem;
   line-height: 1.9;
   font-weight: 300;
@@ -199,7 +321,7 @@ body {
   font-weight: 200;
   letter-spacing: -0.02em;
   line-height: 1.2;
-  color: #D4D0CA;
+  color: var(--ds-text);
   margin-top: 3.5rem;
   margin-bottom: 1.25rem;
 }
@@ -207,7 +329,7 @@ body {
 .post-body h3 {
   font-size: 1.1rem;
   font-weight: 300;
-  color: #B8A080;
+  color: var(--ds-accent);
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
 }
@@ -217,18 +339,18 @@ body {
 }
 
 .post-body strong {
-  color: #C8C4BE;
+  color: var(--ds-text);
   font-weight: 400;
 }
 
 .post-body em {
-  color: #B8965A;
+  color: var(--ds-accent);
   font-style: italic;
 }
 
 .post-body hr {
   border: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--border);
   margin: 3rem 0;
 }
 
@@ -243,23 +365,9 @@ body {
 }
 
 .post-body blockquote {
-  border-left: 2px solid #B8965A;
+  border-left: 2px solid var(--ds-accent);
   padding-left: 1.5rem;
   margin: 2rem 0;
-  color: #5A5A5A;
+  color: var(--ds-text-muted);
   font-style: italic;
-}
-
-/* ─── dataSimplr / diagnosis motion ─── */
-@keyframes dsFade {
-  from { opacity: 0; transform: translateY(6px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.ds-fade { animation: dsFade 0.5s cubic-bezier(0.16, 1, 0.3, 1) both; }
-
-@keyframes dsDash { to { stroke-dashoffset: -24; } }
-.ds-dash { stroke-dasharray: 4 4; animation: dsDash 1.6s linear infinite; }
-
-@media (prefers-reduced-motion: reduce) {
-  .ds-fade, .ds-dash, .hero-eyebrow, .hero-title, .hero-body, .hero-cta, .hero-line { animation: none !important; opacity: 1 !important; }
 }

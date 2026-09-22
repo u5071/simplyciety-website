@@ -6,8 +6,8 @@ type LogoProps = {
 };
 
 export default function Logo({
-  markColor = "#B8965A",
-  textColor = "#F0EDE8",
+  markColor = "var(--ds-accent)",
+  textColor = "var(--ds-text)",
   markOnly = false,
   className = "",
 }: LogoProps) {

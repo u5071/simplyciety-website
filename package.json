@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint && node scripts/check-tokens.mjs",
+    "lint:tokens": "node scripts/check-tokens.mjs"
   },
   "dependencies": {
     "@types/nodemailer": "^8.0.0",
