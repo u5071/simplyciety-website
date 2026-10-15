@@ -5,13 +5,13 @@ import { CONTACT_EMAIL, CONTACT_PHONE_INTL, LINKEDIN_URL } from "../../lib/conta
 export const metadata: Metadata = {
   title: "대표 소개 — 양성열",
   description:
-    "simplyciety 대표 양성열. 금융·데이터·AI·유통/문화를 거쳐 데이터 조직을 이끌었고, 지금은 AI를 위한 데이터 플랫폼 dataSimplr를 만들고 있습니다.",
+    "simplyciety 대표 양성열. AWS Summit Seoul·출판 데이터 마케팅 포럼 연사. 13년 넘게 데이터 민주화, AI 적용, 데이터 수익화를 이끌었고, 지금은 AI를 위한 데이터 플랫폼 dataSimplr를 만듭니다.",
   alternates: { canonical: "https://simplyciety.com/ceo" },
   openGraph: {
     type: "profile",
     url: "https://simplyciety.com/ceo",
     title: "양성열 — simplyciety 대표",
-    description: "AI와 데이터를 더 쉽게. 데이터 조직의 네 단계를 모두 지나온 데이터·AI 실무 리더.",
+    description: "AI와 데이터로 비즈니스를 단순하게. 데이터 조직의 네 단계를 모두 지나온 데이터·AI 리더.",
   },
 };
 
