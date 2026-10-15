@@ -29,7 +29,7 @@ npm run dev                  # http://localhost:3000
 | 경로 | 내용 | 주요 파일 |
 | --- | --- | --- |
 | `/` | 홈 — 브랜드, 3단계 접근법, dataSimplr·대표 소개 | `app/page.tsx` |
-| `/services` | 서비스 3개 라인과 산업별 적용 시나리오 | `app/services/ServicesContent.tsx` |
+| `/services` | 서비스 4개 라인(Consult · Educate · Build · Create)과 산업별 적용 시나리오 | `app/services/ServicesContent.tsx` |
 | `/datasimplr` | dataSimplr 제품 소개 + 대기명단 | `app/datasimplr/` |
 | `/diagnosis` | AI 준비도 진단 (6개 영역·9문항) | `app/diagnosis/` |
 | `/insights`, `/insights/[slug]` | 마크다운 기반 인사이트 글 | `content/posts/`, `lib/posts.ts` |

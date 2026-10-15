@@ -44,7 +44,8 @@ export async function POST(request: NextRequest) {
 
     const serviceLabel: Record<string, string> = {
       consulting: "AX 컨설팅",
-      platform: "AI/Data 플랫폼 구축",
+      platform: "AI/Data 플랫폼·에이전트 구축",
+      create: "데이터 상품화·솔루션",
       education: "교육·조직문화빌딩",
       datasimplr: "dataSimplr 얼리 액세스",
       forum: "포럼 발표 관련",

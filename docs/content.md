@@ -48,7 +48,7 @@ globals.css의 `.post-body` 스타일이 적용된다.
 
 ## 서비스 페이지 (`app/services/ServicesContent.tsx`)
 
-- `LINES`: 서비스 3개 라인과 각 상품(`products`).
+- `LINES`: 명함의 네 축(Consult · Educate · Build · Create)에 맞춘 서비스 4개 라인과 각 상품(`products`). 상품에 `href`를 주면 문의 대신 그 페이지로 연결된다.
 - `CASES`: 산업별 적용 시나리오. **검증된 실제 성과가 아니면 수치를 넣지 않는다.** 현재는 수치 대신 `outcomes`의 이름을 "핵심 측정 지표"로 보여주고, 하단에 예시라는 주석을 달아 두었다.
 - `FAQ`, `PROCESS`: 자주 묻는 질문과 진행 방식.
 

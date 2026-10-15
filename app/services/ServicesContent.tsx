@@ -5,13 +5,17 @@ import Link from "next/link";
 import Nav from "../components/Nav";
 import SiteFooter from "../components/SiteFooter";
 import { useLang } from "../contexts/LanguageContext";
+import { LAUNCH_LABEL } from "../../lib/launch";
 
 type S = { ko: string; en: string };
 const s = (ko: string, en: string): S => ({ ko, en });
 
-const LINES = [
+type Product = { name: string; sub: S; desc: S; duration: string | S; for: S; href?: string; cta?: S };
+type Line = { num: string; pillar: string; id: string; tag: S; title: S; overview: S; products: Product[] };
+
+const LINES: Line[] = [
   {
-    num: "01", id: "consulting",
+    num: "01", pillar: "Consult", id: "consulting",
     tag: s("AX 컨설팅", "AX Consulting"),
     title: s("진단과 방향", "Diagnose & Direct"),
     overview: s(
@@ -31,30 +35,7 @@ const LINES = [
     ],
   },
   {
-    num: "02", id: "platform",
-    tag: s("AI/Data 플랫폼 구축", "AI/Data Platform"),
-    title: s("실행과 구축", "Build & Execute"),
-    overview: s(
-      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 대형 유통사 데이터 파이프라인 구축, 금융사 대상 데이터 공급 API 운영 등 실전 경험 기반. 데이터팀이 없는 조직을 위해서는 자체 제품 dataSimplr(2026.11.16 출시)를 함께 제공합니다.",
-      "The execution partner that actually builds the system for organizations with a clear direction. Built on hands-on experience: data pipelines at a major retailer and a data-supply API for financial institutions. For teams without a data team, our product dataSimplr launches Nov 16, 2026."
-    ),
-    products: [
-      { name: "Simply-Pipeline", sub: s("데이터 파이프라인 구축", "Data Pipeline Build"),
-        desc: s("데이터 수집부터 DW 적재까지 AWS·Snowflake 기반 표준 파이프라인을 구축합니다.", "Builds a standard AWS·Snowflake pipeline from data ingestion to data warehouse loading."),
-        duration: "2 — 4mo", for: s("데이터 기반 구조가 없는 기업", "No data infrastructure yet") },
-      { name: "Simply-Brain", sub: s("AI 기능 연동·구현", "AI Feature Integration"),
-        desc: s("기존 시스템에 수요예측, LLM, 분류 모델을 연동합니다. MVP 설계부터 운영까지 전 과정을 지원합니다.", "Integrates demand forecasting, LLMs, and classification models into existing systems. Supports the full cycle from MVP to production."),
-        duration: "3 — 6mo", for: s("AI 기능 도입 기업", "Adding AI to existing stack") },
-      { name: "Simply-Portal", sub: s("사내 데이터 포털", "Internal Data Portal"),
-        desc: s("비개발자도 데이터를 직접 조회·분석할 수 있는 Streamlit 기반 사내 데이터 포털을 구축합니다.", "A Streamlit-based internal portal so non-engineers can query and analyze data without code."),
-        duration: "1 — 2mo", for: s("데이터 민주화 추진 기업", "Democratizing data access") },
-      { name: "Simply-API", sub: s("데이터 수익화 API", "Data Monetization API"),
-        desc: s("내부 데이터 자산을 외부 파트너·금융사에 제공하는 API 서비스를 구축합니다. 대안신용평가 데이터 공급 경험 기반.", "Builds an API service to expose internal data assets to partners or financial institutions. Based on real alternative credit scoring API experience."),
-        duration: "2 — 4mo", for: s("데이터 비즈니스 수익화", "Monetizing data assets") },
-    ],
-  },
-  {
-    num: "03", id: "education",
+    num: "02", pillar: "Educate", id: "education",
     tag: s("교육·조직문화빌딩", "Education & Culture"),
     title: s("사람과 문화", "People & Culture"),
     overview: s(
@@ -71,6 +52,47 @@ const LINES = [
       { name: "Simply-Culture", sub: s("DX 조직문화 워크샵", "DX Culture Workshop"),
         desc: s("데이터 기반 의사결정 문화를 설계하는 월간 시리즈 워크샵. 현장 실무 중심으로 진행합니다.", "A monthly workshop series to design a data-driven decision culture. Grounded in real on-the-ground practice."),
         duration: s("월간 시리즈", "Monthly series"), for: s("의사결정 문화 혁신", "Decision culture transformation") },
+    ],
+  },
+  {
+    num: "03", pillar: "Build", id: "platform",
+    tag: s("AI/Data 플랫폼·에이전트 구축", "AI/Data Platforms & Agents"),
+    title: s("실행과 구축", "Build & Execute"),
+    overview: s(
+      "방향이 잡힌 조직에 실제로 시스템을 만들어주는 실행 파트너. 데이터 기반을 깔고, 현업이 직접 쓰게 하고, 그 위에 AI 모델과 에이전트를 붙입니다. 대형 유통사 데이터 파이프라인과 사내 데이터 민주화를 직접 만든 경험이 바탕입니다.",
+      "The execution partner that actually builds the system once direction is set. We lay the data foundation, put it in the business's hands, then add AI models and agents on top — grounded in having built a major retailer's data pipelines and company-wide data democratization."
+    ),
+    products: [
+      { name: "Simply-Pipeline", sub: s("데이터 파이프라인 구축", "Data Pipeline Build"),
+        desc: s("데이터 수집부터 DW 적재까지 표준 파이프라인을 구축합니다. AWS·Snowflake 등 이미 쓰는 클라우드 환경에 맞춥니다.", "Builds a standard pipeline from ingestion to data warehouse, fitted to the cloud you already use — AWS, Snowflake, and others."),
+        duration: "2 — 4mo", for: s("데이터 기반 구조가 없는 기업", "No data infrastructure yet") },
+      { name: "Simply-Agent", sub: s("AI 에이전트·업무 자동화", "AI Agents & Automation"),
+        desc: s("사내 데이터·문서에 연결된 AI 에이전트로 조회·보고·응대 같은 반복 업무를 자동화합니다. MCP로 기존 시스템과 안전하게 잇고, 권한과 기록을 남깁니다.", "AI agents connected to your data and documents automate repetitive work — lookups, reports, responses. Wired into existing systems via MCP, with permissions and audit trails."),
+        duration: "1 — 3mo", for: s("반복 업무가 많은 팀", "Teams buried in repetitive work") },
+      { name: "Simply-Brain", sub: s("예측·AI 모델 연동", "Predictive & AI Models"),
+        desc: s("기존 시스템에 수요예측, 분류, LLM 모델을 연동합니다. MVP 설계부터 운영까지 전 과정을 지원합니다.", "Integrates demand forecasting, LLMs, and classification models into existing systems. Supports the full cycle from MVP to production."),
+        duration: "3 — 6mo", for: s("AI 기능 도입 기업", "Adding AI to existing stack") },
+      { name: "Simply-Portal", sub: s("사내 데이터 포털", "Internal Data Portal"),
+        desc: s("비개발자도 데이터를 직접 조회·분석할 수 있는 사내 데이터 포털을 구축합니다. 엑셀 직결 조회처럼 현업이 이미 쓰는 도구에서 시작합니다.", "An internal portal so non-engineers can query and analyze data without code — starting from tools they already use, like Excel."),
+        duration: "1 — 2mo", for: s("데이터 민주화 추진 기업", "Democratizing data access") },
+    ],
+  },
+  {
+    num: "04", pillar: "Create", id: "create",
+    tag: s("솔루션·플랫폼", "Solutions & Platform"),
+    title: s("새로 만드는 것", "Things we make"),
+    overview: s(
+      `직접 만든 제품과, 고객의 데이터로 만드는 새 상품. 데이터팀이 없는 조직을 위한 AI 데이터 플랫폼 dataSimplr를 ${LAUNCH_LABEL.ko} 출시하고, 쌓인 데이터를 외부에 파는 데이터 상품도 함께 설계합니다.`,
+      `Products we build ourselves, and new products made from your data. dataSimplr — the AI data platform for teams without a data team — launches ${LAUNCH_LABEL.en}, and we design data products that sell what you've already collected.`
+    ),
+    products: [
+      { name: "dataSimplr", sub: s("AI를 위한 데이터 플랫폼", "The data platform for AI"),
+        desc: s("흩어진 엑셀·DB를 잇고, 뜻을 맞추고, 에이전트와 MCP로 AI에 안전하게 건넵니다. 데이터 담당자 없이 자연어로 묻고 답을 받습니다.", "Connects scattered spreadsheets and databases, aligns definitions, and hands them to AI through agents and MCP. Ask in plain language — no data person required."),
+        duration: s(`${LAUNCH_LABEL.ko} 퍼블릭 베타`, `Public beta ${LAUNCH_LABEL.en}`), for: s("데이터팀이 없는 팀", "Teams without a data team"),
+        href: "/datasimplr", cta: s("제품 보기 →", "See the product →") },
+      { name: "Simply-API", sub: s("데이터 수익화 API", "Data Monetization API"),
+        desc: s("내부 데이터 자산을 외부 파트너·금융사에 제공하는 API 서비스를 구축합니다. 대안신용평가 데이터 공급 경험 기반.", "Builds an API service to expose internal data assets to partners or financial institutions. Based on real alternative credit scoring API experience."),
+        duration: "2 — 4mo", for: s("데이터 비즈니스 수익화", "Monetizing data assets") },
     ],
   },
 ];
@@ -214,10 +236,10 @@ function CaseVisual({ id }: { id: string }) {
         <line x1="16" y1="142" x2="544" y2="142" stroke="rgb(var(--hairline) / 0.04)" />
         <text x="16" y="14" fill="rgb(var(--accent-rgb) / 0.22)" fontSize="7" letterSpacing="2" fontFamily="monospace">CONVERSION RATE</text>
         <rect x="408" y="22" width="136" height="106" fill="rgb(var(--accent-rgb) / 0.025)" rx="1" />
-        <text x="418" y="68" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="36" fontWeight="100" fontFamily="sans-serif">+18%</text>
+        <text x="418" y="68" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="36" fontWeight="100" fontFamily="sans-serif">↑</text>
         <text x="418" y="84" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="2" fontFamily="monospace">CVR IMPROVEMENT</text>
         <line x1="418" y1="95" x2="536" y2="95" stroke="rgb(var(--accent-rgb) / 0.07)" />
-        <text x="418" y="108" fill="rgb(var(--accent-rgb) / 0.13)" fontSize="7" letterSpacing="1" fontFamily="monospace">CLV +31% · COST −24%</text>
+        <text x="418" y="108" fill="rgb(var(--accent-rgb) / 0.13)" fontSize="7" letterSpacing="1" fontFamily="monospace">CLV · MARKETING COST</text>
       </svg>
     ),
     finance: (
@@ -227,7 +249,7 @@ function CaseVisual({ id }: { id: string }) {
         {[0,1,2,3,4,5].map(i => (
           <rect key={i} x={16} y={22+i*18} width={170-i*12} height={13} fill={`rgb(var(--accent-rgb) / ${0.05-i*0.005})`} rx="1" />
         ))}
-        <text x="16" y="134" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">BEFORE · 5 DAYS AVG</text>
+        <text x="16" y="134" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">BEFORE · MANUAL REVIEW</text>
         <line x1="215" y1="75" x2="268" y2="75" stroke="rgb(var(--accent-rgb) / 0.22)" strokeWidth="1" />
         <polyline points="260,69 268,75 260,81" stroke="rgb(var(--accent-rgb) / 0.22)" strokeWidth="1" fill="none" strokeLinecap="round" />
         <text x="227" y="68" fill="rgb(var(--accent-rgb) / 0.15)" fontSize="6" letterSpacing="1" fontFamily="monospace">AI</text>
@@ -237,8 +259,8 @@ function CaseVisual({ id }: { id: string }) {
           <line key={i} x1="283" y1={70+i*5} x2={340-i*18} y2={70+i*5} stroke="rgb(var(--accent-rgb) / 0.12)" strokeWidth="0.8" />
         ))}
         <text x="278" y="100" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">AFTER · AUTOMATED</text>
-        <text x="456" y="78" fill="rgb(var(--accent-rgb) / 0.58)" fontSize="34" fontWeight="100" fontFamily="sans-serif">−89%</text>
-        <text x="456" y="94" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">FASTER · APPROVAL +27%</text>
+        <text x="456" y="78" fill="rgb(var(--accent-rgb) / 0.58)" fontSize="34" fontWeight="100" fontFamily="sans-serif">↓</text>
+        <text x="456" y="94" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">FASTER</text>
       </svg>
     ),
     manufacturing: (
@@ -286,9 +308,9 @@ function CaseVisual({ id }: { id: string }) {
             <circle cx={cx} cy={cy} r="5" fill="rgb(var(--accent-rgb) / 0.07)" stroke="rgb(var(--accent-rgb) / 0.18)" strokeWidth="0.8" />
           </g>
         ))}
-        <text x="430" y="66" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">+26%</text>
+        <text x="430" y="66" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">↑</text>
         <text x="430" y="80" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">PRODUCTIVITY</text>
-        <text x="430" y="102" fill="rgb(var(--accent-rgb) / 0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">−19%</text>
+        <text x="430" y="102" fill="rgb(var(--accent-rgb) / 0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">↓</text>
         <text x="430" y="116" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">TURNOVER RATE</text>
       </svg>
     ),
@@ -314,9 +336,9 @@ function CaseVisual({ id }: { id: string }) {
             <circle cx={396} cy={y} r="3.5" fill="rgb(var(--accent-rgb) / 0.08)" stroke="rgb(var(--accent-rgb) / 0.18)" strokeWidth="0.8" />
           </g>
         ))}
-        <text x="438" y="66" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">−29%</text>
+        <text x="438" y="66" fill="rgb(var(--accent-rgb) / 0.55)" fontSize="26" fontWeight="100" fontFamily="sans-serif">↓</text>
         <text x="438" y="80" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">INVENTORY COST</text>
-        <text x="438" y="102" fill="rgb(var(--accent-rgb) / 0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">−17%</text>
+        <text x="438" y="102" fill="rgb(var(--accent-rgb) / 0.45)" fontSize="22" fontWeight="100" fontFamily="sans-serif">↓</text>
         <text x="438" y="116" fill="rgb(var(--accent-rgb) / 0.18)" fontSize="7" letterSpacing="1" fontFamily="monospace">DELIVERY TIME</text>
       </svg>
     ),
@@ -353,6 +375,14 @@ const SERVICE_ICONS: Record<string, React.ReactNode> = {
       <line x1="24" y1="30" x2="24" y2="34" stroke="rgb(var(--accent-rgb) / 0.3)" strokeWidth="1" />
       <circle cx="14" cy="14" r="2" fill="rgb(var(--accent-rgb) / 0.35)" />
       <circle cx="14" cy="26" r="2" fill="rgb(var(--accent-rgb) / 0.25)" />
+    </svg>
+  ),
+  create: (
+    <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <path d="M40 18V8H8v32h32V30" stroke="rgb(var(--accent-rgb) / 0.3)" strokeWidth="1" />
+      <path d="M13 17l10 7M13 24h10M13 31l10-7" stroke="rgb(var(--accent-rgb) / 0.22)" strokeWidth="1" />
+      <rect x="22" y="22" width="4" height="4" fill="rgb(var(--accent-rgb) / 0.5)" />
+      <path d="M26 24h16" stroke="rgb(var(--accent-rgb) / 0.4)" strokeWidth="1.2" />
     </svg>
   ),
   education: (
@@ -415,19 +445,19 @@ export default function ServicesContent() {
             Services
           </p>
           <h1 className="text-[clamp(3.5rem,9vw,11rem)] font-extralight leading-[0.9] tracking-[-0.03em] mb-8">
-            {t("세 가지 방법으로", "Three ways to")}<br />
-            <span className="italic text-accent">{t("단순화합니다.", "simplify.")}</span>
+            {t("네 가지 방법으로", "Four ways to")}<br />
+            <span className="italic text-accent">{t("단순하게.", "simplify.")}</span>
           </h1>
           <p className="text-text-muted text-sm font-light tracking-wide mb-10 max-w-xl">
             {t(
-              "데이터로 진단하고, AI로 실행합니다. 조직의 복잡성을 걷어내는 세 가지 접근 방식을 제공합니다.",
-              "Diagnose with data. Execute with AI. Three service lines to cut the complexity out of your organization."
+              "방향을 잡고(Consult), 사람을 키우고(Educate), 시스템을 만들고(Build), 새 제품을 내놓습니다(Create). AI와 데이터로 비즈니스를 단순하게 만드는 네 가지 방식입니다.",
+              "Set direction (Consult), grow people (Educate), build systems (Build), and ship new products (Create) — four ways we simplify business with AI and data."
             )}
           </p>
-          <div className="flex items-center gap-8 mt-4" style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)", paddingTop: "1.5rem" }}>
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-3 mt-4" style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)", paddingTop: "1.5rem" }}>
             {LINES.map((line) => (
               <a key={line.id} href={`#${line.id}`} className="flex items-center gap-2 group">
-                <span className="text-[0.55rem] tracking-[0.2em] uppercase text-accent">{line.num}</span>
+                <span className="text-[0.55rem] tracking-[0.2em] uppercase text-accent">{line.num} {line.pillar}</span>
                 <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted group-hover:text-text-muted transition-colors">{line.tag[lang]}</span>
               </a>
             ))}
@@ -445,7 +475,7 @@ export default function ServicesContent() {
                 <div className="flex items-start gap-4 mb-4">
                   <div className="flex-shrink-0 opacity-70">{SERVICE_ICONS[line.id]}</div>
                   <div>
-                    <p className="text-[0.55rem] tracking-[0.3em] uppercase text-accent mb-2">{line.num}</p>
+                    <p className="text-[0.55rem] tracking-[0.3em] uppercase text-accent mb-2">{line.num} · {line.pillar}</p>
                     <h2 className="text-[clamp(2rem,4vw,3.5rem)] font-extralight tracking-tight leading-[1.05]">{line.tag[lang]}</h2>
                     <p className="text-accent/60 text-sm font-light mt-2 italic">{line.title[lang]}</p>
                   </div>
@@ -455,7 +485,7 @@ export default function ServicesContent() {
                 <p className="text-text-muted text-lg leading-[1.9] font-light">{line.overview[lang]}</p>
               </div>
             </div>
-            <div className={`grid grid-cols-1 gap-px bg-border ${line.products.length === 4 ? "md:grid-cols-4" : "md:grid-cols-3"}`}>
+            <div className={`grid grid-cols-1 gap-px bg-border ${{ 2: "md:grid-cols-2", 3: "md:grid-cols-3", 4: "md:grid-cols-2 lg:grid-cols-4" }[line.products.length]}`}>
               {line.products.map((p) => (
                 <div key={p.name}
                   className="bg-bg p-8 md:p-10 flex flex-col gap-5 group hover:bg-elevated transition-colors duration-500">
@@ -470,9 +500,9 @@ export default function ServicesContent() {
                     <p className="text-[0.55rem] tracking-[0.2em] uppercase text-text-muted mb-1 mt-3">{t("적합 대상", "Best for")}</p>
                     <p className="text-xs text-text-muted">{p.for[lang]}</p>
                   </div>
-                  <Link href={`/contact?service=${line.id}`}
+                  <Link href={p.href ?? `/contact?service=${line.id}`}
                     className="text-[0.55rem] tracking-[0.2em] uppercase text-accent/50 group-hover:text-accent transition-colors">
-                    {t("문의하기 →", "Inquire →")}
+                    {p.cta ? p.cta[lang] : t("문의하기 →", "Inquire →")}
                   </Link>
                 </div>
               ))}

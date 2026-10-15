@@ -10,8 +10,9 @@ import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_PHONE_INTL, L
 
 const SERVICE_OPTIONS = [
   { value: "consulting", ko: "AX 컨설팅", en: "AX Consulting" },
-  { value: "platform", ko: "AI/Data 플랫폼 구축", en: "AI/Data Platform" },
   { value: "education", ko: "교육·조직문화빌딩", en: "Education & Culture" },
+  { value: "platform", ko: "AI/Data 플랫폼·에이전트 구축", en: "AI/Data Platforms & Agents" },
+  { value: "create", ko: "데이터 상품화·솔루션", en: "Data Products & Solutions" },
   { value: "datasimplr", ko: "dataSimplr 얼리 액세스", en: "dataSimplr Early Access" },
   { value: "lecture", ko: "강연 요청", en: "Speaking Request" },
   { value: "forum", ko: "포럼 발표 관련 문의", en: "About the forum talk" },
@@ -30,6 +31,10 @@ const EXAMPLES: Record<string, { ko: string; en: string }> = {
   education: {
     ko: "예) 임원진의 AI 이해도가 낮아 데이터 조직이 예산을 확보하지 못하고 있습니다. C레벨 대상 AI 브리핑 과정을 제안해주실 수 있을까요?",
     en: "e.g. Our executives have low AI literacy and our data team can't get budget. Can you propose an AI briefing program for C-level?",
+  },
+  create: {
+    ko: "예) 쌓아 둔 구매·이용 데이터를 제휴사에 상품으로 제공하고 싶습니다. 어떤 데이터를 어떤 형태로 팔 수 있을지 함께 설계해 주실 수 있을까요?",
+    en: "e.g. We'd like to offer our purchase and usage data to partners as a product. Can you help design what to sell and in what form?",
   },
   datasimplr: {
     ko: "예) 주문·재고는 엑셀, 회원은 MySQL에 흩어져 있습니다. 데이터 담당자 없이 AI로 분석하고 싶어 dataSimplr를 먼저 써보고 싶습니다.",
@@ -388,8 +393,9 @@ function ContactForm() {
                   <div className="flex flex-col gap-3">
                     {[
                       { ko: "AX 컨설팅", en: "AX Consulting", href: "/services#consulting" },
-                      { ko: "AI/Data 플랫폼 구축", en: "AI/Data Platform", href: "/services#platform" },
                       { ko: "교육·조직문화빌딩", en: "Education & Culture", href: "/services#education" },
+                      { ko: "AI/Data 플랫폼·에이전트 구축", en: "AI/Data Platforms & Agents", href: "/services#platform" },
+                      { ko: "솔루션·플랫폼", en: "Solutions & Platform", href: "/services#create" },
                     ].map((item) => (
                       <Link
                         key={item.href}
