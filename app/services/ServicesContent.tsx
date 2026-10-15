@@ -81,8 +81,8 @@ const CASES = [
     industry: s("유통 / 리테일", "Retail"),
     filter: "retail",
     challenge: s(
-      "온·오프라인 고객 데이터가 분산되어 개인화 마케팅이 불가능한 상황. 경쟁사 대비 전환율이 지속 하락하고 있었습니다.",
-      "Customer data scattered across channels made personalization impossible, causing conversion rates to fall behind competitors."
+      "온·오프라인 고객 데이터가 흩어져 있어 개인화 마케팅을 못 하고, 경쟁사보다 전환율이 낮아지는 상황.",
+      "Customer data is scattered across channels, so personalization isn't possible and conversion trails competitors."
     ),
     steps: [
       s("채널별 고객 데이터 통합 파이프라인 구축", "Unified customer data pipeline across all channels"),
@@ -90,9 +90,9 @@ const CASES = [
       s("마케팅·상품팀 AI 활용 교육 및 내재화", "AI literacy training for marketing & merchandising teams"),
     ],
     outcomes: [
-      { value: "18%", label: s("전환율 향상", "Conversion rate ↑") },
-      { value: "31%", label: s("고객 생애가치 증가", "CLV increase") },
-      { value: "24%", label: s("마케팅 비용 절감", "Marketing cost ↓") },
+      s("전환율 향상", "Conversion rate ↑"),
+      s("고객 생애가치 증가", "CLV increase"),
+      s("마케팅 비용 절감", "Marketing cost ↓"),
     ],
   },
   {
@@ -100,18 +100,18 @@ const CASES = [
     industry: s("금융 / 보험", "Finance & Insurance"),
     filter: "finance",
     challenge: s(
-      "수동 심사 방식으로 대출 처리가 평균 5일 소요. 신용 이력이 부족한 고객은 승인조차 받기 어려웠습니다.",
-      "Manual underwriting took an average of 5 days per loan. Customers with thin credit files were routinely declined."
+      "수작업 심사로 대출 처리에 며칠씩 걸리고, 신용 이력이 짧은 고객은 승인받기 어려운 상황.",
+      "Manual underwriting takes days per loan, and customers with thin credit files are hard to approve."
     ),
     steps: [
-      s("대안 데이터 기반 AI 신용평가 모델 구축", "Built AI credit scoring model with alternative data"),
+      s("대안 데이터 기반 AI 신용평가 모델 구축", "AI credit scoring model with alternative data"),
       s("Snowflake 기반 실시간 심사 자동화 파이프라인", "Real-time underwriting automation on Snowflake"),
       s("리스크 모니터링 대시보드 및 데이터 거버넌스 수립", "Risk monitoring dashboard & data governance setup"),
     ],
     outcomes: [
-      { value: "89%", label: s("심사 시간 단축", "Faster processing") },
-      { value: "27%", label: s("승인율 개선", "Approval rate ↑") },
-      { value: "35%", label: s("운영 비용 절감", "Operating cost ↓") },
+      s("심사 시간 단축", "Faster processing"),
+      s("승인율 개선", "Approval rate ↑"),
+      s("운영 비용 절감", "Operating cost ↓"),
     ],
   },
   {
@@ -119,8 +119,8 @@ const CASES = [
     industry: s("제조", "Manufacturing"),
     filter: "manufacturing",
     challenge: s(
-      "육안 검사에 의존하던 품질관리. 미세 불량 검출이 어려워 클레임과 재작업 비용이 누적되고 있었습니다.",
-      "Quality control relied on manual visual inspection. Micro-defects were missed, generating costly claims and rework."
+      "품질관리를 육안 검사에 의존해 미세 불량을 놓치고, 클레임과 재작업 비용이 쌓이는 상황.",
+      "Quality control relies on visual inspection, so micro-defects slip through and claims and rework pile up."
     ),
     steps: [
       s("컴퓨터 비전 기반 자동 불량 검출 시스템 도입", "Computer vision automated defect detection system"),
@@ -128,9 +128,9 @@ const CASES = [
       s("생산 현장 데이터 리터러시 교육 및 운영 체계 정착", "Shop-floor data literacy training & ops system rollout"),
     ],
     outcomes: [
-      { value: "52%", label: s("불량률 감소", "Defect rate ↓") },
-      { value: "21%", label: s("생산성 향상", "Productivity ↑") },
-      { value: "38%", label: s("유지보수 비용 절감", "Maintenance cost ↓") },
+      s("불량률 감소", "Defect rate ↓"),
+      s("생산성 향상", "Productivity ↑"),
+      s("유지보수 비용 절감", "Maintenance cost ↓"),
     ],
   },
   {
@@ -138,8 +138,8 @@ const CASES = [
     industry: s("서비스 / HR", "Service & HR"),
     filter: "hr",
     challenge: s(
-      "DX 선언 1년 후, 현장은 여전히 엑셀과 감(感)에 의존하고 있었습니다. 구성원의 피로감과 저항이 쌓여가는 상황.",
-      "One year after declaring DX, teams were still running on spreadsheets and instinct — with mounting fatigue and resistance from staff."
+      "DX를 선언한 지 1년이 지나도 현장은 엑셀과 감(感)으로 일하고, 구성원의 피로감과 저항이 쌓이는 상황.",
+      "A year after declaring DX, teams still run on spreadsheets and instinct, and fatigue and resistance are building."
     ),
     steps: [
       s("조직 AI 준비도 진단 및 부서별 Pain Point 매핑", "AI readiness diagnosis & department-level pain-point mapping"),
@@ -147,9 +147,9 @@ const CASES = [
       s("경영진 AI 브리핑 및 변화관리 워크샵 시리즈", "Executive AI briefings & change management workshop series"),
     ],
     outcomes: [
-      { value: "19%", label: s("이직률 감소", "Turnover ↓") },
-      { value: "26%", label: s("조직 생산성 향상", "Productivity ↑") },
-      { value: "89%", label: s("AI 도입 만족도", "AI adoption satisfaction") },
+      s("이직률 감소", "Turnover ↓"),
+      s("조직 생산성 향상", "Productivity ↑"),
+      s("AI 도입 만족도", "AI adoption satisfaction"),
     ],
   },
   {
@@ -157,8 +157,8 @@ const CASES = [
     industry: s("물류 / SCM", "Logistics & SCM"),
     filter: "logistics",
     challenge: s(
-      "시스템마다 분산된 재고·주문 데이터. 수요 예측 오차로 과잉 재고와 배송 지연이 반복되고 있었습니다.",
-      "Inventory and order data trapped in silos. Demand forecasting errors led to recurring overstocking and delivery delays."
+      "재고·주문 데이터가 시스템마다 나뉘어 있고, 수요 예측이 빗나가 과잉 재고와 배송 지연이 반복되는 상황.",
+      "Inventory and order data sit in silos, and forecasting misses cause repeated overstock and delivery delays."
     ),
     steps: [
       s("판매·재고·주문 데이터 실시간 통합 파이프라인 구축", "Real-time unified pipeline for sales, inventory & orders"),
@@ -166,15 +166,15 @@ const CASES = [
       s("물류팀 셀프서비스 BI 대시보드 및 자동 알림 구축", "Self-service BI dashboard & automated alerts for ops team"),
     ],
     outcomes: [
-      { value: "29%", label: s("재고 비용 절감", "Inventory cost ↓") },
-      { value: "17%", label: s("배송 시간 단축", "Delivery time ↓") },
-      { value: "31%", label: s("운영 비용 절감", "Operating cost ↓") },
+      s("재고 비용 절감", "Inventory cost ↓"),
+      s("배송 시간 단축", "Delivery time ↓"),
+      s("운영 비용 절감", "Operating cost ↓"),
     ],
   },
 ];
 
 const PROCESS = [
-  { step: "01", title: s("문의 접수", "Inquiry"), desc: s("서비스 유형과 조직 상황을 간단히 공유해 주세요. 48시간 이내 회신합니다.", "Share your service type and situation briefly. We reply within 48 hours.") },
+  { step: "01", title: s("문의 접수", "Inquiry"), desc: s("서비스 유형과 조직 상황을 간단히 공유해 주세요. 영업일 1~2일 이내 회신합니다.", "Share your service type and situation briefly. We reply within 1–2 business days.") },
   { step: "02", title: s("초기 진단", "Initial Diagnosis"), desc: s("무료 30분 미팅으로 현황을 파악하고 최적 서비스를 제안합니다.", "A free 30-min meeting to understand your situation and propose the right service.") },
   { step: "03", title: s("실행", "Execution"), desc: s("합의된 범위와 일정에 따라 컨설팅·구축·교육을 진행합니다.", "Consulting, building, or education proceeds on the agreed scope and timeline.") },
   { step: "04", title: s("지속 개선", "Continuous Improvement"), desc: s("결과물을 토대로 다음 단계로 연결하거나 자문 파트너십을 이어갑니다.", "We connect to the next step or continue as an ongoing advisory partner.") },
@@ -188,7 +188,7 @@ const FAQ = [
   { q: s("데이터 인프라가 전혀 없어도 서비스를 받을 수 있나요?", "Can we work together if we have no data infrastructure yet?"),
     a: s("가능합니다. Simply-Scan 진단을 통해 현재 상태를 파악하고, 규모와 예산에 맞는 단계별 접근법을 설계합니다. 처음부터 모든 것을 갖출 필요 없이, 가장 임팩트가 큰 영역부터 시작합니다.", "Yes. Simply-Scan diagnoses your current state and designs a phased approach matched to your scale and budget. You don't need everything from day one — we start where the impact is highest.") },
   { q: s("주로 어떤 규모의 기업과 일하나요?", "What size of company do you typically work with?"),
-    a: s("스타트업부터 대기업 계열사까지 다양한 규모와 협업합니다. 중요한 것은 규모가 아니라 '데이터와 AI로 조직을 바꾸고자 하는 의지'입니다.", "From startups to large enterprise subsidiaries. What matters isn't size — it's the will to change through data and AI.") },
+    a: s("규모는 가리지 않습니다. 데이터 담당자가 없는 작은 팀이라면 진단과 dataSimplr로 가볍게 시작하고, 큰 조직이라면 전략·구축·교육을 단계별로 설계합니다. 중요한 것은 규모가 아니라 '데이터와 AI로 일하는 방식을 바꾸려는 의지'입니다.", "Any size. Small teams without a data person can start light with a diagnosis and dataSimplr; larger organizations get strategy, builds, and training designed in phases. What matters isn't size — it's the will to change how you work with data and AI.") },
   { q: s("강연이나 사외 교육 요청도 가능한가요?", "Do you do external speaking or training?"),
     a: s("가능합니다. AWS Summit Seoul 2023 발표, KMA 인터뷰, 대학 교육과정 강의 등의 경험을 바탕으로 기업 행사, 컨퍼런스, 사내 교육 강연을 진행합니다.", "Yes. Based on our AWS Summit Seoul 2023 talk, KMA interview, and university course work, we speak at company events, conferences, and in-house education sessions.") },
 ];
@@ -528,9 +528,12 @@ export default function ServicesContent() {
                 <div className="p-8 md:p-10 flex flex-col gap-7">
                 {/* Industry tag */}
                 <div>
-                  <span className="inline-block text-[0.5rem] tracking-[0.25em] uppercase border border-accent/40 text-accent px-3 py-1 mb-4">
-                    {c.industry[lang]}
-                  </span>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="inline-block text-[0.5rem] tracking-[0.25em] uppercase border border-accent/40 text-accent px-3 py-1">
+                      {c.industry[lang]}
+                    </span>
+                    <span className="text-[0.5rem] tracking-[0.25em] uppercase text-text-muted">{t("예시 시나리오", "Illustrative")}</span>
+                  </div>
                   <p className="text-text-muted text-sm leading-[1.8] font-light">{c.challenge[lang]}</p>
                 </div>
 
@@ -558,8 +561,8 @@ export default function ServicesContent() {
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {c.outcomes.map((o) => (
-                      <span key={o.label.en} className="text-xs font-light text-accent border border-accent/25 px-2.5 py-1">
-                        {o.label[lang]}
+                      <span key={o.en} className="text-xs font-light text-accent border border-accent/25 px-2.5 py-1">
+                        {o[lang]}
                       </span>
                     ))}
                   </div>
@@ -633,7 +636,7 @@ export default function ServicesContent() {
               {t("무료 초기 상담 신청 →", "Book a free consultation →")}
             </Link>
             <p className="text-text-muted text-[0.6rem] tracking-widest uppercase">
-              {t("48시간 이내 회신", "Reply within 48 hours")}
+              {t("영업일 1~2일 이내 회신", "Reply within 1–2 business days")}
             </p>
           </div>
         </div>
