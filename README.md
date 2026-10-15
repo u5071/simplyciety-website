@@ -50,7 +50,7 @@ API: `POST /api/contact`(문의 메일), `POST /api/waitlist`(대기명단 등�
 | 알림 메일 수신 주소 | 환경변수 `NOTIFY_EMAIL` (미설정 시 `lib/mail.ts`의 기본값) |
 | 인사이트 글 | `content/posts/*.md` |
 
-자세한 내용: [docs/design-system.md](docs/design-system.md)(색·타이포·테마), [docs/content.md](docs/content.md)(콘텐츠 수정), [docs/operations.md](docs/operations.md)(환경변수·배포·대기명단 운영).
+변경 이력은 [CHANGELOG.md](CHANGELOG.md), 작업별 요청·결정 기록은 [docs/history/](docs/history/). 자세한 내용: [docs/design-system.md](docs/design-system.md)(색·타이포·테마), [docs/content.md](docs/content.md)(콘텐츠 수정), [docs/operations.md](docs/operations.md)(환경변수·배포·대기명단 운영).
 
 ## 코드 규칙
 

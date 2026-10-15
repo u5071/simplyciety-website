@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import DataSimplrContent from "./DataSimplrContent";
-import { LAUNCH_LABEL, LAUNCH_LONG } from "../../lib/launch";
+import { LAUNCH_DATE, LAUNCH_LABEL, LAUNCH_LONG } from "../../lib/launch";
 
 export const metadata: Metadata = {
   title: "dataSimplr — 데이터팀 없는 팀을 위한 AI 데이터 플랫폼",
@@ -21,7 +21,7 @@ const PRODUCT_SCHEMA = {
   name: "dataSimplr",
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
-  releaseNotes: "Public beta launching 2026-11-16",
+  releaseNotes: `Public beta launching ${LAUNCH_DATE}`,
   description: "The data platform for teams without a data team — multi-model loading (relational, document, graph, ontology) with agent-based analysis.",
   url: "https://simplyciety.com/datasimplr",
   publisher: { "@type": "Organization", name: "simplyciety", url: "https://simplyciety.com" },

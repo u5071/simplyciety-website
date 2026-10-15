@@ -2,6 +2,18 @@
 
 주요 변경만 최신순으로 적는다. 자세한 내역은 `git log`.
 
+## 2026-10-15
+
+명함 최종본 기준 리브랜딩. 요청·결정·남은 일은 [docs/history/2026-10-15-business-card-rebrand.md](docs/history/2026-10-15-business-card-rebrand.md).
+
+- **dataSimplr 출시일 2026-12-19로 연기** — `lib/launch.ts`만 바꾸면 페이지·메일·카운트다운·OG 이미지·구조화 데이터에 모두 반영된다(하드코딩돼 있던 7곳 정리).
+- **로고 교체** — 오른쪽이 열린 사각 프레임 + 사각 노드(`Logo.tsx`의 `LogoMark`). favicon과 OG 이미지 2종도 교체.
+- **연락처 일원화** — 이메일 yang5071@simplyciety.com, 전화, LinkedIn(linkedin.com/in/yang5071), 태그라인을 `lib/contact.ts`에서 관리. 알림 수신 기본값도 새 주소.
+- **서비스 네 축 재편** — Consult · Educate · Build · Create. Simply-Agent(AI 에이전트·업무 자동화) 신설, Create에 dataSimplr·Simply-API. 진단 결과도 Simply-Agent를 추천.
+- **대표 소개 개편** — 발표·인터뷰 카드(On Stage), 자문 이력 자리(비면 숨김), 해낸 일 4개, 접힌 경력·학력.
+- **홈 메시지 정리** — 명함 태그라인과 네 축 카드. 근거 없는 진단 약속과 Three Pillars 섹션 제거.
+- **예시 표시 강화** — 시나리오 카드에 "예시" 표기, 그림 속 예시 퍼센트 제거. 회신 시간 "영업일 1~2일"로 통일.
+
 ## 2026-09-22 (2)
 
 - **디자인 시스템 도입** — 색상 값 893곳을 시맨틱 토큰으로 교체하고, 원시값 → 토큰 → 컴포넌트 3계층으로 정리([docs/design-system.md](docs/design-system.md)).
