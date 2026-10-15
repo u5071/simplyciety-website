@@ -7,7 +7,7 @@
 ```
 1차 원시값    globals.css의 :root 안에 있는 실제 색상값 (테마별로 다름)
 2차 시맨틱    --ds-text, --ds-accent … + Tailwind 유틸리티 (text-text, bg-surface …)
-3차 컴포넌트  .btn-gold, .btn-primary, .pillar-card, Nav, SiteFooter
+3차 컴포넌트  .btn-gold, .btn-primary, Nav, SiteFooter
 ```
 
 ## 색 토큰

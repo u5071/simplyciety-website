@@ -5,67 +5,17 @@ import Nav from "./components/Nav";
 import SiteFooter from "./components/SiteFooter";
 import { useReveal } from "./components/useReveal";
 import { useLang } from "./contexts/LanguageContext";
-import { CONTACT_EMAIL } from "../lib/contact";
-
-const PILLAR_ICONS = [
-  /* Clarity — crosshair over data scatter */
-  <svg key="clarity" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="18" cy="18" r="10" stroke="rgb(var(--accent-rgb) / 0.14)" strokeWidth="1" />
-    <circle cx="18" cy="18" r="5" stroke="rgb(var(--accent-rgb) / 0.22)" strokeWidth="1" />
-    <line x1="18" y1="6" x2="18" y2="11" stroke="rgb(var(--accent-rgb) / 0.28)" strokeWidth="1" />
-    <line x1="18" y1="25" x2="18" y2="30" stroke="rgb(var(--accent-rgb) / 0.28)" strokeWidth="1" />
-    <line x1="6" y1="18" x2="11" y2="18" stroke="rgb(var(--accent-rgb) / 0.28)" strokeWidth="1" />
-    <line x1="25" y1="18" x2="30" y2="18" stroke="rgb(var(--accent-rgb) / 0.28)" strokeWidth="1" />
-    <circle cx="18" cy="18" r="1.8" fill="rgb(var(--accent-rgb) / 0.55)" />
-    <circle cx="10" cy="12" r="1.2" fill="rgb(var(--accent-rgb) / 0.18)" />
-    <circle cx="26" cy="10" r="1.2" fill="rgb(var(--accent-rgb) / 0.18)" />
-    <circle cx="8" cy="26" r="1.2" fill="rgb(var(--accent-rgb) / 0.12)" />
-  </svg>,
-  /* Connection — network nodes */
-  <svg key="connection" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <circle cx="7" cy="18" r="4" fill="rgb(var(--accent-rgb) / 0.08)" stroke="rgb(var(--accent-rgb) / 0.25)" strokeWidth="0.9" />
-    <circle cx="29" cy="10" r="4" fill="rgb(var(--accent-rgb) / 0.08)" stroke="rgb(var(--accent-rgb) / 0.25)" strokeWidth="0.9" />
-    <circle cx="29" cy="26" r="4" fill="rgb(var(--accent-rgb) / 0.08)" stroke="rgb(var(--accent-rgb) / 0.25)" strokeWidth="0.9" />
-    <circle cx="18" cy="18" r="3" fill="rgb(var(--accent-rgb) / 0.12)" stroke="rgb(var(--accent-rgb) / 0.3)" strokeWidth="0.9" />
-    <line x1="11" y1="18" x2="15" y2="18" stroke="rgb(var(--accent-rgb) / 0.2)" strokeWidth="0.8" />
-    <line x1="21" y1="16" x2="25" y2="12" stroke="rgb(var(--accent-rgb) / 0.2)" strokeWidth="0.8" />
-    <line x1="21" y1="20" x2="25" y2="24" stroke="rgb(var(--accent-rgb) / 0.2)" strokeWidth="0.8" />
-    <line x1="7" y1="14" x2="14" y2="10" stroke="rgb(var(--accent-rgb) / 0.08)" strokeWidth="0.6" strokeDasharray="2 2" />
-    <line x1="7" y1="22" x2="14" y2="26" stroke="rgb(var(--accent-rgb) / 0.08)" strokeWidth="0.6" strokeDasharray="2 2" />
-  </svg>,
-  /* Impact — ascending bars */
-  <svg key="impact" width="36" height="36" viewBox="0 0 36 36" fill="none">
-    <rect x="4" y="24" width="6" height="8" fill="rgb(var(--accent-rgb) / 0.1)" rx="0.5" />
-    <rect x="13" y="18" width="6" height="14" fill="rgb(var(--accent-rgb) / 0.14)" rx="0.5" />
-    <rect x="22" y="12" width="6" height="20" fill="rgb(var(--accent-rgb) / 0.18)" rx="0.5" />
-    <polyline points="7,23 16,17 25,11" stroke="rgb(var(--accent-rgb) / 0.45)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="25" cy="11" r="2" fill="rgb(var(--accent-rgb) / 0.5)" />
-    <line x1="4" y1="33" x2="32" y2="33" stroke="rgb(var(--accent-rgb) / 0.12)" strokeWidth="0.8" />
-  </svg>,
-];
+import { CONTACT_EMAIL, TAGLINE } from "../lib/contact";
 
 const PILLARS = [
-  {
-    num: "01", title: "Clarity",
-    desc: {
-      ko: "데이터가 복잡성이 숨어 있는 지점을 드러냅니다. AI가 불분명한 의사결정 구조와 불필요한 보고 단계를 정확히 짚어냅니다.",
-      en: "Data exposes where complexity hides. AI pinpoints unclear decision flows and redundant reporting chains — precisely, not by intuition.",
-    },
-  },
-  {
-    num: "02", title: "Connection",
-    desc: {
-      ko: "조직도가 아닌 실제 데이터 흐름을 봅니다. 어디서 정보가 막히고 어디서 판단이 지연되는지를 데이터로 추적합니다.",
-      en: "We look at real data flows, not the org chart. Track exactly where information gets blocked and decisions get delayed.",
-    },
-  },
-  {
-    num: "03", title: "Impact",
-    desc: {
-      ko: "단순해진 조직은 더 빠르게 움직이고 오래 유지됩니다. 모든 성과는 데이터로 측정하고 AI로 지속적으로 검증합니다.",
-      en: "Simpler organizations move faster and last longer. Every outcome is measured with data and continuously validated with AI.",
-    },
-  },
+  { word: "Consult", id: "consulting", name: { ko: "AX 컨설팅", en: "AX consulting" },
+    desc: { ko: "어디서부터 AI를 붙일지 진단하고, 우선순위와 실행 로드맵을 함께 잡습니다.", en: "Diagnose where AI fits first, then set priorities and an execution roadmap together." } },
+  { word: "Educate", id: "education", name: { ko: "교육·조직문화", en: "Education & culture" },
+    desc: { ko: "경영진부터 실무자까지, 데이터와 AI로 판단하는 습관을 조직에 심습니다.", en: "From executives to practitioners — build the habit of deciding with data and AI." } },
+  { word: "Build", id: "platform", name: { ko: "플랫폼·에이전트 구축", en: "Platforms & agents" },
+    desc: { ko: "데이터 파이프라인과 사내 포털을 깔고, 그 위에 AI 모델과 에이전트를 붙입니다.", en: "Lay pipelines and internal portals, then put AI models and agents on top." } },
+  { word: "Create", id: "create", name: { ko: "솔루션·플랫폼", en: "Solutions & platform" },
+    desc: { ko: "AI 데이터 플랫폼 dataSimplr를 만들고, 쌓인 데이터를 새 상품으로 설계합니다.", en: "We build dataSimplr, the AI data platform, and design new products from the data you hold." } },
 ];
 
 export default function Home() {
@@ -100,7 +50,7 @@ export default function Home() {
           <div className="flex items-center gap-4 mb-10 hero-eyebrow">
             <span className="block w-8 h-px bg-accent" />
             <p className="text-[0.65rem] tracking-[0.4em] uppercase text-accent">
-              {t("Data & AI 기반 조직 단순화", "Data & AI-Powered Simplification")}
+              {TAGLINE[lang]}
             </p>
           </div>
 
@@ -111,13 +61,10 @@ export default function Home() {
 
           {/* Data → AI flow tag */}
           <div className="hero-eyebrow flex items-center gap-3 mb-14">
-            {["Data", "→", "AI", "→", t("단순화", "Simplify")].map((w, i) => (
-              <span
-                key={i}
-                className="text-[0.6rem] tracking-[0.25em] uppercase"
-                style={{ color: w === "→" ? "var(--ds-text-muted)" : w === "AI" || w === t("단순화", "Simplify") ? "rgb(var(--accent-rgb) / 0.8)" : "var(--ds-text-muted)" }}
-              >
-                {w}
+            {PILLARS.map((p, i) => (
+              <span key={p.word} className="flex items-center gap-3 text-[0.6rem] tracking-[0.25em] uppercase text-text-muted">
+                {i > 0 && <span className="text-accent">·</span>}
+                {p.word}
               </span>
             ))}
           </div>
@@ -129,8 +76,8 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-10">
             <p className="hero-body max-w-xl text-text-muted text-lg leading-relaxed font-light">
               {t(
-                "데이터로 진단하고, AI로 걷어냅니다. 불필요한 구조·프로세스·소음을 제거하고 — 팀이 진짜 일에만 집중할 수 있는 조직을 만듭니다.",
-                "Diagnose with data. Cut with AI. Remove redundant structures, processes, and noise — so your teams can focus on work that actually matters."
+                "방향을 잡고, 사람을 키우고, 시스템을 만들고, 새 제품을 내놓습니다. 불필요한 구조·프로세스·소음을 걷어내 팀이 진짜 일에 집중하게 만듭니다.",
+                "We set direction, grow people, build systems, and ship new products — clearing out redundant structure, process, and noise so your teams can focus on work that matters."
               )}
             </p>
             <div className="hero-cta flex flex-wrap items-center gap-3 flex-shrink-0">
@@ -198,123 +145,40 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── HOW IT WORKS ─── */}
-      <section
-        style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)" }}
-        className="py-20 px-8 md:px-16 bg-surface"
-      >
-        <div className="max-w-screen-xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
-            {[
-              {
-                step: "Step 1",
-                title: t("데이터 진단", "Data Diagnosis"),
-                sub: "Data Analysis",
-                desc: t("조직의 커뮤니케이션 패턴, 의사결정 구조, 협업 흐름을 데이터로 측정하고 수치화합니다.", "We measure your communication patterns, decision structures, and collaboration flows — and turn them into data."),
-                icon: (
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <rect x="6" y="12" width="28" height="20" rx="1.5" stroke="rgb(var(--accent-rgb) / 0.2)" strokeWidth="0.9" />
-                    <rect x="6" y="12" width="28" height="6" rx="1.5" fill="rgb(var(--accent-rgb) / 0.06)" />
-                    <line x1="11" y1="24" x2="22" y2="24" stroke="rgb(var(--accent-rgb) / 0.2)" strokeWidth="0.8" />
-                    <line x1="11" y1="28" x2="18" y2="28" stroke="rgb(var(--accent-rgb) / 0.12)" strokeWidth="0.8" />
-                    <circle cx="30" cy="27" r="5" stroke="rgb(var(--accent-rgb) / 0.35)" strokeWidth="1" fill="rgb(var(--accent-rgb) / 0.05)" />
-                    <line x1="33.5" y1="30.5" x2="36" y2="33" stroke="rgb(var(--accent-rgb) / 0.35)" strokeWidth="1.2" strokeLinecap="round" />
-                    <circle cx="20" cy="15" r="1.5" fill="rgb(var(--accent-rgb) / 0.4)" />
-                  </svg>
-                ),
-              },
-              {
-                step: "Step 2",
-                title: t("AI 단순화", "AI Simplification"),
-                sub: "AI-Driven Design",
-                desc: t("데이터로 파악한 병목 지점을 AI로 걷어냅니다. 불필요한 프로세스를 제거하고 핵심만 남긴 조직 청사진을 제안합니다.", "Use data to find the bottlenecks, then AI to clear them. Remove redundant processes — leave a blueprint of only what matters."),
-                icon: (
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <circle cx="20" cy="20" r="6" stroke="rgb(var(--accent-rgb) / 0.28)" strokeWidth="1" fill="rgb(var(--accent-rgb) / 0.06)" />
-                    {[[20,8],[30,14],[30,26],[20,32],[10,26],[10,14]].map(([cx,cy],i) => (
-                      <g key={i}>
-                        <circle cx={cx} cy={cy} r="2.5" fill="rgb(var(--accent-rgb) / 0.07)" stroke="rgb(var(--accent-rgb) / 0.18)" strokeWidth="0.8" />
-                        <line x1="20" y1="20" x2={cx} y2={cy} stroke="rgb(var(--accent-rgb) / 0.1)" strokeWidth="0.7" />
-                      </g>
-                    ))}
-                    <circle cx="20" cy="20" r="2" fill="rgb(var(--accent-rgb) / 0.5)" />
-                  </svg>
-                ),
-              },
-              {
-                step: "Step 3",
-                title: t("성장", "Grow"),
-                sub: "Continuous Optimization",
-                desc: t("데이터와 AI로 변화를 지속적으로 추적하고 최적화합니다. 성과는 인상이 아닌 숫자로 검증됩니다.", "Continuously track change and optimize with data and AI. Results are validated in numbers, not impressions."),
-                icon: (
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                    <polyline points="6,30 14,22 20,26 28,14 34,10" stroke="rgb(var(--accent-rgb) / 0.4)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-                    <polyline points="6,30 14,22 20,26 28,14 34,10 34,30 6,30" fill="rgb(var(--accent-rgb) / 0.04)" stroke="none" />
-                    <circle cx="34" cy="10" r="2.5" fill="rgb(var(--accent-rgb) / 0.5)" />
-                    <line x1="6" y1="30" x2="34" y2="30" stroke="rgb(var(--accent-rgb) / 0.12)" strokeWidth="0.8" />
-                  </svg>
-                ),
-              },
-            ].map((item) => (
-              <div
-                key={item.step}
-                data-reveal
-                className="bg-surface p-10 md:p-12 flex flex-col gap-6 group hover:bg-elevated transition-colors duration-500"
-              >
-                <div className="flex items-center justify-between">
-                  <span className="text-[0.6rem] tracking-[0.3em] uppercase text-text-muted">{item.step}</span>
-                  <div className="opacity-60 group-hover:opacity-100 transition-opacity duration-500">{item.icon}</div>
-                </div>
-                <h3 className="text-3xl md:text-4xl font-extralight tracking-tight group-hover:text-accent transition-colors duration-500">
-                  {item.title}
-                </h3>
-                <p className="text-text-muted text-sm leading-[1.9] font-light">{item.desc}</p>
-                <span className="text-[0.55rem] tracking-[0.2em] uppercase text-accent/40 border border-accent/15 px-2 py-1 self-start">
-                  {item.sub}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PILLARS ─── */}
+      {/* ─── FOUR WAYS (Consult · Educate · Build · Create) ─── */}
       <section
         id="pillars"
-        className="py-32 px-8 md:px-16"
         style={{ borderTop: "1px solid rgb(var(--hairline) / 0.06)" }}
+        className="py-24 md:py-32 px-8 md:px-16 bg-surface"
       >
         <div className="max-w-screen-xl mx-auto">
-          <div className="flex items-end justify-between mb-20">
+          <div className="flex items-end justify-between gap-6 mb-14">
             <p data-reveal className="text-[0.65rem] tracking-[0.4em] uppercase text-accent">
-              Three Pillars
+              {t("네 가지 방식", "Four ways")}
             </p>
-            <p data-reveal className="text-text-muted text-[0.6rem] tracking-widest uppercase hidden md:block">
-              What we stand for
-            </p>
+            <Link href="/services" className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted hover:text-accent transition-colors">
+              {t("서비스 전체 보기 →", "All services →")}
+            </Link>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border">
-            {PILLARS.map((pillar, i) => (
-              <div
-                key={pillar.num}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-border">
+            {PILLARS.map((p, i) => (
+              <Link
+                key={p.word}
+                href={`/services#${p.id}`}
                 data-reveal
-                data-reveal-delay={String(i + 1) as "1" | "2" | "3"}
-                className="pillar-card bg-bg p-10 md:p-14 flex flex-col gap-8"
+                data-reveal-delay={String(i + 1)}
+                className="bg-surface p-10 flex flex-col gap-6 group hover:bg-elevated transition-colors duration-500"
               >
-                <div className="flex items-start justify-between">
-                  <span className="text-[0.65rem] tracking-[0.35em] text-accent uppercase">
-                    {pillar.num}
-                  </span>
-                  {PILLAR_ICONS[i]}
-                </div>
-                <h3 className="pillar-title text-[clamp(2rem,3.5vw,3rem)] font-extralight tracking-tight leading-none transition-colors duration-500">
-                  {pillar.title}
+                <span className="text-[0.6rem] tracking-[0.3em] text-accent">{String(i + 1).padStart(2, "0")}</span>
+                <h3 className="text-[clamp(2rem,3vw,2.75rem)] font-extralight tracking-tight leading-none group-hover:text-accent transition-colors duration-500">
+                  {p.word}
                 </h3>
-                <p className="text-text-muted leading-[1.9] text-sm font-light">
-                  {pillar.desc[lang]}
-                </p>
-              </div>
+                <p className="text-text-secondary text-sm font-light">{p.name[lang]}</p>
+                <p className="text-text-muted text-sm leading-[1.9] font-light flex-1">{p.desc[lang]}</p>
+                <span className="text-[0.55rem] tracking-[0.2em] uppercase text-accent/50 group-hover:text-accent transition-colors">
+                  {t("자세히 →", "Learn more →")}
+                </span>
+              </Link>
             ))}
           </div>
         </div>
@@ -478,7 +342,7 @@ export default function Home() {
         >
           {Array.from({ length: 6 }).map((_, i) => (
             <span key={i} className="flex items-center gap-16 flex-shrink-0">
-              {["Data", "AI", "Clarity", "Pipeline", "Simplification", "Impact", "Insight", "Automation"].map((w) => (
+              {["Consult", "Educate", "Build", "Create", "AX/DX", "AI/Data", "Solution/Platform"].map((w) => (
                 <span key={w} className="flex items-center gap-16">
                   <span className="text-[0.6rem] tracking-[0.35em] uppercase text-text-muted">{w}</span>
                   <span className="text-accent text-xs">·</span>
