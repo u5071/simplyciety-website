@@ -5,6 +5,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 import { THEME_INIT_SCRIPT, ThemeProvider } from "./contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next";
 import { CONTACT_EMAIL, CONTACT_PHONE_INTL, LINKEDIN_URL, TAGLINE } from "../lib/contact";
+import { LAUNCH_LABEL } from "../lib/launch";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -67,7 +68,7 @@ const ORG_SCHEMA = {
   logo: "https://simplyciety.com/favicon.svg",
   slogan: TAGLINE.ko,
   description:
-    "AI 기반 조직 단순화 전문 기업. AX 컨설팅, 데이터·AI 플랫폼 구축, AX/DX 교육·조직문화빌딩 서비스를 제공합니다.",
+    "AI와 데이터로 비즈니스를 단순하게 만드는 회사. AX 컨설팅(Consult), AX/DX 교육(Educate), AI·데이터 플랫폼·에이전트 구축(Build), 자체 솔루션 dataSimplr(Create)를 제공합니다.",
   founder: {
     "@type": "Person",
     name: "양성열",
@@ -99,9 +100,10 @@ const ORG_SCHEMA = {
     name: "simplyciety 서비스",
     itemListElement: [
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AX 컨설팅", description: "AI 전환 전략 수립 및 조직 AI 준비도 진단" } },
-      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI/Data 플랫폼 구축", description: "AWS·Snowflake 기반 데이터 파이프라인 및 AI 시스템 구축" } },
-      { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "dataSimplr", description: "데이터팀 없는 팀을 위한 AI 데이터 플랫폼 (2026.11.16 출시)" } },
       { "@type": "Offer", itemOffered: { "@type": "Service", name: "AX/DX 교육·조직문화빌딩", description: "데이터 리터러시, 경영진 AX 브리핑, DX 조직문화 워크샵" } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "AI/Data 플랫폼·에이전트 구축", description: "데이터 파이프라인, 사내 데이터 포털, 예측 모델, AI 에이전트·업무 자동화 구축" } },
+      { "@type": "Offer", itemOffered: { "@type": "SoftwareApplication", name: "dataSimplr", description: `데이터팀 없는 팀을 위한 AI 데이터 플랫폼 (${LAUNCH_LABEL.ko} 출시)` } },
+      { "@type": "Offer", itemOffered: { "@type": "Service", name: "데이터 상품화", description: "보유 데이터를 외부 파트너에 제공하는 데이터 상품·API 설계와 구축" } },
     ],
   },
 };

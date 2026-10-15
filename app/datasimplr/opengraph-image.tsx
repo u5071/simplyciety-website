@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { LAUNCH_LABEL } from "../../lib/launch";
 
 export const alt = "dataSimplr — The data platform for teams without a data team";
 export const size = { width: 1200, height: 630 };
@@ -20,7 +21,7 @@ export default function Image() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 24, letterSpacing: 6, color: "#B8965A" }}>
-          <div style={{ display: "flex", border: "2px solid #B8965A", padding: "8px 18px" }}>PUBLIC BETA · NOV 16, 2026</div>
+          <div style={{ display: "flex", border: "2px solid #B8965A", padding: "8px 18px" }}>PUBLIC BETA · {LAUNCH_LABEL.en.toUpperCase()}</div>
           <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#8A8780" }}>
             BY
             <svg width="31" height="30" viewBox="0 0 104 100" fill="none">

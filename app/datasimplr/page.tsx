@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
 import DataSimplrContent from "./DataSimplrContent";
+import { LAUNCH_LABEL, LAUNCH_LONG } from "../../lib/launch";
 
 export const metadata: Metadata = {
   title: "dataSimplr — 데이터팀 없는 팀을 위한 AI 데이터 플랫폼",
   description:
-    "dataSimplr — 데이터팀이 없는 팀을 위한 AI 데이터 플랫폼. RDB·NoSQL·그래프·온톨로지로 데이터를 쉽게 적재하고, 에이전트가 분석하고 일합니다. 2026년 11월 16일 출시 · 대기명단 등록.",
+    `dataSimplr — 데이터팀이 없는 팀을 위한 AI 데이터 플랫폼. RDB·NoSQL·그래프·온톨로지로 데이터를 쉽게 적재하고, 에이전트가 분석하고 일합니다. ${LAUNCH_LONG.ko} 출시 · 대기명단 등록.`,
   keywords: ["dataSimplr", "AI data platform", "AI 데이터 플랫폼", "multi-model database", "graph", "ontology", "data agents", "MCP", "waitlist", "simplyciety"],
   alternates: { canonical: "https://simplyciety.com/datasimplr" },
   openGraph: {
     url: "https://simplyciety.com/datasimplr",
     title: "dataSimplr — AI-ready data. No data team required.",
-    description: "Load tables, JSON and graphs. Ask in plain language. Let agents do the work. Launching Nov 16, 2026 — join the waitlist.",
+    description: `Load tables, JSON and graphs. Ask in plain language. Let agents do the work. Launching ${LAUNCH_LABEL.en} — join the waitlist.`,
   },
 };
 

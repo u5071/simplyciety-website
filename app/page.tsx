@@ -6,6 +6,7 @@ import SiteFooter from "./components/SiteFooter";
 import { useReveal } from "./components/useReveal";
 import { useLang } from "./contexts/LanguageContext";
 import { CONTACT_EMAIL, TAGLINE } from "../lib/contact";
+import { LAUNCH_LABEL } from "../lib/launch";
 
 const PILLARS = [
   { word: "Consult", id: "consulting", name: { ko: "AX 컨설팅", en: "AX consulting" },
@@ -196,7 +197,7 @@ export default function Home() {
               <span className="text-[0.65rem] tracking-[0.4em] uppercase text-accent">{t("제품", "Product")}</span>
               <span className="inline-flex items-center gap-2 text-[0.55rem] tracking-[0.2em] uppercase border border-accent/50 text-accent px-2.5 py-1">
                 <span className="w-1 h-1 rounded-full bg-accent animate-pulse" />
-                {t("2026.11.16 출시", "Launching Nov 16")}
+                {t(`${LAUNCH_LABEL.ko} 출시`, `Launching ${LAUNCH_LABEL.en}`)}
               </span>
             </div>
             <h2 data-reveal data-reveal-delay="1" className="text-[clamp(3rem,7vw,6.5rem)] font-extralight leading-[0.92] tracking-[-0.03em] mb-8">
@@ -246,7 +247,7 @@ export default function Home() {
             <h2 data-reveal data-reveal-delay="1" className="text-[clamp(2.5rem,5vw,4.5rem)] font-extralight leading-[1] tracking-tight">
               {t("양성열", "Sungreul Yang")}
               <span className="block text-text-muted text-[clamp(1.1rem,2vw,1.5rem)] mt-4">
-                {t("simplyciety 대표 · AI와 데이터를 더 쉽게", "Founder & CEO · Making AI & data simpler")}
+                {t("simplyciety 대표 · AWS Summit Seoul · 출판 데이터 마케팅 포럼 연사", "Founder & CEO · Speaker at AWS Summit Seoul and the Publishing Data Marketing Forum")}
               </span>
             </h2>
           </div>

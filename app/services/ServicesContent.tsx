@@ -39,8 +39,8 @@ const LINES: Line[] = [
     tag: s("교육·조직문화빌딩", "Education & Culture"),
     title: s("사람과 문화", "People & Culture"),
     overview: s(
-      "시스템을 만들어도 사람이 쓰지 않으면 무용지물입니다. AWS Summit 발표, KMA 인터뷰, 강의 경험을 바탕으로 조직이 AI를 일상으로 받아들이게 합니다.",
-      "A system no one uses is worthless. Drawing on experience from AWS Summit talks, KMA interviews, and university lectures, we make AI a daily habit for your organization."
+      "시스템을 만들어도 사람이 쓰지 않으면 무용지물입니다. AWS Summit·출판 데이터 마케팅 포럼 발표, KMA 인터뷰, 강의 경험을 바탕으로 조직이 AI를 일상으로 받아들이게 합니다.",
+      "A system no one uses is worthless. Drawing on talks at AWS Summit and the Publishing Data Marketing Forum, a KMA interview, and lectures, we make AI a daily habit for your organization."
     ),
     products: [
       { name: "Simply-Literacy", sub: s("데이터 리터러시 교육", "Data Literacy Program"),
@@ -204,7 +204,7 @@ const PROCESS = [
 
 const FAQ = [
   { q: s("simplyciety는 어떤 회사인가요?", "What does simplyciety do?"),
-    a: s("simplyciety는 AI 기반 조직 단순화를 실현하는 전문 기업입니다. AX 컨설팅, 데이터·AI 플랫폼 구축, AX/DX 교육·조직문화빌딩으로 기업이 불필요한 복잡성을 걷어내고 AI로 더 빠르게 판단하고 실행할 수 있도록 돕습니다.", "simplyciety is a specialist firm in AI-driven organizational simplification. Through AX consulting, data & AI platform building, and education & culture work, we help companies cut complexity and move faster with AI.") },
+    a: s("AI와 데이터로 비즈니스를 단순하게 만드는 회사입니다. 방향을 잡고(AX 컨설팅), 사람을 키우고(교육·조직문화), 시스템을 만들고(플랫폼·에이전트 구축), 새 제품을 내놓습니다(dataSimplr·데이터 상품화). 불필요한 복잡성을 걷어내 AI로 더 빠르게 판단하고 실행하도록 돕습니다.", "We simplify business with AI and data. We set direction (AX consulting), grow people (education & culture), build systems (platform & agent builds), and ship new products (dataSimplr and data products) — cutting complexity so you decide and act faster with AI.") },
   { q: s("AX 컨설팅과 일반 DX 컨설팅은 어떻게 다른가요?", "How is AX consulting different from typical DX consulting?"),
     a: s("DX가 시스템 도입에 초점을 맞춘다면, AX는 AI를 조직의 판단과 실행 방식 자체에 내재화하는 것입니다. simplyciety의 AX 컨설팅은 이론이 아닌, 유통·문화와 데이터·AI 분야에서 직접 데이터 조직을 만들고 운영한 경험을 기반으로 합니다.", "DX focuses on system adoption; AX embeds AI into how your organization thinks and acts. Our consulting is grounded in real experience — having built and run data organizations in retail and in data & AI, not in theory.") },
   { q: s("데이터 인프라가 전혀 없어도 서비스를 받을 수 있나요?", "Can we work together if we have no data infrastructure yet?"),
@@ -212,7 +212,7 @@ const FAQ = [
   { q: s("주로 어떤 규모의 기업과 일하나요?", "What size of company do you typically work with?"),
     a: s("규모는 가리지 않습니다. 데이터 담당자가 없는 작은 팀이라면 진단과 dataSimplr로 가볍게 시작하고, 큰 조직이라면 전략·구축·교육을 단계별로 설계합니다. 중요한 것은 규모가 아니라 '데이터와 AI로 일하는 방식을 바꾸려는 의지'입니다.", "Any size. Small teams without a data person can start light with a diagnosis and dataSimplr; larger organizations get strategy, builds, and training designed in phases. What matters isn't size — it's the will to change how you work with data and AI.") },
   { q: s("강연이나 사외 교육 요청도 가능한가요?", "Do you do external speaking or training?"),
-    a: s("가능합니다. AWS Summit Seoul 2023 발표, KMA 인터뷰, 대학 교육과정 강의 등의 경험을 바탕으로 기업 행사, 컨퍼런스, 사내 교육 강연을 진행합니다.", "Yes. Based on our AWS Summit Seoul 2023 talk, KMA interview, and university course work, we speak at company events, conferences, and in-house education sessions.") },
+    a: s("가능합니다. AWS Summit Seoul 2023과 2026 출판 데이터 마케팅 포럼 발표, KMA 인터뷰, 대학 교육과정 강의 등의 경험을 바탕으로 기업 행사, 컨퍼런스, 사내 교육 강연을 진행합니다.", "Yes. Based on our talks at AWS Summit Seoul 2023 and the 2026 Publishing Data Marketing Forum, a KMA interview, and university course work, we speak at company events, conferences, and in-house education sessions.") },
 ];
 
 function CaseVisual({ id }: { id: string }) {

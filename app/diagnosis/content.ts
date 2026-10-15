@@ -220,7 +220,7 @@ export const STAGES: Record<StageId, { name: B; desc: B; range: string }> = {
   },
 };
 
-export type ServiceId = "Simply-Scan" | "Simply-Map" | "Simply-Pipeline" | "Simply-Brain" | "Simply-Literacy" | "Simply-Leader";
+export type ServiceId = "Simply-Scan" | "Simply-Map" | "Simply-Pipeline" | "Simply-Agent" | "Simply-Literacy" | "Simply-Leader";
 
 export type ServiceDef = {
   name: ServiceId;
@@ -261,14 +261,14 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
     duration: L("2 — 4개월", "2 — 4 months"),
     serviceType: "platform",
   },
-  "Simply-Brain": {
-    name: "Simply-Brain",
-    sub: L("RAG · 에이전트 · AI 기능 구현", "RAG, agents & AI features"),
+  "Simply-Agent": {
+    name: "Simply-Agent",
+    sub: L("RAG · AI 에이전트 · 업무 자동화", "RAG, AI agents & automation"),
     desc: L(
-      "사내 데이터에 연결된 RAG·에이전트·예측 모델을 MVP부터 운영까지 구현하고 평가 체계를 붙입니다.",
-      "Builds RAG, agents and predictive models on your data — from MVP to production, with evaluation built in."
+      "사내 데이터·문서에 연결된 RAG와 에이전트로 조회·보고·응대 같은 반복 업무를 자동화하고, 권한·기록·평가 체계를 붙입니다.",
+      "RAG and agents connected to your data and documents automate lookups, reports and responses — with access control, audit trails and evaluation built in."
     ),
-    duration: L("3 — 6개월", "3 — 6 months"),
+    duration: L("1 — 3개월", "1 — 3 months"),
     serviceType: "platform",
   },
   "Simply-Literacy": {
@@ -296,9 +296,9 @@ export const SERVICES: Record<ServiceId, ServiceDef> = {
 const WEAKEST_TO_SERVICE: Record<DimensionId, ServiceId> = {
   foundation: "Simply-Pipeline",
   semantics: "Simply-Scan",
-  unstructured: "Simply-Brain",
+  unstructured: "Simply-Agent",
   governance: "Simply-Map",
-  adoption: "Simply-Brain",
+  adoption: "Simply-Agent",
   people: "Simply-Literacy",
 };
 

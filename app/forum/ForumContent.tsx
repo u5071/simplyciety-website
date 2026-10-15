@@ -6,6 +6,8 @@ import Nav from "../components/Nav";
 import SiteFooter from "../components/SiteFooter";
 import { useReveal } from "../components/useReveal";
 import { useLang } from "../contexts/LanguageContext";
+import { TAGLINE } from "../../lib/contact";
+import { LAUNCH_LABEL } from "../../lib/launch";
 
 // 2026 출판 데이터 마케팅 포럼 발표 청중용 페이지 (한국어 청중 대상, 영문은 요약만)
 
@@ -164,7 +166,7 @@ export default function ForumContent() {
               <span className="w-12 h-12 rounded-full flex items-center justify-center text-accent text-lg font-extralight" style={{ border: "1px solid rgb(var(--accent-rgb) / 0.5)" }}>양</span>
               <span>
                 <span className="block text-base font-light group-hover:text-accent transition-colors">양성열 · simplyciety 대표</span>
-                <span className="block text-xs text-text-muted mt-0.5">AI와 데이터를 더 쉽게 — 발표자 소개 보기 →</span>
+                <span className="block text-xs text-text-muted mt-0.5">{TAGLINE.ko} — 발표자 소개 보기 →</span>
               </span>
             </Link>
             <nav className="flex flex-wrap gap-2" aria-label="페이지 목차">
@@ -375,7 +377,7 @@ export default function ForumContent() {
             </div>
           </div>
           <div data-reveal data-reveal-delay="1" className="bg-bg p-8 md:p-12 flex flex-col gap-5">
-            <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent">dataSimplr · 2026.11.16 출시</p>
+            <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent">dataSimplr · {LAUNCH_LABEL.ko} 출시</p>
             <h2 className="text-3xl md:text-4xl font-extralight tracking-tight leading-tight">
               데이터팀이 없어도
               <br />
