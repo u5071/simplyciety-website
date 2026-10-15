@@ -12,6 +12,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 - **이중 언어**: 사용자에게 보이는 모든 문구는 `t("한국어", "English")` 또는 `{ ko, en }` 객체로 쓴다. 한국어만 하드코딩하지 않는다.
 - **출시일**: dataSimplr 출시일은 `lib/launch.ts`에서만 정의한다. 페이지·메일·OG 이미지에 날짜를 직접 쓰지 않는다.
+- **연락처·태그라인**: 이메일·전화·LinkedIn·태그라인은 `lib/contact.ts`에서만 정의한다(명함 최종본 기준). 로고는 `app/components/Logo.tsx`의 `LogoMark`.
 - **대기명단 선택지**: `lib/waitlist-options.ts`에 정의하고, 서버(`app/api/waitlist/route.ts`)는 이 목록으로 검증한다. 폼과 검증 목록이 갈라지지 않게 한다.
 - **메일 템플릿**: 사용자 입력은 `escapeHtml()`을 거쳐 넣는다(HTML 인젝션 방지).
 - **성과 수치**: 검증된 실제 수치만 쓴다. 예시 수치는 넣지 않거나, 예시임을 화면에 명확히 밝힌다. 발표 자료 기준으로 내부 운영 수치는 공개하지 않는다.

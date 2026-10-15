@@ -5,6 +5,7 @@ import Nav from "./components/Nav";
 import SiteFooter from "./components/SiteFooter";
 import { useReveal } from "./components/useReveal";
 import { useLang } from "./contexts/LanguageContext";
+import { CONTACT_EMAIL } from "../lib/contact";
 
 const PILLAR_ICONS = [
   /* Clarity — crosshair over data scatter */
@@ -529,10 +530,10 @@ export default function Home() {
             </div>
             <div style={{ borderTop: "1px solid rgb(var(--hairline) / 0.04)", paddingTop: "1.5rem" }}>
               <a
-                href="mailto:yang5071@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-text-muted transition-colors"
               >
-                yang5071@gmail.com
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>

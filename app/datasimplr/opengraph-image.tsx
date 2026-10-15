@@ -21,7 +21,16 @@ export default function Image() {
       >
         <div style={{ display: "flex", alignItems: "center", gap: 20, fontSize: 24, letterSpacing: 6, color: "#B8965A" }}>
           <div style={{ display: "flex", border: "2px solid #B8965A", padding: "8px 18px" }}>PUBLIC BETA · NOV 16, 2026</div>
-          <span style={{ color: "#8A8780" }}>BY SIMPLYCIETY</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, color: "#8A8780" }}>
+            BY
+            <svg width="31" height="30" viewBox="0 0 104 100" fill="none">
+              <path d="M100 38V2H2v96h98V62" stroke="#8A8780" strokeWidth="5" />
+              <path d="M13 28l32 22M13 50h32M13 72l32-22" stroke="#8A8780" strokeWidth="5" />
+              <rect x="44.5" y="44.5" width="11" height="11" fill="#8A8780" />
+              <path d="M55 50h49" stroke="#8A8780" strokeWidth="5" />
+            </svg>
+            SIMPLYCIETY
+          </div>
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 150, letterSpacing: -5, fontWeight: 300, lineHeight: 1 }}>

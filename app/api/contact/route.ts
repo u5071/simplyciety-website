@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { NOTIFY_TO, escapeHtml, mailConfigured } from "../../../lib/mail";
+import { CONTACT_EMAIL, TAGLINE } from "../../../lib/contact";
 
 export async function POST(request: NextRequest) {
   try {
@@ -85,7 +86,7 @@ export async function POST(request: NextRequest) {
             </table>
           </div>
           <p style="color: #aaa; font-size: 11px; margin-top: 16px; text-align: center;">
-            simplyciety.com — Less noise. More signal.
+            simplyciety.com — ${TAGLINE.ko}
           </p>
         </div>
       `,
@@ -113,11 +114,11 @@ export async function POST(request: NextRequest) {
             </p>
             <p style="color: #999; font-size: 13px; line-height: 1.6; margin: 0;">
               빠른 답변이 필요하신 경우<br>
-              <a href="mailto:yang5071@gmail.com" style="color: #B8965A;">yang5071@gmail.com</a>으로 직접 연락 주세요.
+              <a href="mailto:${CONTACT_EMAIL}" style="color: #B8965A;">${CONTACT_EMAIL}</a>으로 직접 연락 주세요.
             </p>
           </div>
           <p style="color: #aaa; font-size: 11px; margin-top: 16px; text-align: center;">
-            simplyciety.com — Less noise. More signal.
+            simplyciety.com — ${TAGLINE.ko}
           </p>
         </div>
       `,

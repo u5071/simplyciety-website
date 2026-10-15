@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { THEME_INIT_SCRIPT, ThemeProvider } from "./contexts/ThemeContext";
 import { Analytics } from "@vercel/analytics/next";
+import { CONTACT_EMAIL, CONTACT_PHONE_INTL, LINKEDIN_URL, TAGLINE } from "../lib/contact";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -19,11 +20,11 @@ export const metadata: Metadata = {
     ],
   },
   title: {
-    default: "simplyciety — AI로 조직을 단순화합니다",
+    default: "simplyciety — AI와 데이터로 비즈니스를 단순하게",
     template: "%s | simplyciety",
   },
   description:
-    "simplyciety(대표 양성열)는 AX 컨설팅, AI/데이터 플랫폼 구축, AX/DX 교육으로 기업의 복잡성을 AI로 걷어냅니다. 데이터팀 없는 팀을 위한 AI 데이터 플랫폼 dataSimplr를 만듭니다. Less noise. More signal.",
+    "simplyciety(대표 양성열)는 AX 컨설팅, AI/데이터 플랫폼 구축, AX/DX 교육으로 기업의 복잡성을 AI로 걷어냅니다. 데이터팀 없는 팀을 위한 AI 데이터 플랫폼 dataSimplr를 만듭니다. Consult · Educate · Build · Create.",
   keywords: [
     "AX 컨설팅", "AI 전환 컨설팅", "AI 전환 전략", "DX 컨설팅", "AI 컨설팅",
     "데이터 플랫폼 구축", "데이터 파이프라인", "AWS 데이터 구축", "Snowflake 구축",
@@ -44,14 +45,14 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: "https://simplyciety.com",
     siteName: "simplyciety",
-    title: "simplyciety — AI로 조직을 단순화합니다",
+    title: "simplyciety — AI와 데이터로 비즈니스를 단순하게",
     description:
       "AX 컨설팅, 데이터·AI 플랫폼 구축, AX/DX 교육으로 조직의 복잡성을 걷어냅니다.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "simplyciety — AI로 조직을 단순화합니다",
-    description: "AX 컨설팅·데이터 플랫폼 구축·AI 교육 전문 기업. Less noise. More signal.",
+    title: "simplyciety — AI와 데이터로 비즈니스를 단순하게",
+    description: "AX 컨설팅·데이터 플랫폼 구축·AI 교육 전문 기업. Consult · Educate · Build · Create.",
   },
   alternates: {
     canonical: "https://simplyciety.com",
@@ -64,6 +65,7 @@ const ORG_SCHEMA = {
   name: "simplyciety",
   url: "https://simplyciety.com",
   logo: "https://simplyciety.com/favicon.svg",
+  slogan: TAGLINE.ko,
   description:
     "AI 기반 조직 단순화 전문 기업. AX 컨설팅, 데이터·AI 플랫폼 구축, AX/DX 교육·조직문화빌딩 서비스를 제공합니다.",
   founder: {
@@ -72,19 +74,17 @@ const ORG_SCHEMA = {
     alternateName: "Sungreul Yang",
     jobTitle: "Founder & CEO",
     url: "https://simplyciety.com/ceo",
-    sameAs:
-      "https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/",
+    sameAs: LINKEDIN_URL,
   },
   contactPoint: {
     "@type": "ContactPoint",
-    email: "yang5071@gmail.com",
+    email: CONTACT_EMAIL,
+    telephone: CONTACT_PHONE_INTL,
     contactType: "customer service",
     areaServed: "KR",
     availableLanguage: "Korean",
   },
-  sameAs: [
-    "https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/",
-  ],
+  sameAs: [LINKEDIN_URL],
   areaServed: "KR",
   knowsAbout: [
     "AI Transformation",

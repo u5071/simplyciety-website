@@ -6,6 +6,7 @@ import Link from "next/link";
 import Nav from "../components/Nav";
 import SiteFooter from "../components/SiteFooter";
 import { useLang } from "../contexts/LanguageContext";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, CONTACT_PHONE_INTL, LINKEDIN_LABEL, LINKEDIN_URL } from "../../lib/contact";
 
 const SERVICE_OPTIONS = [
   { value: "consulting", ko: "AX 컨설팅", en: "AX Consulting" },
@@ -83,7 +84,7 @@ function ContactForm() {
       "",
       form.message,
     ].filter((l) => l !== "").join("\n");
-    return `mailto:yang5071@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
@@ -137,7 +138,8 @@ function ContactForm() {
             mainEntity: {
               "@type": "Organization",
               name: "simplyciety",
-              email: "yang5071@gmail.com",
+              email: CONTACT_EMAIL,
+              telephone: CONTACT_PHONE_INTL,
               url: "https://simplyciety.com",
             },
           }),
@@ -351,19 +353,21 @@ function ContactForm() {
                 {/* Direct contact */}
                 <div>
                   <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-5">{t("직접 연락", "Direct Contact")}</p>
-                  <a
-                    href="mailto:yang5071@gmail.com"
-                    className="text-text-muted text-sm hover:text-accent transition-colors"
-                  >
-                    yang5071@gmail.com
-                  </a>
+                  <div className="flex flex-col gap-3 text-sm">
+                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-text-muted hover:text-accent transition-colors">
+                      <span className="text-accent mr-3">E</span>{CONTACT_EMAIL}
+                    </a>
+                    <a href={CONTACT_PHONE_HREF} className="text-text-muted hover:text-accent transition-colors">
+                      <span className="text-accent mr-3">M</span>{CONTACT_PHONE}
+                    </a>
+                  </div>
                 </div>
 
                 {/* LinkedIn */}
                 <div>
                   <p className="text-[0.6rem] tracking-[0.3em] uppercase text-accent mb-5">LinkedIn</p>
                   <a
-                    href="https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"
+                    href={LINKEDIN_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 group"
@@ -373,7 +377,7 @@ function ContactForm() {
                       <path d="M7 10h2v7H7v-7zm1-3a1.1 1.1 0 110 2.2A1.1 1.1 0 018 7zm4 3h2v1h.03C14.42 10.37 15.22 10 16 10c2.21 0 3 1.49 3 3.43V17h-2v-3.17c0-.95-.35-1.6-1.18-1.6-.88 0-1.32.62-1.32 1.58V17h-2v-7z" fill="var(--ds-accent)" opacity="0.6"/>
                     </svg>
                     <span className="text-[0.6rem] tracking-[0.2em] uppercase text-text-muted group-hover:text-accent transition-colors">
-                      {t("Mr. Simpler 프로필 ↗", "Mr. Simpler Profile ↗")}
+                      {LINKEDIN_LABEL} ↗
                     </span>
                   </a>
                 </div>

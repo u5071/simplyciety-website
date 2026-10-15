@@ -5,11 +5,10 @@ import Nav from "../components/Nav";
 import SiteFooter from "../components/SiteFooter";
 import { useReveal } from "../components/useReveal";
 import { useLang } from "../contexts/LanguageContext";
+import { CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_HREF, LINKEDIN_URL } from "../../lib/contact";
 
 type S = { ko: string; en: string };
 const s = (ko: string, en: string): S => ({ ko, en });
-
-const LINKEDIN = "https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/";
 
 const IMPACT = [
   { num: "4", label: s("산업 · 금융 → 데이터·AI → 유통·문화 → 창업", "Industries · finance → data/AI → retail & culture → founder") },
@@ -35,7 +34,7 @@ const CAREER = [
     step: "4",
     period: "2025 —",
     where: s("창업", "Founding"),
-    role: s("SimplyCiety 대표", "Founder & CEO, SimplyCiety"),
+    role: s("simplyciety 대표", "Founder & CEO, simplyciety"),
     current: true,
     highlights: [
       s("AI · 데이터 플랫폼(제조) 구축 프로젝트", "AI & data platform build (manufacturing)"),
@@ -162,14 +161,17 @@ export default function CeoContent() {
                 {t("금융 · 데이터/AI · 유통·문화 · 창업", "Finance · Data & AI · Retail & culture · Founder")}
               </p>
               <div className="flex flex-wrap items-center gap-6">
-                <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group">
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group">
                   <LinkedInIcon />
                   <span className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted group-hover:text-accent transition-colors duration-300">
                     LinkedIn ↗
                   </span>
                 </a>
-                <a href="mailto:yang5071@gmail.com" className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-accent transition-colors">
-                  yang5071@gmail.com
+                <a href={`mailto:${CONTACT_EMAIL}`} className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-accent transition-colors">
+                  {CONTACT_EMAIL}
+                </a>
+                <a href={CONTACT_PHONE_HREF} className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted hover:text-accent transition-colors">
+                  {CONTACT_PHONE}
                 </a>
               </div>
             </div>
@@ -403,7 +405,7 @@ export default function CeoContent() {
             </p>
             <div className="flex flex-col gap-4">
               <Link href="/contact" className="btn-gold self-start">{t("문의하기 →", "Get in touch →")}</Link>
-              <a href={LINKEDIN} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group self-start">
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2.5 group self-start">
                 <LinkedInIcon />
                 <span className="text-[0.6rem] tracking-[0.25em] uppercase text-text-muted group-hover:text-accent transition-colors duration-300">
                   {t("LinkedIn 프로필 ↗", "LinkedIn profile ↗")}

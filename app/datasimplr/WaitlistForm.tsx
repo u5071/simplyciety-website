@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useLang } from "../contexts/LanguageContext";
+import { CONTACT_EMAIL } from "../../lib/contact";
 import { LAUNCH_LONG } from "../../lib/launch";
 import { WAITLIST_OPTIONS, type Opt } from "../../lib/waitlist-options";
 
@@ -77,7 +78,7 @@ export default function WaitlistForm({ variant = "full", id }: { variant?: "comp
     useCase: "",
     website: "", // honeypot
   });
-  const mailto = `mailto:yang5071@gmail.com?subject=${encodeURIComponent("[dataSimplr] 대기명단 등록 / Waitlist")}&body=${encodeURIComponent(
+  const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent("[dataSimplr] 대기명단 등록 / Waitlist")}&body=${encodeURIComponent(
     [`email: ${form.email}`, form.name && `name: ${form.name}`, form.company && `company: ${form.company}`, form.useCase && `use case: ${form.useCase}`]
       .filter(Boolean)
       .join("\n")

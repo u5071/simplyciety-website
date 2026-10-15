@@ -46,6 +46,7 @@ API: `POST /api/contact`(문의 메일), `POST /api/waitlist`(대기명단 등�
 | dataSimplr 출시일 | `lib/launch.ts` — 사이트·메일·공유 이미지가 모두 이 값을 쓴다 |
 | 진단 문항·점수·추천 | `app/diagnosis/content.ts` |
 | 대기명단 선택 항목 | `lib/waitlist-options.ts` — 폼 라벨과 서버 검증을 함께 정의 |
+| 회사 연락처·태그라인 (명함 기준) | `lib/contact.ts` — 이메일·전화·LinkedIn·태그라인. 페이지·JSON-LD·메일이 모두 이 값을 쓴다 |
 | 알림 메일 수신 주소 | 환경변수 `NOTIFY_EMAIL` (미설정 시 `lib/mail.ts`의 기본값) |
 | 인사이트 글 | `content/posts/*.md` |
 

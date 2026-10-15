@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CeoContent from "./CeoContent";
+import { CONTACT_EMAIL, CONTACT_PHONE_INTL, LINKEDIN_URL } from "../../lib/contact";
 
 export const metadata: Metadata = {
   title: "대표 소개 — 양성열",
@@ -22,8 +23,9 @@ const PERSON_SCHEMA = {
   jobTitle: "Founder & CEO",
   worksFor: { "@type": "Organization", name: "simplyciety", url: "https://simplyciety.com" },
   url: "https://simplyciety.com/ceo",
-  email: "yang5071@gmail.com",
-  sameAs: ["https://www.linkedin.com/in/%EC%84%B1%EC%97%B4-%EC%96%91-bab2b4153/"],
+  email: CONTACT_EMAIL,
+  telephone: CONTACT_PHONE_INTL,
+  sameAs: [LINKEDIN_URL],
   alumniOf: [
     { "@type": "CollegeOrUniversity", name: "서울과학종합대학원 (aSSIST)" },
     { "@type": "CollegeOrUniversity", name: "경희대학교" },

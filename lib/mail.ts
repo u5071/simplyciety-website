@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { CONTACT_EMAIL, TAGLINE } from "./contact";
 
 export function escapeHtml(value: unknown): string {
   return String(value ?? "")
@@ -10,7 +11,7 @@ export function escapeHtml(value: unknown): string {
 }
 
 /** Where inquiry & waitlist notifications go. Override with NOTIFY_EMAIL. */
-export const NOTIFY_TO = process.env.NOTIFY_EMAIL || "yang5071@gmail.com";
+export const NOTIFY_TO = process.env.NOTIFY_EMAIL || CONTACT_EMAIL;
 
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -38,7 +39,7 @@ export function emailFrame(heading: string, bodyHtml: string) {
       </div>
       <div style="background: #fff; padding: 32px; border: 1px solid #eee;">${bodyHtml}</div>
       <p style="color: #aaa; font-size: 11px; margin-top: 16px; text-align: center;">
-        simplyciety.com — Less noise. More signal.
+        simplyciety.com — ${TAGLINE.ko}
       </p>
     </div>
   `;

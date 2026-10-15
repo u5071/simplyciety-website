@@ -5,6 +5,22 @@ type LogoProps = {
   className?: string;
 };
 
+/** Brand mark: three inputs converge on a node inside a frame; the output leaves through the open right side. */
+export function LogoMark({ color = "var(--ds-accent)", size = 26 }: { color?: string; size?: number }) {
+  return (
+    <svg width={size * 1.04} height={size} viewBox="0 0 104 100" fill="none" aria-hidden="true">
+      {/* Frame, open on the right where the output exits */}
+      <path d="M100 38V2H2v96h98V62" stroke={color} strokeWidth="3" />
+      {/* Input lines (noise) */}
+      <path d="M13 28l32 22M13 50h32M13 72l32-22" stroke={color} strokeWidth="3" />
+      {/* Signal node */}
+      <rect x="44.5" y="44.5" width="11" height="11" fill={color} />
+      {/* Output signal */}
+      <path d="M55 50h49" stroke={color} strokeWidth="3" />
+    </svg>
+  );
+}
+
 export default function Logo({
   markColor = "var(--ds-accent)",
   textColor = "var(--ds-text)",
@@ -13,40 +29,12 @@ export default function Logo({
 }: LogoProps) {
   return (
     <span className={`inline-flex items-center gap-3 ${className}`}>
-      {/* Mark: three lines converging → signal dot → output */}
-      <svg
-        width="34"
-        height="22"
-        viewBox="0 0 34 22"
-        fill="none"
-        aria-hidden="true"
-      >
-        {/* Input lines (noise) */}
-        <line
-          x1="0.5" y1="1.5" x2="17" y2="11"
-          stroke={markColor} strokeWidth="1" strokeLinecap="round"
-        />
-        <line
-          x1="0.5" y1="11" x2="17" y2="11"
-          stroke={markColor} strokeWidth="1" strokeLinecap="round"
-        />
-        <line
-          x1="0.5" y1="20.5" x2="17" y2="11"
-          stroke={markColor} strokeWidth="1" strokeLinecap="round"
-        />
-        {/* Signal node */}
-        <circle cx="17" cy="11" r="1.8" fill={markColor} />
-        {/* Output signal */}
-        <line
-          x1="18.9" y1="11" x2="33.5" y2="11"
-          stroke={markColor} strokeWidth="1.6" strokeLinecap="round"
-        />
-      </svg>
+      <LogoMark color={markColor} />
 
       {!markOnly && (
         <span
           style={{ color: textColor }}
-          className="text-[0.7rem] tracking-[0.32em] uppercase font-light"
+          className="text-[0.75rem] tracking-[0.32em] uppercase font-normal"
         >
           simplyciety
         </span>
